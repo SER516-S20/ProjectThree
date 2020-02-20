@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 /**
  * @author Ashutosh Dey
+ * @author Chandan Yadav
  * @version 1.0
  * @since 01/28/2020
  */

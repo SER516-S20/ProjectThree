@@ -1,11 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
-<<<<<<< HEAD
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-=======
->>>>>>> 3af08928a50095e0803f048cbc977ec3719367ce
 
 /**
  * Circle.java - a class for creating circle shape at a particular position
