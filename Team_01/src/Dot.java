@@ -73,12 +73,66 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
-	
+		if ( !RightPanel.isSelected && isDotClicked ) {
+			Iterator<Shapes> shapeIterator = RightPanel.rightPanelShapes.iterator();
+			while (shapeIterator.hasNext()) {
+				Shapes shape = shapeIterator.next();
+				if (shape.containsPoint(e.getX(), e.getY()) && !getIsLineDrawn(shape, e.getX(), e.getY())) {
+					RightPanel.originShape = shape;
+					firstShape = shape;
+					sourceX = e.getX();
+					sourceY = e.getY();
+					isDotClicked = false;
+					firstDotClicked = true;
+					RightPanel.isMoved = true;
+					Cursor cursor = new Cursor(Cursor.CROSSHAIR_CURSOR);
+					Frame.rightPanel.setCursor(cursor);
+					Frame.rightPanel.setVisible(true);
+					break;
+				}
+			}
+			RightPanel.isSelected = true;
+
+		}
+		
+		else if ( !RightPanel.isSelected && isBarClicked ) {
+			Iterator<Shapes> shapeIterator = RightPanel.rightPanelShapes.iterator();
+			while (shapeIterator.hasNext()) {
+				Shapes shape = shapeIterator.next();
+				if (shape.containsPoint(e.getX(), e.getY()) && !getIsLineDrawn(shape, e.getX(), e.getY())) {
+					RightPanel.originShape = shape;
+					firstShape = shape;
+					sourceX = e.getX();
+					sourceY = e.getY();
+					isBarClicked = false;
+					firstDotClicked = true;
+					RightPanel.isMoved = true;
+					Cursor cursor = new Cursor(Cursor.CROSSHAIR_CURSOR);
+					Frame.rightPanel.setCursor(cursor);
+					Frame.rightPanel.setVisible(true);
+					break;
+				}
+			}
+			RightPanel.isSelected = true;
+
+		}
 
 	}
 
 	private void setIsLineDrawn(Shapes shape, int x, int y) {
-		
+		if (shape instanceof Circle) {
+			Circle circle = ((Circle) shape);
+			circle.isLineDrawn = true;
+		} else if (shape instanceof Triangle) {
+			Triangle triangle = (Triangle) shape;
+			if (triangle.dot1.containsPoint(x, y)) {
+				triangle.isLineDrawnDot1 = true;
+			} else if (triangle.dot2.containsPoint(x, y)) {
+				triangle.isLineDrawnDot2 = true;
+			} else if (triangle.dot3.containsPoint(x, y)) {
+				triangle.isLineDrawnDot3 = true;
+			}
+		}
 	}
 
 	private boolean getIsLineDrawn(Shapes shape, int x, int y) {
