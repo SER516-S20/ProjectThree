@@ -2,13 +2,24 @@ import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.geom.Ellipse2D;
+import java.io.Serializable;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 /**
  * @author Raghavan
  * @version 1.0
  */
-public class Dot extends Shapes {
+public class Dot extends Shapes implements MouseListener, MouseMotionListener, Serializable {
 	double x, y;
+	static public boolean isBarClicked = false;
+	static boolean isDotClicked = false, firstDotClicked = false;
+	static int sourceX, sourceY, destinationX, destinationY;
+	static Shapes firstShape, secondShape;
 	Shape circle = null;
 
 	public Dot(double x, double y) {
@@ -57,6 +68,52 @@ public class Dot extends Shapes {
 	@Override
 	public void setY(int y) {
 		this.y = y;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+
+	
+
+	}
+
+	private void setIsLineDrawn(Shapes shape, int x, int y) {
+		
+	}
+
+	private boolean getIsLineDrawn(Shapes shape, int x, int y) {
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		
+
 	}
 
 }
