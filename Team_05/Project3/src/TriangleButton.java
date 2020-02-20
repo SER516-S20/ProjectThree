@@ -73,7 +73,7 @@ public class TriangleButton extends JButton{
         return p;
 	}
 	
-	public Point[] getPointTopCoordinate() {
+	public Point[] getPointsCoordinate() {
 		Point top = new Point((size.width - 1) / 2, 15);
 		Point left = new Point(15, size.height - 1 - 10);
 		Point right = new Point(size.width - 1 - 15, size.height - 1 - 10);
