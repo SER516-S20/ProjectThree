@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
  * @since 02-19-2019
  * @Description: This class stores x, y coordinates of bars of square to draw the line.
  */
-public class Bars extends JButton
+public class Bar extends JButton
 {
     public static int endx = 0;
     public static int endy = 0;
@@ -27,7 +27,7 @@ public class Bars extends JButton
     public static int starty = 0;
     public static int lineflag = 0;
 
-    public Bars(String label, int x, int y, boolean flag) 
+    public Bar(String label, int x, int y, boolean flag) 
     {
         super(label);
         Dimension size = getPreferredSize();
