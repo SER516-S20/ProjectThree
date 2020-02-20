@@ -116,6 +116,43 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
 			RightPanel.isSelected = true;
 
 		}
+		else if (RightPanel.isSelected && isDotClicked) {
+
+			if (!RightPanel.originShape.containsPoint(e.getX(), e.getY())) {
+				Iterator<Shapes> shapeIterator = RightPanel.rightPanelShapes.iterator();
+				while (shapeIterator.hasNext()) {
+					Shapes shape = shapeIterator.next();
+					if (shape.containsPoint(e.getX(), e.getY()) && !getIsLineDrawn(shape, e.getX(), e.getY())
+							&& !getIsLineDrawn(firstShape, e.getX(), e.getY())) {
+						destinationX = e.getX();
+						destinationY = e.getY();
+
+						secondShape = shape;
+						Connections line = new Connections();
+						line.setSourceX(sourceX);
+						line.setDestX(destinationX);
+						line.setSourceY(sourceY);
+						line.setDestY(destinationY);
+						line.setOriginShape(firstShape);
+						line.setDestShape(secondShape);
+						RightPanel.lines.add(line);
+						setIsLineDrawn(firstShape, sourceX, sourceY);
+						setIsLineDrawn(secondShape, e.getX(), e.getY());
+						firstDotClicked = false;
+						RightPanel.isMoved = false;
+						Cursor cursor = new Cursor(Cursor.DEFAULT_CURSOR);
+						Frame.rightPanel.setCursor(cursor);
+						Frame.rightPanel.setVisible(true);
+						RightPanel.isSelected = false;
+						break;
+					}
+
+				}
+
+				Frame.rightPanel.repaint();
+			}
+			isDotClicked = false;
+		}
 
 	}
 
@@ -136,7 +173,20 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
 	}
 
 	private boolean getIsLineDrawn(Shapes shape, int x, int y) {
-		
+		if (shape instanceof Circle) {
+			Circle temp = ((Circle) shape);
+			return temp.isLineDrawn;
+		} else if (shape instanceof Triangle) {
+			Triangle triangle = (Triangle) shape;
+			if (triangle.dot1.containsPoint(x, y)) {
+				return triangle.isLineDrawnDot1;
+			} else if (triangle.dot2.containsPoint(x, y)) {
+				return triangle.isLineDrawnDot2;
+			} else if (triangle.dot3.containsPoint(x, y)) {
+				return triangle.isLineDrawnDot3;
+			}
+		}
+		return false;
 	}
 
 	@Override
