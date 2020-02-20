@@ -25,8 +25,8 @@ public class Square extends ObjectInterface
 	public Square(String label, int x, int y, boolean flag) 
 	{
         super(label, x, y);       
-        Bars bar1 = new Bars("",55,10,true );
-        Bars bar2 = new Bars("",10,10,true );     
+        Bar bar1 = new Bar("",55,10,true );
+        Bar bar2 = new Bar("",10,10,true );     
         this.add(bar1);
         this.add(bar2);
         
