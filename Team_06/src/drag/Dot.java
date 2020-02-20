@@ -14,7 +14,7 @@ import javax.swing.JComponent;
 import javax.swing.border.EmptyBorder;
 
 /** 
- * @author Rahul, Sheran
+ * @author Dananjay, Somesh
  * @since 02-18-2019
  * @Desciption: This class stores x, y coordinates of dots to draw the line.
  */
