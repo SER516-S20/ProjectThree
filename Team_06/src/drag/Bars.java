@@ -14,7 +14,7 @@ import javax.swing.JComponent;
 import javax.swing.border.EmptyBorder;
 
 /**
- * @author Sheran
+ * @author Sheran, Somesh
  * @since 02-19-2019
  */
 
