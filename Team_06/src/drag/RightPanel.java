@@ -17,7 +17,7 @@ import javax.swing.JButton;
 /**
  * @author: Suyog, Dhananjay, Somesh
  * @Date: 01/28/2020
- * @Description: Right Panel will have different shapes which are selected in left panel.
+ * @Description: Right Panel will have different shapes added which are selected in left panel.
  */
 public class RightPanel extends PanelInterface 
 {
