@@ -6,10 +6,24 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 /**
- * @author Abhinaw Sarang
- * @created 01-29-2020
+ * @author Rohit
+ * @created 02-18-2020
  * @version 1.0
  */
 public class DrawBoardPanel extends JPanel {
 
+	private static final long serialVersionUID = 1L;
+
+	public DrawBoardPanel() {
+
+		try {
+			add(new DrawShapeOnMouseClick());
+			setVisible(true);
+			Border blackline = BorderFactory.createLineBorder(Color.black);
+			setBorder(blackline);
+			setSize(1600, 800);
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
 }
