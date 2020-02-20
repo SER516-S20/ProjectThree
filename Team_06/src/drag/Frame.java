@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Frame extends JFrame{
 
@@ -45,6 +46,9 @@ public class Frame extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				// Using this process to invoke the contructor, 
 				// JFileChooser points to user's default directory 
+				ArrayList<Point> circlepoints = RightPanel.getInstance().circlePoints;
+				ArrayList<Point> trianglepoints = RightPanel.getInstance().trianglePoints;
+				ArrayList<Point> squarepoints = RightPanel.getInstance().squarePoints;
 				JFileChooser j = new JFileChooser(); 
 
 				// invoke the showsSaveDialog function to show the save dialog 
@@ -57,8 +61,21 @@ public class Frame extends JFrame{
 	                // set the label to the path of the selected file 
 	                //l.setText(j.getSelectedFile().getAbsolutePath()); 
 	                try(FileWriter fw = new FileWriter(j.getSelectedFile()+".txt")) {
-	                    fw.write("asdas");
-	                } catch (IOException e1) {
+	                	for(Point point: circlepoints) {
+		      				  System.out.println(point);
+		      			    fw.write("Circle " + point.x +" " + point.y + System.lineSeparator());
+	                }
+	                	for(Point point: trianglepoints) {
+		      				  System.out.println(point);
+		      			    fw.write("Triangle " + point.x +" " + point.y + System.lineSeparator());
+	                }
+	                	for(Point point: squarepoints) {
+		      				  System.out.println(point);
+		      			    fw.write("Square " + point.x +" " + point.y + System.lineSeparator());
+	                }
+	                	fw.close();
+	                }
+	                	catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
