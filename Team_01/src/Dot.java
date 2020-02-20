@@ -116,6 +116,7 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
 			RightPanel.isSelected = true;
 
 		}
+
 		else if (RightPanel.isSelected && isDotClicked) {
 
 			if (!RightPanel.originShape.containsPoint(e.getX(), e.getY())) {
@@ -152,6 +153,48 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
 				Frame.rightPanel.repaint();
 			}
 			isDotClicked = false;
+		}
+
+		else if ( RightPanel.isSelected && isBarClicked) {
+			if (!RightPanel.originShape.containsPoint(e.getX(), e.getY())) {
+				Iterator<Shapes> shapeIterator = RightPanel.rightPanelShapes.iterator();
+				while (shapeIterator.hasNext()) {
+					Shapes shape = shapeIterator.next();
+					if (shape.containsPoint(e.getX(), e.getY()) && !getIsLineDrawn(firstShape, e.getX(), e.getY())) {
+						destinationX = e.getX();
+						destinationY = e.getY();
+						secondShape = shape;
+						Connections line = new Connections();
+						line.setSourceX(sourceX);
+						line.setDestX(destinationX);
+						line.setSourceY(sourceY);
+						line.setDestY(destinationY);
+						line.setOriginShape(firstShape);
+						line.setDestShape(secondShape);
+						RightPanel.lines.add(line);
+						setIsLineDrawn(firstShape, sourceX, sourceY);
+						firstDotClicked = false;
+						RightPanel.isMoved = false;
+						RightPanel.isSelected = false;
+						Cursor cursor = new Cursor(Cursor.DEFAULT_CURSOR);
+						Frame.rightPanel.setCursor(cursor);
+						Frame.rightPanel.setVisible(true);
+						break;
+
+					}
+				}
+				Frame.rightPanel.repaint();
+			}
+			isDotClicked = false;
+			isBarClicked = false;
+		}
+
+		else {
+			Cursor cursor = new Cursor(Cursor.DEFAULT_CURSOR);
+			Frame.rightPanel.setCursor(cursor);
+			Frame.rightPanel.setVisible(true);
+			RightPanel.isMoved = false;
+			RightPanel.isSelected = false;
 		}
 
 	}
@@ -191,7 +234,35 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		
+		ListIterator<Shapes> shapes = RightPanel.rightPanelShapes.listIterator();
+		while (shapes.hasNext()) {
+			Shapes sh = shapes.next();
+			if (sh.containsPoint(e.getX(), e.getY())) {
+				if (sh instanceof Circle && ((Circle) sh).dot.containsPoint(e.getX(), e.getY())) {
+					isDotClicked = true;
+					break;
+				}
+
+				else if (sh instanceof Triangle && (((Triangle) sh).dot1.containsPoint(e.getX(), e.getY())
+						|| ((Triangle) sh).dot2.containsPoint(e.getX(), e.getY())
+						|| ((Triangle) sh).dot3.containsPoint(e.getX(), e.getY()))) {
+					isDotClicked = true;
+					break;
+				}
+
+				else if (sh instanceof Square && (((Square) sh).bar1.containsPoint(e.getX(), e.getY())
+						|| ((Square) sh).bar2.containsPoint(e.getX(), e.getY()))) {
+					isBarClicked = true;
+					break;
+				}
+				else {
+					isDotClicked = false;
+					isBarClicked = false;
+				}
+
+			}
+			
+		}
 	}
 
 	@Override
@@ -216,7 +287,13 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		
+		if (firstDotClicked) {
+			RightPanel.originX = sourceX;
+			RightPanel.originY = sourceY;
+			RightPanel.destinationX = e.getX();
+			RightPanel.destinationY = e.getY();
+			Frame.rightPanel.repaint();
+		}
 
 	}
 
