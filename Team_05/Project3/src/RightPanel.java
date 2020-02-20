@@ -88,8 +88,7 @@ public class RightPanel extends JPanel {
 	public void updateHashCode()
 	{
 		Hashtable<Integer, JButton> update = new Hashtable<Integer, JButton>();
-		for(JButton shape:shapes.values())
-		{
+		for(JButton shape:shapes.values()) {
 			update.put(shape.hashCode(), shape);
 		}
 		shapes = update;
@@ -110,40 +109,33 @@ public class RightPanel extends JPanel {
 		frame.contentRepaint();
 	}
 	
-	public Hashtable<Integer, JButton> getShapes()
-	{
+	public Hashtable<Integer, JButton> getShapes() {
 		return shapes;
 	}
 	
-	public void clear()
-	{
-		for(JButton shape:shapes.values())
-		{
+	public void clear() {
+		for(JButton shape:shapes.values()) {
 			this.remove(shape);
 		}
 		shapes.clear();
-		currentX=0;
-		currentY=0;
+		currentX = 0;
+		currentY = 0;
 	}
 	
-	private void autoLocation(JButton button)
-	{
+	private void autoLocation(JButton button) {
 		Rectangle dimension = this.getBounds();
-		//button.setSize(step, step);
 		button.setSize(button.getPreferredSize());
-		if(currentX<=dimension.width-step)
-		{
+		if(currentX <= dimension.width - step) {
 			button.setLocation(currentX, currentY);
-			currentX+=step;
-			System.out.println("AutoLocation "+currentX+" "+currentY);
+			currentX += step;
+			System.out.println("AutoLocation " + currentX + " " + currentY);
 		}
-		else
-		{
-			currentX=0;
-			currentY+=step;
+		else {
+			currentX = 0;
+			currentY += step;
 			button.setLocation(currentX, currentY);
-			System.out.println("AutoLocation "+currentX+" "+currentY);
-			currentX+=step;
+			System.out.println("AutoLocation " + currentX + " " + currentY);
+			currentX += step;
 		}
 	}
 }

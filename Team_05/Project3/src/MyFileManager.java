@@ -23,24 +23,20 @@ public class MyFileManager {
 	JFileChooser fileChooser;
 	Hashtable<Integer, JButton> shapes;
 	
-	MyFileManager()
-	{
+	MyFileManager(){
 		
 	}
 	
-	MyFileManager(RightPanel rightPanel)
-	{
+	MyFileManager(RightPanel rightPanel){
 		this.rightPanel = rightPanel;
 	}
 	
-	public void save()
-	{
+	public void save() {
 		parentFrame = new JFrame();
 		fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("Save file");
 		int selection = fileChooser.showSaveDialog(parentFrame);
-		if(selection == JFileChooser.APPROVE_OPTION)
-		{
+		if(selection == JFileChooser.APPROVE_OPTION) {
 			File fileToSave = fileChooser.getSelectedFile();
 			System.out.println(fileToSave.toString());
 			
@@ -48,50 +44,42 @@ public class MyFileManager {
 		}
 	}
 	
-	public void open()
-	{
+	public void open() {
 		parentFrame = new JFrame();
 		fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("Open file");
 		int selection = fileChooser.showOpenDialog(parentFrame);
-		if(selection == JFileChooser.APPROVE_OPTION)
-		{
+		if(selection == JFileChooser.APPROVE_OPTION) {
 			File fileToOpen = fileChooser.getSelectedFile();
 			opener(fileToOpen);
 		}
 	}
 	
-	private void saver(File file)
-	{
-		try
-		{
+	private void saver(File file) {
+		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 			Document doc = docBuilder.newDocument();
 			Element rootElement = doc.createElement("shapes");
 			doc.appendChild(rootElement);
 			shapes = rightPanel.getShapes();
-			for(int key:shapes.keySet())
-			{
+			for(int key:shapes.keySet()) {
 				Element shape = doc.createElement("shape");
 				rootElement.appendChild(shape);
 				shape.setAttribute("id",Integer.toString(key));
 				JButton theShape = shapes.get(key);
 				Element type = doc.createElement("type");
-				if(theShape instanceof RoundButton)
-				{
+				if(theShape instanceof RoundButton) {
 					type.appendChild(doc.createTextNode("round"));
 				}
-				else if(theShape instanceof RectangleButton)
-				{
+				else if(theShape instanceof RectangleButton) {
 					type.appendChild(doc.createTextNode("rectangle"));
 				}
-				else//TriangleButton
-				{
+				else { //TriangleButton
 					type.appendChild(doc.createTextNode("triangle"));
 				}
 				Element position = doc.createElement("position");
-				position.appendChild(doc.createTextNode(theShape.getLocation().x+","+theShape.getLocation().y));
+				position.appendChild(doc.createTextNode(theShape.getLocation().x + ","+theShape.getLocation().y));
 				shape.appendChild(type);
 				shape.appendChild(position);
 			}
@@ -101,35 +89,27 @@ public class MyFileManager {
 			StreamResult result = new StreamResult(file);
 			transformer.transform(source, result);
 		}
-		catch(Exception e)
-		{
+		catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	private void opener(File file)
-	{
+	private void opener(File file) {
 		rightPanel.clear();
-		try
-		{
+		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 			Document doc = docBuilder.parse(file);
-			doc.getDocumentElement().normalize();  
-			//System.out.println("Root element: " + doc.getDocumentElement().getNodeName());  
+			doc.getDocumentElement().normalize();   
 			NodeList nodeList = doc.getElementsByTagName("shape");
-			for(int i = 0;i<nodeList.getLength();i++)
-			{
+			for(int i = 0;i < nodeList.getLength();i++) {
 				Node node = nodeList.item(i);
-				//System.out.println("\nNode Name :" + node.getNodeName());
-				if (node.getNodeType() == Node.ELEMENT_NODE)   
-				{  
+				if (node.getNodeType() == Node.ELEMENT_NODE) {  
 					Element eElement = (Element) node;
 					int ID = Integer.parseInt(node.getAttributes().getNamedItem("id").getNodeValue());
 					String position[] = eElement.getElementsByTagName("position").item(0).getTextContent().split(",");
 					Point point = new Point(Integer.parseInt(position[0]),Integer.parseInt(position[1]));
-					switch(eElement.getElementsByTagName("type").item(0).getTextContent())
-					{
+					switch(eElement.getElementsByTagName("type").item(0).getTextContent()) {
 						case "round":
 							rightPanel.addRound(ID,point);
 							break;
@@ -144,8 +124,7 @@ public class MyFileManager {
 			}
 			rightPanel.updateHashCode();
 		}
-		catch(Exception e)
-		{
+		catch(Exception e) {
 			e.printStackTrace();
 		}
 	}

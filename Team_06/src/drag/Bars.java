@@ -1,9 +1,5 @@
 package drag;
 
-/**
- * @author Sheran, Somesh
- * @since 02-19-2019
- */
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -16,6 +12,11 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * @author Sheran, Rahul
+ * @since 02-19-2019
+ * @Description: This class stores x, y coordinates of bars of square to draw the line.
+ */
 public class Bars extends JButton
 {
     public static int endx = 0;
