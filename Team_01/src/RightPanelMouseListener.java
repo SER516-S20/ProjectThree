@@ -57,12 +57,45 @@ public class RightPanelMouseListener extends RightPanel implements MouseListener
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		ListIterator<Shapes> shapes = RightPanel.rightPanelShapes.listIterator();
+		while(shapes.hasNext()) {
+			Shapes sh = shapes.next();
+			if(sh.containsPoint(e.getX(), e.getY())) {
+				selectedShape = sh;
+			}
+	
+		}
+		ListIterator<Connections> lines = RightPanel.lines.listIterator();
+		while (lines.hasNext()) {
+			Connections line = lines.next();
+			
+			if (line.getOriginShape().equals(selectedShape)) {
+				DrawLine drawline = new DrawLine();
+				drawline.setLineX(line.getSourceX());
+				drawline.setLineY(line.getSourceY());
+				drawline.setShapeX(selectedShape.getX());
+				drawline.setShapeY(selectedShape.getY());
+				drawline.setLine(line);
+				drawline.setSourceShape(true);
+				linesList.add(drawline); 
+			} else if (line.getDestShape().equals(selectedShape)) {
+				DrawLine drawline = new DrawLine();
+				drawline.setLineX(line.getDestX());
+				drawline.setLineY(line.getDestY());
+				drawline.setShapeX(selectedShape.getX());
+				drawline.setShapeY(selectedShape.getY());
+				drawline.setLine(line);
+				drawline.setDestShape(true);
+				linesList.add(drawline);
+			}
+		}
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		
+		selectedShape = null;
+		linesList.clear();
 	}
 
 	@Override
