@@ -32,6 +32,13 @@ import java.util.ArrayList;
  *@Since 2-19-2020
  * @version 1.0.2
  */
+/**
+ * 
+ * @author Tarun Snehith Kishore Reddy Karna
+ *@Since 2-19-2020
+ * @version 1.0.2
+ */
+
 public class Frame extends JFrame {
 	private static final String FRAME_TITLE = "Team4";
 	JFrame frame = new JFrame("Swing Tester");
@@ -67,7 +74,53 @@ public class Frame extends JFrame {
 		this.setVisible(true);
 	}
 
-	
+	class OpenL implements ActionListener {
+		public String fileName;
+
+		@SuppressWarnings("unchecked")
+		public void actionPerformed(ActionEvent e) {
+			FileInputStream fileIn = null;
+			ObjectInputStream in = null;
+			try {
+				JFileChooser chosenFile = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("SER516", "ser");
+				chosenFile.setFileFilter(filter);
+				int showOpenDialog = chosenFile.showOpenDialog(null);
+				if (showOpenDialog == JFileChooser.APPROVE_OPTION) {
+					fileName = chosenFile.getSelectedFile().getAbsolutePath();
+					fileIn = new FileInputStream(fileName);
+					in = new ObjectInputStream(fileIn);
+					canvas.lineArray = (ArrayList<Point[]>) in.readObject();
+					canvas.shapeObject = (ArrayList<Object>) in.readObject();
+					canvas.load();
+					canvas.repaint();
+				}
+			} catch (IOException i) {
+				i.printStackTrace();
+			} catch (ClassNotFoundException e1) {
+			}
+
+			finally {
+				if (in != null) {
+					try {
+						in.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if (fileIn != null) {
+					try {
+						fileIn.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		}
+	}
+
 
 	class SaveL implements ActionListener {
 		public String fileName;
