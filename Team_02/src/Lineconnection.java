@@ -1,4 +1,5 @@
 import java.awt.Point;
+
 /**
  * @author Suryadeep
  * @created on 01-27-2020
@@ -8,8 +9,8 @@ public class Lineconnection {
 	public Point P1 = null;
 	public Point P2 = null;
 
-	Lineconnection(Point P1, Point P2){
-		this.P1 = P1 ;
+	Lineconnection(Point P1, Point P2) {
+		this.P1 = P1;
 		this.P2 = P2;
 	}
 }
