@@ -5,8 +5,6 @@ import javax.swing.JPanel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -64,7 +62,6 @@ public class Frame extends JFrame{
 	}
 	
 	private JPanel createLeftPanel() {
-		
 		btnContainer.setSize(200, 500);
 		btnContainer.setLocation(0, 0);
 		btnContainer.setBackground(lBackground);
