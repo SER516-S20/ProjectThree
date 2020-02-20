@@ -5,21 +5,23 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 
 /**
+ * 
  * @author Rohith Varma Gaddam
- * @since 01-27-2020
+ * @since 01-27-2022
  * @version 1.0
+ *
  */
-public class Circle extends JButton {
+public class Square extends JButton {
 	private SelectionEvent event;
 	private static Icon label;
 
-	public Circle() {
+	public Square() {
 		super(label);
 		Dimension size = getPreferredSize();
 		size.width = size.height = 100;
 		setPreferredSize(size);
 		setContentAreaFilled(false);
-		event = new SelectionEvent(this, "circle");
+		event = new SelectionEvent(this, "square");
 	}
 
 	protected void paintComponent(Graphics g) {
@@ -28,12 +30,12 @@ public class Circle extends JButton {
 		} else {
 			g.setColor(getBackground());
 		}
-		g.fillOval(50, 0, getSize().height - 1, getSize().height - 1);
+		g.fillRect(50, 10, getHeight() - 30, getHeight() - 30);
 		super.paintComponent(g);
 	}
 
 	protected void paintBorder(Graphics g) {
 		g.setColor(getForeground());
-		g.drawOval(50, 0, getSize().height - 1, getSize().height - 1);
+		g.drawRect(50, 10, getHeight() - 30, getHeight() - 30);
 	}
 }

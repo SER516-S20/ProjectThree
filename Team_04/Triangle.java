@@ -1,25 +1,24 @@
+import java.awt.*;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
-import javax.swing.Icon;
-import javax.swing.JButton;
+import javax.swing.*;
 
 /**
  * @author Rohith Varma Gaddam
  * @since 01-27-2020
  * @version 1.0
  */
-public class Circle extends JButton {
+public class Triangle extends JButton {
 	private SelectionEvent event;
 	private static Icon label;
 
-	public Circle() {
+	public Triangle() {
 		super(label);
 		Dimension size = getPreferredSize();
 		size.width = size.height = 100;
 		setPreferredSize(size);
 		setContentAreaFilled(false);
-		event = new SelectionEvent(this, "circle");
+		event = new SelectionEvent(this, "triangle");
 	}
 
 	protected void paintComponent(Graphics g) {
@@ -28,12 +27,16 @@ public class Circle extends JButton {
 		} else {
 			g.setColor(getBackground());
 		}
-		g.fillOval(50, 0, getSize().height - 1, getSize().height - 1);
+		int xPoints[] = { getSize().width / 2, 30, getSize().width - 30 };
+		int yPoints[] = { 10, getSize().height - 11, getSize().height - 11 };
+		g.fillPolygon(xPoints, yPoints, xPoints.length);
 		super.paintComponent(g);
 	}
 
 	protected void paintBorder(Graphics g) {
 		g.setColor(getForeground());
-		g.drawOval(50, 0, getSize().height - 1, getSize().height - 1);
+		int xPoints[] = { getSize().width / 2, 30, getSize().width - 30 };
+		int yPoints[] = { 10, getSize().height - 11, getSize().height - 11 };
+		g.drawPolygon(xPoints, yPoints, xPoints.length);
 	}
 }
