@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 /**
  * Square.java - a class for creating square shape at a particular position
@@ -8,7 +9,7 @@ import java.awt.Graphics;
  * @version 1.0
  * @since 01/29/2020
  */
-public class Square implements Shape {
+public class Square implements Shape,Serializable {
 
 	private int coordinateX;
 	private int coordinateY;

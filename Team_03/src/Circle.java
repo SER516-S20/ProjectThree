@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * @version 1.0
  * @since 01/27/2020
  */
-public class Circle implements Shape {
+public class Circle implements Shape,Serializable {
 
 	static final int DOT_HEIGHT = 10;
 	static final int DOT_WIDTH = 10;
