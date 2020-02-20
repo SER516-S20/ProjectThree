@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 /**
  * Triangle.java - a class for creating triangle shape at a particular position
@@ -8,7 +9,7 @@ import java.awt.Graphics;
  * @version 1.0
  * @since 01/29/2020
  */
-public class Triangle implements Shape {
+public class Triangle implements Shape,Serializable {
 
 	private int coordinateX;
 	private int coordinateY;
