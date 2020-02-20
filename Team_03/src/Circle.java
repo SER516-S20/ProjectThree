@@ -1,8 +1,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
+<<<<<<< HEAD
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+=======
+>>>>>>> 3af08928a50095e0803f048cbc977ec3719367ce
 
 /**
  * Circle.java - a class for creating circle shape at a particular position
@@ -69,7 +72,8 @@ public class Circle implements Shape,Serializable {
 
 	@Override
 	public void setLinePosition(int x, int y, int x1, int y1) {
-		
+		//setLinePosition() is a method in interface Shape and we need to override it
+		//Line Position is not required to be implemented for Circle Shape
 	}
 
 }

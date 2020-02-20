@@ -30,12 +30,12 @@ public class Relocate {
 	public void isLineInsideCircle(Line line, Circle circle, Map<Integer, List<Line>> mapLines) {
 		if (Boundary.polygonCheck(circle.getCoordinateX(), circle.getCoordinateY(),
 				circle.getCoordinateX() + DrawingArea.CIRCLE_WIDTH, circle.getCoordinateY() + DrawingArea.CIRCLE_HEIGHT,
-				line.startCordinateX, line.startCordinateY)) {
+				line.startCoordinateX, line.startCoordinateY)) {
 			mapLines.get(LINE_START_KEY).add(line);
 
 		} else if (Boundary.polygonCheck(circle.getCoordinateX(), circle.getCoordinateY(),
 				circle.getCoordinateX() + DrawingArea.CIRCLE_WIDTH, circle.getCoordinateY() + DrawingArea.CIRCLE_HEIGHT,
-				line.endCordinateX, line.endCordinateY)) {
+				line.endCoordinateX, line.endCoordinateY)) {
 			mapLines.get(LINE_END_KEY).add(line);
 		}
 	}
@@ -68,9 +68,9 @@ public class Relocate {
 		for (Integer key : lines.keySet()) {
 			for (Line line : lines.get(key)) {
 				if (key == LINE_START_KEY) {
-					line.setLinePosition(cordinateX, cordinateY, line.endCordinateX, line.endCordinateY);
+					line.setLinePosition(cordinateX, cordinateY, line.endCoordinateX, line.endCoordinateY);
 				} else {
-					line.setLinePosition(line.startCordinateX, line.startCordinateY, cordinateX, cordinateY);
+					line.setLinePosition(line.startCoordinateX, line.startCoordinateY, cordinateX, cordinateY);
 				}
 			}
 		}
@@ -87,42 +87,42 @@ public class Relocate {
 
 		if (Boundary.polygonCheck(triangle.getCoordinateX() - DrawingArea.TRIANGLE_SIZE, triangle.getCoordinateY(),
 				triangle.getCoordinateX() + DrawingArea.TRIANGLE_SIZE,
-				triangle.getCoordinateY() + DrawingArea.TRIANGLE_SIZE, line.startCordinateX, line.startCordinateY)) {
+				triangle.getCoordinateY() + DrawingArea.TRIANGLE_SIZE, line.startCoordinateX, line.startCoordinateY)) {
 
 			if (Boundary.polygonCheck(dot1.getCoordinateX(), dot1.getCoordinateY(),
 					dot1.getCoordinateX() + Circle.DOT_WIDTH, dot1.getCoordinateY() + Circle.DOT_HEIGHT,
-					line.startCordinateX, line.startCordinateY)) {
+					line.startCoordinateX, line.startCoordinateY)) {
 				mapLines.get(LINE_START_KEY).get(TRIANGLE_DOT_ONE_INDEX).add(line);
 
 			} else if (Boundary.polygonCheck(dot2.getCoordinateX(), dot2.getCoordinateY(),
 					dot2.getCoordinateX() + Circle.DOT_WIDTH, dot2.getCoordinateY() + Circle.DOT_HEIGHT,
-					line.startCordinateX, line.startCordinateY)) {
+					line.startCoordinateX, line.startCoordinateY)) {
 				mapLines.get(LINE_START_KEY).get(TRIANGLE_DOT_TWO_INDEX).add(line);
 
 			} else if (Boundary.polygonCheck(dot3.getCoordinateX(), dot3.getCoordinateY(),
 					dot3.getCoordinateX() + Circle.DOT_WIDTH, dot3.getCoordinateY() + Circle.DOT_HEIGHT,
-					line.startCordinateX, line.startCordinateY)) {
+					line.startCoordinateX, line.startCoordinateY)) {
 				mapLines.get(LINE_START_KEY).get(TRIANGLE_DOT_THREE_INDEX).add(line);
 
 			}
 
 		} else if (Boundary.polygonCheck(triangle.getCoordinateX() - DrawingArea.TRIANGLE_SIZE,
 				triangle.getCoordinateY(), triangle.getCoordinateX() + DrawingArea.TRIANGLE_SIZE,
-				triangle.getCoordinateY() + DrawingArea.TRIANGLE_SIZE, line.endCordinateX, line.endCordinateY)) {
+				triangle.getCoordinateY() + DrawingArea.TRIANGLE_SIZE, line.endCoordinateX, line.endCoordinateY)) {
 
 			if (Boundary.polygonCheck(dot1.getCoordinateX(), dot1.getCoordinateY(),
 					dot1.getCoordinateX() + Circle.DOT_WIDTH, dot1.getCoordinateY() + Circle.DOT_HEIGHT,
-					line.endCordinateX, line.endCordinateY)) {
+					line.endCoordinateX, line.endCoordinateY)) {
 				mapLines.get(LINE_END_KEY).get(TRIANGLE_DOT_ONE_INDEX).add(line);
 
 			} else if (Boundary.polygonCheck(dot2.getCoordinateX(), dot2.getCoordinateY(),
 					dot2.getCoordinateX() + Circle.DOT_WIDTH, dot2.getCoordinateY() + Circle.DOT_HEIGHT,
-					line.endCordinateX, line.endCordinateY)) {
+					line.endCoordinateX, line.endCoordinateY)) {
 				mapLines.get(LINE_END_KEY).get(TRIANGLE_DOT_TWO_INDEX).add(line);
 
 			} else if (Boundary.polygonCheck(dot3.getCoordinateX(), dot3.getCoordinateY(),
 					dot3.getCoordinateX() + Circle.DOT_WIDTH, dot3.getCoordinateY() + Circle.DOT_HEIGHT,
-					line.endCordinateX, line.endCordinateY)) {
+					line.endCoordinateX, line.endCoordinateY)) {
 				mapLines.get(LINE_END_KEY).get(TRIANGLE_DOT_THREE_INDEX).add(line);
 
 			}
@@ -160,7 +160,7 @@ public class Relocate {
 	/*
 	 * update the co-ordinates of the line drawn from and to triangle
 	 */
-	public void updateLinesDrawnToTriangle(Triangle triangle, int cordinateX, int cordinateY) {
+	public void updateLinesDrawnToTriangle(Triangle triangle) {
 		Map<Integer, Map<Integer, List<Line>>> lines = findLinesConnectingToTriangle(triangle);
 		for (Integer key : lines.keySet()) {
 
@@ -172,13 +172,13 @@ public class Relocate {
 					for (Line eachLine : line) {
 						if (dot == TRIANGLE_DOT_ONE_INDEX) {
 							eachLine.setLinePosition(triangle.dot1.getCoordinateX(), triangle.dot1.getCoordinateY(),
-									eachLine.endCordinateX, eachLine.endCordinateY);
+									eachLine.endCoordinateX, eachLine.endCoordinateY);
 						} else if (dot == TRIANGLE_DOT_TWO_INDEX) {
 							eachLine.setLinePosition(triangle.dot2.getCoordinateX(), triangle.dot2.getCoordinateY(),
-									eachLine.endCordinateX, eachLine.endCordinateY);
+									eachLine.endCoordinateX, eachLine.endCoordinateY);
 						} else {
 							eachLine.setLinePosition(triangle.dot3.getCoordinateX(), triangle.dot3.getCoordinateY(),
-									eachLine.endCordinateX, eachLine.endCordinateY);
+									eachLine.endCoordinateX, eachLine.endCoordinateY);
 						}
 					}
 				}
@@ -189,13 +189,13 @@ public class Relocate {
 
 					for (Line eachLine : line) {
 						if (dot == TRIANGLE_DOT_ONE_INDEX) {
-							eachLine.setLinePosition(eachLine.startCordinateX, eachLine.startCordinateY,
+							eachLine.setLinePosition(eachLine.startCoordinateX, eachLine.startCoordinateY,
 									triangle.dot1.getCoordinateX(), triangle.dot1.getCoordinateY());
 						} else if (dot == TRIANGLE_DOT_TWO_INDEX) {
-							eachLine.setLinePosition(eachLine.startCordinateX, eachLine.startCordinateY,
+							eachLine.setLinePosition(eachLine.startCoordinateX, eachLine.startCoordinateY,
 									triangle.dot2.getCoordinateX(), triangle.dot2.getCoordinateY());
 						} else {
-							eachLine.setLinePosition(eachLine.startCordinateX, eachLine.startCordinateY,
+							eachLine.setLinePosition(eachLine.startCoordinateX, eachLine.startCoordinateY,
 									triangle.dot3.getCoordinateX(), triangle.dot3.getCoordinateY());
 						}
 					}
@@ -216,32 +216,32 @@ public class Relocate {
 
 		if (Boundary.polygonCheck(square.getCoordinateX(), square.getCoordinateY(),
 				square.getCoordinateX() + DrawingArea.SQUARE_WIDTH, square.getCoordinateY() + DrawingArea.SQUARE_HEIGHT,
-				line.startCordinateX, line.startCordinateY)) {
+				line.startCoordinateX, line.startCoordinateY)) {
 
 			if (Boundary.polygonCheck(bar1.getCoordinateX(), bar1.getCoordinateY(),
 					bar1.getCoordinateX() + Square.BAR_WIDTH, bar1.getCoordinateY() + Square.BAR_HEIGHT,
-					line.startCordinateX, line.startCordinateY)) {
+					line.startCoordinateX, line.startCoordinateY)) {
 				mapLines.get(LINE_START_KEY).get(TRIANGLE_DOT_ONE_INDEX).add(line);
 
 			} else if (Boundary.polygonCheck(bar2.getCoordinateX(), bar2.getCoordinateY(),
 					bar2.getCoordinateX() + Square.BAR_WIDTH, bar2.getCoordinateY() + Square.BAR_HEIGHT,
-					line.startCordinateX, line.startCordinateY)) {
+					line.startCoordinateX, line.startCoordinateY)) {
 				mapLines.get(LINE_START_KEY).get(TRIANGLE_DOT_TWO_INDEX).add(line);
 
 			}
 
 		} else if (Boundary.polygonCheck(square.getCoordinateX(), square.getCoordinateY(),
 				square.getCoordinateX() + DrawingArea.SQUARE_WIDTH, square.getCoordinateY() + DrawingArea.SQUARE_HEIGHT,
-				line.endCordinateX, line.endCordinateY)) {
+				line.endCoordinateX, line.endCoordinateY)) {
 
 			if (Boundary.polygonCheck(bar1.getCoordinateX(), bar1.getCoordinateY(),
 					bar1.getCoordinateX() + Square.BAR_WIDTH, bar1.getCoordinateY() + Square.BAR_HEIGHT,
-					line.endCordinateX, line.endCordinateY)) {
+					line.endCoordinateX, line.endCoordinateY)) {
 				mapLines.get(LINE_END_KEY).get(TRIANGLE_DOT_ONE_INDEX).add(line);
 
 			} else if (Boundary.polygonCheck(bar2.getCoordinateX(), bar2.getCoordinateY(),
 					bar2.getCoordinateX() + Square.BAR_WIDTH, bar2.getCoordinateY() + Square.BAR_HEIGHT,
-					line.endCordinateX, line.endCordinateY)) {
+					line.endCoordinateX, line.endCoordinateY)) {
 				mapLines.get(LINE_END_KEY).get(TRIANGLE_DOT_TWO_INDEX).add(line);
 
 			}
@@ -275,7 +275,7 @@ public class Relocate {
 	/*
 	 * update the co-ordinates of the line drawn from and to square
 	 */
-	public void updateLinesDrawnToSquare(Square square, int cordinateX, int cordinateY) {
+	public void updateLinesDrawnToSquare(Square square) {
 		Map<Integer, Map<Integer, List<Line>>> lines = findLinesConnectingToSquare(square);
 
 		for (Integer key : lines.keySet()) {
@@ -288,10 +288,10 @@ public class Relocate {
 					for (Line eachLine : line) {
 						if (bar == TRIANGLE_DOT_ONE_INDEX) {
 							eachLine.setLinePosition(square.bar1.getCoordinateX(), square.bar1.getCoordinateY(),
-									eachLine.endCordinateX, eachLine.endCordinateY);
+									eachLine.endCoordinateX, eachLine.endCoordinateY);
 						} else if (bar == TRIANGLE_DOT_TWO_INDEX) {
 							eachLine.setLinePosition(square.bar2.getCoordinateX(), square.bar2.getCoordinateY(),
-									eachLine.endCordinateX, eachLine.endCordinateY);
+									eachLine.endCoordinateX, eachLine.endCoordinateY);
 						}
 					}
 				}
@@ -302,10 +302,10 @@ public class Relocate {
 
 					for (Line eachLine : line) {
 						if (dot == TRIANGLE_DOT_ONE_INDEX) {
-							eachLine.setLinePosition(eachLine.startCordinateX, eachLine.startCordinateY,
+							eachLine.setLinePosition(eachLine.startCoordinateX, eachLine.startCoordinateY,
 									square.bar1.getCoordinateX(), square.bar1.getCoordinateY());
 						} else if (dot == TRIANGLE_DOT_TWO_INDEX) {
-							eachLine.setLinePosition(eachLine.startCordinateX, eachLine.startCordinateY,
+							eachLine.setLinePosition(eachLine.startCoordinateX, eachLine.startCoordinateY,
 									square.bar2.getCoordinateX(), square.bar2.getCoordinateY());
 						}
 					}

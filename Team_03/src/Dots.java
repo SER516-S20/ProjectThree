@@ -13,14 +13,14 @@ public class Dots {
 	static Line currentLineObject;
 	static Circle initCircle;
 
-	public boolean isInsideDot(Circle dot, int cordinateX, int cordinateY) {
-		return Boundary.polygonCheck(dot.getCoordinateX(), dot.getCoordinateY(), dot.getCoordinateX() + dot.DOT_WIDTH,
-				dot.getCoordinateY() + dot.DOT_HEIGHT, cordinateX, cordinateY);
+	public static boolean isInsideDot(Circle dot, int cordinateX, int cordinateY) {
+		return Boundary.polygonCheck(dot.getCoordinateX(), dot.getCoordinateY(), dot.getCoordinateX() + Circle.DOT_WIDTH,
+				dot.getCoordinateY() + Circle.DOT_HEIGHT, cordinateX, cordinateY);
 	}
 
-	public boolean isDotInCircle(Circle circle, int cordinateX, int cordinateY) {
+	public static boolean isDotInCircle(Circle circle, int cordinateX, int cordinateY) {
 		lineDrag = false;
-		Circle dot = (Circle) circle.dot;
+		Circle dot = circle.dot;
 		if (!circle.isLineDrawn && isInsideDot(dot, cordinateX, cordinateY)) {
 			lineDrag = true;
 			initCircle = circle;
@@ -31,11 +31,11 @@ public class Dots {
 		return false;
 	}
 
-	public boolean isDotInTriangle(Triangle triangle, int cordinateX, int cordinateY) {
+	public static boolean isDotInTriangle(Triangle triangle, int cordinateX, int cordinateY) {
 		lineDrag = false;
-		Circle dot1 = (Circle) triangle.dot1;
-		Circle dot2 = (Circle) triangle.dot2;
-		Circle dot3 = (Circle) triangle.dot3;
+		Circle dot1 = triangle.dot1;
+		Circle dot2 = triangle.dot2;
+		Circle dot3 = triangle.dot3;
 		boolean result = false;
 
 		if (!dot1.isLineDrawn && isInsideDot(dot1, cordinateX, cordinateY)) {
@@ -57,13 +57,13 @@ public class Dots {
 		return result;
 	}
 
-	public boolean isInsideBar(Square square, int cordinateX, int cordinateY) {
+	public static boolean isInsideBar(Square square, int cordinateX, int cordinateY) {
 		return Boundary.polygonCheck(square.getCoordinateX(), square.getCoordinateY(),
 				square.getCoordinateX() + Square.BAR_WIDTH, square.getCoordinateY() + Square.BAR_HEIGHT, cordinateX,
 				cordinateY);
 	}
 
-	public boolean isBarInSquare(Square square, int cordinateX, int cordinateY) {
+	public static boolean isBarInSquare(Square square, int cordinateX, int cordinateY) {
 		lineDrag = false;
 		Square bar1 = square.bar1;
 		Square bar2 = square.bar2;

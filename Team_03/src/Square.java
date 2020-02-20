@@ -65,8 +65,8 @@ public class Square implements Shape,Serializable {
 
 	@Override
 	public void setLinePosition(int x, int y, int x1, int y1) {
-		// TODO Auto-generated method stub
-		
+		//setLinePosition() is a method in interface Shape and we need to override it
+		//Line Position is not required to be implemented for Square Shape
 	}
 
 }

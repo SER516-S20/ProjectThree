@@ -11,43 +11,43 @@ public class JButtonActionListener {
 
 	static boolean isCirclePanelClicked = false, isTrianglePanelClicked = false, isSquarePanelClicked = false;
 
-	public void addActionListener() {
+	public  void addActionListener() {
 		addCircleButtonActionListener();
 		addSquareButtonActionListener();
 		addTriangleButtonActionListener();
 	}
 
-	private void activateCirclePanel() {
+	private static void activateCirclePanel() {
 		isCirclePanelClicked = true;
 		ShapePanel.circleButton.setBackground(Color.YELLOW);
 		ShapePanel.circleButton.setOpaque(true);
 	}
 
-	private void deActivateCirclePanel() {
+	private static void deActivateCirclePanel() {
 		isCirclePanelClicked = false;
 		ShapePanel.circleButton.setBackground(Color.GRAY);
 		ShapePanel.circleButton.setOpaque(true);
 	}
 
-	private void activateSquarePanel() {
+	private static void activateSquarePanel() {
 		isSquarePanelClicked = true;
 		ShapePanel.squareButton.setBackground(Color.YELLOW);
 		ShapePanel.squareButton.setOpaque(true);
 	}
 
-	private void deActivateSquarePanel() {
+	private static void deActivateSquarePanel() {
 		isSquarePanelClicked = false;
 		ShapePanel.squareButton.setBackground(Color.GRAY);
 		ShapePanel.squareButton.setOpaque(true);
 	}
 
-	private void activateTrianglePanel() {
+	private static void activateTrianglePanel() {
 		isTrianglePanelClicked = true;
 		ShapePanel.triangleButton.setBackground(Color.YELLOW);
 		ShapePanel.triangleButton.setOpaque(true);
 	}
 
-	private void deActivateTrianglePanel() {
+	private static  void deActivateTrianglePanel() {
 		isTrianglePanelClicked = false;
 		ShapePanel.triangleButton.setBackground(Color.GRAY);
 		ShapePanel.triangleButton.setOpaque(true);
