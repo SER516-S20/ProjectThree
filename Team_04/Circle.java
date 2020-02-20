@@ -9,12 +9,6 @@ import javax.swing.JButton;
  * @since 01-27-2020
  * @version 1.0
  */
-/**
- * @author TarunSnehithKishoreReddyKarna
- * @since 02-15-2020
- * @version 1.0.2
- */
-
 public class Circle extends JButton {
 	private SelectionEvent event;
 	private static Icon label;

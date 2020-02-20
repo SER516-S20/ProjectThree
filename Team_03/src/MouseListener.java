@@ -1,10 +1,5 @@
-import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputAdapter;
@@ -62,7 +57,7 @@ class MouseListener extends MouseInputAdapter {
 				Square square = (Square) object;
 				if (!dots.isBarInSquare(square, coordinateX, coordinateY)) {
 					square.setPosition(coordinateX, coordinateY);
-					relocate.updateLinesDrawnToSquare(square, square.getCoordinateX(), square.getCoordinateY());
+					relocate.updateLinesDrawnToSquare(square);
 					Frame.drawingArea.repaintOnDrag();
 				}
 			} else if (object instanceof Circle) {
@@ -76,19 +71,16 @@ class MouseListener extends MouseInputAdapter {
 				Triangle triangle = (Triangle) object;
 				if (!dots.isDotInTriangle(triangle, coordinateX, coordinateY)) {
 					triangle.setPosition(coordinateX, coordinateY);
-					relocate.updateLinesDrawnToTriangle(triangle, triangle.getCoordinateX(), triangle.getCoordinateY());
+					relocate.updateLinesDrawnToTriangle(triangle);
 					Frame.drawingArea.repaintOnDrag();
 				}
 			}
 		}
 
-		if (Dots.lineDrag) {
-
-			if (!connections.isConnected(coordinateX, coordinateY)) {
-				Dots.currentLineObject.setLinePosition(Dots.currentLineObject.startCordinateX,
-						Dots.currentLineObject.startCordinateY, coordinateX, coordinateY);
-				Frame.drawingArea.addLine(Dots.currentLineObject);
-			}
+		if (Dots.lineDrag && !connections.isConnected(coordinateX, coordinateY)) {
+			Dots.currentLineObject.setLinePosition(Dots.currentLineObject.startCoordinateX,
+					Dots.currentLineObject.startCoordinateY, coordinateX, coordinateY);
+			Frame.drawingArea.addLine(Dots.currentLineObject);
 		}
 	}
 
