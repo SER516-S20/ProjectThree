@@ -22,7 +22,7 @@ public class ShapePanel extends JPanel {
 		new JButtonActionListener().addActionListener();
 	}
 
-	private JButton constructCircle() {
+	private static JButton constructCircle() {
 		circleButton = new JButton();
 		circleButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 		circleButton.setBackground(Color.GRAY);
@@ -30,7 +30,7 @@ public class ShapePanel extends JPanel {
 		return circleButton;
 	}
 
-	private JButton constructSquare() {
+	private static JButton constructSquare() {
 		squareButton = new JButton();
 		squareButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 		squareButton.setBackground(Color.GRAY);
@@ -38,7 +38,7 @@ public class ShapePanel extends JPanel {
 		return squareButton;
 	}
 
-	private JButton constructTriangle() {
+	private static JButton constructTriangle() {
 		triangleButton = new JButton();
 		triangleButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 		triangleButton.setBackground(Color.GRAY);
