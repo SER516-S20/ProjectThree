@@ -2,8 +2,9 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.Serializable;
 
-public class Line implements Shape {
+public class Line implements Shape, Serializable {
 	private Color color;
 	public int startCoordinateX;
 	public int startCoordinateY;

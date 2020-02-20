@@ -1,8 +1,14 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -65,6 +71,84 @@ public class DrawingArea extends JPanel {
 			}
 		}
 	}
+	
+	
+    public void save()
+    {
+    	
+    	try
+        {
+            FileOutputStream fos = new FileOutputStream("listData");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(listOfShapes);
+            oos.close();
+            fos.close();
+        } 
+        catch (IOException ioe) 
+        {
+            ioe.printStackTrace();
+        }
+    	
+    	JOptionPane.showMessageDialog(null, "File Saved");
+    	
+    }
+    
+    public void load()
+    {
+    	
+    	try
+        {
+            FileInputStream fis = new FileInputStream("listData");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+ 
+            listOfShapes = (ArrayList) ois.readObject();
+ 
+            ois.close();
+            fis.close();
+        } 
+        catch (IOException ioe) 
+        {
+            ioe.printStackTrace();
+            return;
+        } 
+        catch (ClassNotFoundException c) 
+        {
+            System.out.println("Class not found");
+            c.printStackTrace();
+            return;
+        }
+         
+        //Verify list data
+        for (Shape employee : listOfShapes) {
+        	if (employee instanceof Circle)
+        	{
+        		((Circle) employee).getCoordinateX();
+        		((Circle) employee).getCoordinateY();
+        		
+        	}
+        	
+        	if (employee instanceof Square)
+        	{
+        		((Square) employee).getCoordinateX();
+        		((Square) employee).getCoordinateY();
+        	
+        	}
+        	
+        	
+        	if (employee instanceof Triangle)
+        	{
+        		((Triangle) employee).getCoordinateX();
+        		((Triangle) employee).getCoordinateY();
+        	
+        	}
+        	
+        	
+        }
+        
+        Frame.drawingArea.repaintOnDrag(); 
+    	
+        
+    }
 
 	void addSquare(Square square) {
 		listOfShapes.add(square);
