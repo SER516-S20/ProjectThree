@@ -1,11 +1,12 @@
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * @author Aravind Thillai Villalan
  * @since 02-20-2020
  */
 
-public class Square extends Shapes {
+public class Square extends Shapes implements Serializable {
     final int WIDTH = 100, HEIGHT = 100;
 
     public Square(int x, int y) {

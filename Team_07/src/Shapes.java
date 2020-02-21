@@ -1,11 +1,12 @@
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * @author Aditya Bajaj
  * @since 02-18-2020
  */
  
-public abstract class Shapes {
+public abstract class Shapes implements Serializable{
     public int xCoordinate, yCoordinate;
 
     public abstract void createShape(Graphics graphics);

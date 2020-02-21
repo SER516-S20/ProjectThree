@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.Serializable;
 
 import static java.lang.Math.abs;
 
@@ -7,7 +8,7 @@ import static java.lang.Math.abs;
  * @since 02-20-2020
  */
 
-public class Triangle extends Shapes {
+public class Triangle extends Shapes implements Serializable {
     int[] verticesX;
     int[] verticesY;
     int NUMBER_OF_POINTS = 3;

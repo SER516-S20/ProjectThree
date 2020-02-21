@@ -1,11 +1,12 @@
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * @author Aditya Bajaj
  * @since 02-18-2020
  */
 
-public class Bar extends Shapes {
+public class Bar extends Shapes implements Serializable {
     int WIDTH = 10;
     int HEIGHT = 80;
 

@@ -1,11 +1,12 @@
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * @author Aditya Bajaj
  * @since 02-18-2020
  */
 
-public class Dot extends Shapes {
+public class Dot extends Shapes implements Serializable  {
     final int RADIUS = 5;
     final int DIAMETER = 2 * RADIUS;
 
