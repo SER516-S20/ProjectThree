@@ -16,18 +16,18 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class MyFileManager {
+public class FileManager {
 	
 	private RightPanel rightPanel;
 	private JFrame parentFrame;
 	JFileChooser fileChooser;
 	Hashtable<Integer, JButton> shapes;
 	
-	MyFileManager(){
+	FileManager(){
 		
 	}
 	
-	MyFileManager(RightPanel rightPanel){
+	FileManager(RightPanel rightPanel){
 		this.rightPanel = rightPanel;
 	}
 	

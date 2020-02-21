@@ -20,7 +20,7 @@ public class Frame extends JFrame{
 	private static final Color rBackground = new Color(240, 255, 255);
 	private RightPanel dragArea;
 	private LeftPanel btnContainer;
-	private MyFileManager fileManager;
+	private FileManager fileManager;
 	
 	public Frame() {
 		this.setTitle(title);
@@ -31,7 +31,7 @@ public class Frame extends JFrame{
 		btnContainer = new LeftPanel();
 		dragArea = new RightPanel();
 		dragArea.setFrame(this);
-		fileManager = new MyFileManager(dragArea);
+		fileManager = new FileManager(dragArea);
 		this.getContentPane().add(createLeftPanel());
 		this.getContentPane().add(createRightPanel());
 		this.pack();
