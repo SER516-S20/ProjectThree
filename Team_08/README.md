@@ -1,6 +1,8 @@
 Team 8 work here
 
-Required: JDK 1.8 version installed
+Required: JDK 1.8 version installed.
+
+Uses JavaFx For Shapes and Animations.
 
 How to run:
 Step 1: Import project folder Team_08 in your IDE. 
