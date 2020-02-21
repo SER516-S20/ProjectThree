@@ -23,8 +23,8 @@ public class Bar extends Shapes {
     }
 
     @Override
-    public boolean isInside(int xCoordinate, int yCoordinate) {
-        return false;
+    public boolean isInside(int x, int y) {
+        return (x > this.xCoordinate && x < this.xCoordinate + WIDTH) && (y > this.yCoordinate && y < this.yCoordinate + HEIGHT);
     }
 
     @Override

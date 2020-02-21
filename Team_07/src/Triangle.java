@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 import static java.lang.Math.abs;
 
@@ -8,25 +9,34 @@ import static java.lang.Math.abs;
  */
 
 public class Triangle extends Shapes {
-    int[] verticesX;
-    int[] verticesY;
+    int[] verticesX = {0, 100, 50};
+    int[] verticesY = {86, 86, 0};
+    int HEIGHT = 86;
+    int WIDTH = 100;
     int NUMBER_OF_POINTS = 3;
+    Dot[] dots = new Dot[3];
+    int[] dotCoordinatesX = {50, 20, 80};
+    int[] dotCoordinatesY = {20, 72, 72};
 
     public Triangle(int x, int y) {
-        this.xCoordinate = x;
-        this.yCoordinate = y;
-        verticesX = new int[]{this.xCoordinate, 100 + this.xCoordinate, 50 + this.xCoordinate};
-        verticesY = new int[]{86 + this.yCoordinate, 86 + this.yCoordinate, this.yCoordinate};
+        this.xCoordinate = x - (WIDTH/2);
+        this.yCoordinate = y - (HEIGHT/2);
+        for (int i = 0; i < NUMBER_OF_POINTS; i++) {
+            verticesX[i] += x- (WIDTH/2);
+            verticesY[i] += y - (HEIGHT/2);
+        }
     }
 
     public void createShape(Graphics graphics) {
-
         Color lightRed = new Color(200, 9, 0, 100);
         graphics.setColor(lightRed);
         graphics.fillPolygon(verticesX, verticesY, NUMBER_OF_POINTS);
-        new Dot(50 + this.xCoordinate, 20 + this.yCoordinate, graphics);
-        new Dot(20 + this.xCoordinate, 72 + this.yCoordinate, graphics);
-        new Dot(80 + this.xCoordinate, 72 + this.yCoordinate, graphics);
+        dots[0] = new Dot(dotCoordinatesX[0] + this.xCoordinate,
+                dotCoordinatesY[0] + this.yCoordinate, graphics);
+        dots[1] = new Dot(dotCoordinatesX[1] + this.xCoordinate,
+                dotCoordinatesY[1] + this.yCoordinate, graphics);
+        dots[2] = new Dot(dotCoordinatesX[2] + this.xCoordinate,
+                dotCoordinatesY[2] + this.yCoordinate, graphics);
     }
 
     @Override
@@ -44,6 +54,17 @@ public class Triangle extends Shapes {
         this.yCoordinate = y;
         verticesX = new int[]{this.xCoordinate, 100 + this.xCoordinate, 50 + this.xCoordinate};
         verticesY = new int[]{86 + this.yCoordinate, 86 + this.yCoordinate, this.yCoordinate};
+    }
+
+    public boolean isDotClicked(MouseEvent mouseEvent) {
+        boolean tempFlag = false;
+        for (Dot dot: dots
+             ) {
+            if(dot.isInside(mouseEvent.getX(),mouseEvent.getY())){
+                tempFlag= true;
+            }
+        }
+        return tempFlag;
     }
 
     private float area(int x1, int y1, int x2, int y2, int x3, int y3) {

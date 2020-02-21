@@ -14,9 +14,9 @@ public class LeftPanel extends JPanel {
 
     LeftPanel() {
         this.setBounds(0, 0, 200, 800);
-        shapesList.add(new Triangle(50, 50));
-        shapesList.add(new Circle(50, 200));
-        shapesList.add(new Square(50, 350));
+        shapesList.add(new Triangle(100, 100));
+        shapesList.add(new Circle(100, 250));
+        shapesList.add(new Square(100, 400));
         new LeftPanelListeners().addLeftPanelListeners(this);
     }
 

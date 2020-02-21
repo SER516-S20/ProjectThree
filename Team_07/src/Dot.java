@@ -8,6 +8,10 @@ import java.awt.*;
 public class Dot extends Shapes {
     final int RADIUS = 5;
     final int DIAMETER = 2 * RADIUS;
+    boolean isConnected = false;
+
+    //isDrawn
+    //isclecked
 
     public Dot(int x, int y, Graphics graphics) {
         this.xCoordinate = x;
@@ -23,10 +27,9 @@ public class Dot extends Shapes {
 
     @Override
     public boolean isInside(int x, int y) {
-        return ((x - (this.xCoordinate + RADIUS)) * (x - (this.xCoordinate + RADIUS)) +
-                (y - (this.yCoordinate + RADIUS)) * (y - (this.yCoordinate + RADIUS)) <= this.RADIUS * this.RADIUS);
+        return ((x - (this.xCoordinate )) * (x - (this.xCoordinate)) +
+                (y - (this.yCoordinate)) * (y - (this.yCoordinate)) <= this.DIAMETER * this.DIAMETER);
     }
-
     @Override
     public void changeLocation(int x, int y) {
 
