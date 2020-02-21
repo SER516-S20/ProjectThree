@@ -11,8 +11,8 @@ public class Square extends Shapes {
     Bar[] bars = new Bar[2];
 
     public Square(int x, int y) {
-        this.xCoordinate = x - (WIDTH/2);
-        this.yCoordinate = y - (HEIGHT/2);
+        this.xCoordinate = x - (WIDTH / 2);
+        this.yCoordinate = y - (HEIGHT / 2);
     }
 
     public void createShape(Graphics graphics) {
@@ -28,11 +28,23 @@ public class Square extends Shapes {
         return (x > this.xCoordinate && this.xCoordinate < this.xCoordinate + WIDTH) && (y > this.yCoordinate && this.yCoordinate < this.yCoordinate + HEIGHT);
     }
 
-    public boolean isBarClicked(MouseEvent mouseEvent){
+    @Override
+    public Shapes getClickedDotOrBar(MouseEvent mouseEvent) {
+        for (Bar bar : bars
+        ) {
+            if (bar.isInside(mouseEvent.getX(), mouseEvent.getY())) {
+                return bar;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean isDotOrBarClicked(MouseEvent mouseEvent) {
         boolean tempFlag = false;
-        for (Bar bar: bars
-             ) {
-            if(bar.isInside(mouseEvent.getX(),mouseEvent.getY())){
+        for (Bar bar : bars
+        ) {
+            if (bar.isInside(mouseEvent.getX(), mouseEvent.getY())) {
                 tempFlag = true;
             }
         }
@@ -44,5 +56,4 @@ public class Square extends Shapes {
         this.xCoordinate = x;
         this.yCoordinate = y;
     }
-
 }

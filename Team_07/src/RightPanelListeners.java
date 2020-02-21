@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -10,6 +11,8 @@ import java.awt.event.MouseMotionListener;
  */
 
 public class RightPanelListeners {
+    Shape selectedOne, selectedTwo;
+
     public void addRightPanelListeners(JPanel panel) {
         panel.addMouseListener(new MouseListener() {
             @Override
@@ -19,13 +22,20 @@ public class RightPanelListeners {
                 ) {
                     if (s.isInside(mouseEvent.getX(), mouseEvent.getY())) {
                         isShapeClicked = true;
-                        if (s instanceof Circle) {
-                            System.out.println(((Circle) s).isDotClicked(mouseEvent));
-                        } else if (s instanceof Triangle) {
-                            System.out.println(((Triangle) s).isDotClicked(mouseEvent));
-                        } else if (s instanceof Square) {
-                            System.out.println(((Square) s).isBarClicked(mouseEvent));
+                        if (s.isDotOrBarClicked(mouseEvent)) {
+                            System.out.println(s.getClickedDotOrBar(mouseEvent));
                         }
+
+
+//                        if (s instanceof Circle) {
+//                            if (((Circle) s).isDotClicked(mouseEvent))
+//                                System.out.println(s);
+//                        } else if (s instanceof Triangle) {
+//                            if (((Triangle) s).isDotClicked(mouseEvent))
+//                                System.out.println(s);
+//                        } else if (s instanceof Square) {
+//                            System.out.println(((Square) s).isBarClicked(mouseEvent));
+//                        }
                     }
                 }
                 if (!isShapeClicked) {
@@ -39,12 +49,7 @@ public class RightPanelListeners {
                         RightPanel.shapesList.add(new Circle(mouseEvent.getX(), mouseEvent.getY()));
                     }
                 }
-                Lines testLine=new Lines(mouseEvent.getX(), mouseEvent.getY());
-                testLine.setDestPointX(mouseEvent.getX()+50);
-                testLine.setDestPointY(mouseEvent.getY()+50);
-                RightPanel.shapesList.add(testLine);
-                RightPanel.selectedLine=testLine;
-                panel.repaint();
+
                 for (Shapes s : RightPanel.shapesList
                 ) {
                     if (s.isInside(mouseEvent.getX(), mouseEvent.getY()))
@@ -83,11 +88,7 @@ public class RightPanelListeners {
 
             @Override
             public void mouseDragged(MouseEvent mouseEvent) {
-                for (Shapes s : RightPanel.shapesList
-                ) {
-                    if (s.isInside(mouseEvent.getX(), mouseEvent.getY()))
-                        RightPanel.selectedShape = s;
-                }
+
                 int mouseLocationX = mouseEvent.getX() - 50;
                 int mouseLocationY = mouseEvent.getY() - 50;
                 if (mouseLocationX > 700) {
@@ -102,7 +103,6 @@ public class RightPanelListeners {
                 }
                 RightPanel.selectedShape.changeLocation(mouseLocationX,
                         mouseLocationY);
-                RightPanel.selectedLine.changeLocation(mouseLocationX, mouseLocationY);
                 panel.repaint();
             }
 

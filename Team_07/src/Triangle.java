@@ -19,11 +19,11 @@ public class Triangle extends Shapes {
     int[] dotCoordinatesY = {20, 72, 72};
 
     public Triangle(int x, int y) {
-        this.xCoordinate = x - (WIDTH/2);
-        this.yCoordinate = y - (HEIGHT/2);
+        this.xCoordinate = x - (WIDTH / 2);
+        this.yCoordinate = y - (HEIGHT / 2);
         for (int i = 0; i < NUMBER_OF_POINTS; i++) {
-            verticesX[i] += x- (WIDTH/2);
-            verticesY[i] += y - (HEIGHT/2);
+            verticesX[i] += x - (WIDTH / 2);
+            verticesY[i] += y - (HEIGHT / 2);
         }
     }
 
@@ -56,16 +56,27 @@ public class Triangle extends Shapes {
         verticesY = new int[]{86 + this.yCoordinate, 86 + this.yCoordinate, this.yCoordinate};
     }
 
-    public boolean isDotClicked(MouseEvent mouseEvent) {
+    @Override
+    public Shapes getClickedDotOrBar(MouseEvent mouseEvent) {
+        for (Dot dot : dots) {
+            if (dot.isInside(mouseEvent.getX(), mouseEvent.getY())) {
+                return dot;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean isDotOrBarClicked(MouseEvent mouseEvent) {
         boolean tempFlag = false;
-        for (Dot dot: dots
-             ) {
-            if(dot.isInside(mouseEvent.getX(),mouseEvent.getY())){
-                tempFlag= true;
+        for (int i = 0; i < dots.length; i++) {
+            if (dots[i].isInside(mouseEvent.getX(), mouseEvent.getY())) {
+                tempFlag = true;
             }
         }
         return tempFlag;
     }
+
 
     private float area(int x1, int y1, int x2, int y2, int x3, int y3) {
         return (float) abs((x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0);

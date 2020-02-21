@@ -9,6 +9,7 @@ public class MainWindow extends JFrame {
     static JFrame mainWindow;
 
     public static void main(String[] args) {
+
         LeftPanel leftPanel = new LeftPanel();
         RightPanel rightPanel = new RightPanel();
 
