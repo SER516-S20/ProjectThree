@@ -6,7 +6,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 /** 
- * @author Rahul Sheran
+ * @author Rahul, Sheran
  * @since 01-29-2019
  * @Description: The class creates a button component with square.
  */
