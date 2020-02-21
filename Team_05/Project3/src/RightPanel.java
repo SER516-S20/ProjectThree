@@ -122,6 +122,11 @@ public class RightPanel extends JPanel {
 		currentY = 0;
 	}
 	
+	public void load(ShapeInfo[] shapeList)
+	{
+		
+	}
+	
 	private void autoLocation(JButton button) {
 		Rectangle dimension = this.getBounds();
 		button.setSize(button.getPreferredSize());
