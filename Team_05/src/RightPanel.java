@@ -32,17 +32,6 @@ public class RightPanel extends JPanel {
 		frame.contentRepaint();
 	}
 	
-	public void addRound(int ID, Point position) {
-		RoundButton round = new RoundButton("");
-		round.addMouseListener(new RightPanelMouse(this) {});
-		round.addMouseMotionListener(new RightPanelMouse(this) {});
-		round.setLocation(position.x,position.y);
-		round.setSize(round.getPreferredSize());
-		shapes.put(ID,round);
-		this.add(round);
-		frame.contentRepaint();
-	}
-	
 	public void addTriangle() {
 		TriangleButton triangle = new TriangleButton("");
 		triangle.addMouseListener(new RightPanelMouse(this) {});
@@ -50,17 +39,6 @@ public class RightPanel extends JPanel {
 		shapes.put(triangle.hashCode(),triangle);
 		this.add(triangle);
 		autoLocation(triangle);
-		frame.contentRepaint();
-	}
-	
-	public void addTriangle(int ID, Point position) {
-		TriangleButton triangle = new TriangleButton("");
-		triangle.addMouseListener(new RightPanelMouse(this) {});
-		triangle.addMouseMotionListener(new RightPanelMouse(this) {});
-		triangle.setLocation(position.x,position.y);
-		triangle.setSize(triangle.getPreferredSize());
-		shapes.put(ID,triangle);
-		this.add(triangle);
 		frame.contentRepaint();
 	}
 	
@@ -74,24 +52,27 @@ public class RightPanel extends JPanel {
 		frame.contentRepaint();
 	}
 	
-	public void addRectangle(int ID, Point position) {
-		RectangleButton rectangle = new RectangleButton("");
-		rectangle.addMouseListener(new RightPanelMouse(this) {});
-		rectangle.addMouseMotionListener(new RightPanelMouse(this) {});
-		rectangle.setLocation(position.x,position.y);
-		rectangle.setSize(rectangle.getPreferredSize());
-		shapes.put(ID,rectangle);
-		this.add(rectangle);
-		frame.contentRepaint();
-	}
-	
-	public void updateHashCode()
+	public void addShape(ShapeInfo shapeInfo)
 	{
-		Hashtable<Integer, JButton> update = new Hashtable<Integer, JButton>();
-		for(JButton shape:shapes.values()) {
-			update.put(shape.hashCode(), shape);
+		JButton shape;
+		switch(shapeInfo.getType())
+		{
+			case "round":
+				shape = new RoundButton("");
+				break;
+			case "triangle":
+				shape = new TriangleButton("");
+				break;
+			default:
+				shape = new RectangleButton("");
 		}
-		shapes = update;
+		shape.addMouseListener(new RightPanelMouse(this) {});
+		shape.addMouseMotionListener(new RightPanelMouse(this) {});
+		shape.setLocation(shapeInfo.getPosition());
+		shape.setSize(shape.getPreferredSize());
+		shapes.put(shapeInfo.getId(),shape);
+		this.add(shape);
+		frame.contentRepaint();
 	}
 	
 	public void deleteShape(int hashCode) {
@@ -122,6 +103,16 @@ public class RightPanel extends JPanel {
 		currentY = 0;
 	}
 	
+	public void load(ShapeInfo[] shapeList)
+	{
+		clear();
+		for(ShapeInfo shape:shapeList)
+		{
+			addShape(shape);
+		}
+		updateHashCode();
+	}
+	
 	private void autoLocation(JButton button) {
 		Rectangle dimension = this.getBounds();
 		button.setSize(button.getPreferredSize());
@@ -137,5 +128,14 @@ public class RightPanel extends JPanel {
 			System.out.println("AutoLocation " + currentX + " " + currentY);
 			currentX += step;
 		}
+	}
+	
+	private void updateHashCode()
+	{
+		Hashtable<Integer, JButton> update = new Hashtable<Integer, JButton>();
+		for(JButton shape:shapes.values()) {
+			update.put(shape.hashCode(), shape);
+		}
+		shapes = update;
 	}
 }

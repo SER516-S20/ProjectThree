@@ -16,53 +16,15 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class MyFileManager {
+public class FileManager {
 	
-	private RightPanel rightPanel;
-	private JFrame parentFrame;
-	JFileChooser fileChooser;
-	Hashtable<Integer, JButton> shapes;
-	
-	MyFileManager(){
-		
-	}
-	
-	MyFileManager(RightPanel rightPanel){
-		this.rightPanel = rightPanel;
-	}
-	
-	public void save() {
-		parentFrame = new JFrame();
-		fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Save file");
-		int selection = fileChooser.showSaveDialog(parentFrame);
-		if(selection == JFileChooser.APPROVE_OPTION) {
-			File fileToSave = fileChooser.getSelectedFile();
-			System.out.println(fileToSave.toString());
-			
-			saver(fileToSave);
-		}
-	}
-	
-	public void open() {
-		parentFrame = new JFrame();
-		fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Open file");
-		int selection = fileChooser.showOpenDialog(parentFrame);
-		if(selection == JFileChooser.APPROVE_OPTION) {
-			File fileToOpen = fileChooser.getSelectedFile();
-			opener(fileToOpen);
-		}
-	}
-	
-	private void saver(File file) {
+	public void save(File file, Hashtable<Integer, JButton> shapes) {
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 			Document doc = docBuilder.newDocument();
 			Element rootElement = doc.createElement("shapes");
 			doc.appendChild(rootElement);
-			shapes = rightPanel.getShapes();
 			for(int key:shapes.keySet()) {
 				Element shape = doc.createElement("shape");
 				rootElement.appendChild(shape);
@@ -94,38 +56,30 @@ public class MyFileManager {
 		}
 	}
 	
-	private void opener(File file) {
-		rightPanel.clear();
+	public ShapeInfo[] open(File file) {
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 			Document doc = docBuilder.parse(file);
 			doc.getDocumentElement().normalize();   
 			NodeList nodeList = doc.getElementsByTagName("shape");
+			ShapeInfo[] shapes = new ShapeInfo[nodeList.getLength()];
 			for(int i = 0;i < nodeList.getLength();i++) {
 				Node node = nodeList.item(i);
 				if (node.getNodeType() == Node.ELEMENT_NODE) {  
-					Element eElement = (Element) node;
-					int ID = Integer.parseInt(node.getAttributes().getNamedItem("id").getNodeValue());
-					String position[] = eElement.getElementsByTagName("position").item(0).getTextContent().split(",");
-					Point point = new Point(Integer.parseInt(position[0]),Integer.parseInt(position[1]));
-					switch(eElement.getElementsByTagName("type").item(0).getTextContent()) {
-						case "round":
-							rightPanel.addRound(ID,point);
-							break;
-						case "rectangle":
-							rightPanel.addRectangle(ID,point);
-							break;
-						default:
-							rightPanel.addTriangle(ID,point);
-							break;
-					}
+					Element shapeElement = (Element) node;
+					int id = Integer.parseInt(node.getAttributes().getNamedItem("id").getNodeValue());
+					String points[] = shapeElement.getElementsByTagName("position").item(0).getTextContent().split(",");
+					Point position = new Point(Integer.parseInt(points[0]),Integer.parseInt(points[1]));
+					String type = shapeElement.getElementsByTagName("type").item(0).getTextContent();
+					shapes[i]=new ShapeInfo(id,type,position);
 				}
 			}
-			rightPanel.updateHashCode();
+			return shapes;
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			return null;
 		}
 	}
 

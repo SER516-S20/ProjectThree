@@ -34,7 +34,7 @@ public class RoundButton extends JButton{
 		}else {
 			g.setColor(foreground);
 		}
-		g.fillOval(0, 0, getSize().width - 1,getSize().height - 1);
+		g.fillOval(0, 0, getSize().width, getSize().height);
 		super.paintComponent(g);
 	}
 
@@ -42,11 +42,11 @@ public class RoundButton extends JButton{
 		g.setColor(this.getForeground());
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g.drawOval(0, 0, getSize().width - 1,     getSize().height - 1);
+		g.drawOval(0, 0, getSize().width - 1, getSize().height - 1);
 		Stroke stroke = new BasicStroke(4f);
 		g2d.setStroke(stroke);
-		g2d.drawLine((getSize().width - 1) / 2, (getSize().height - 1) / 2,
-				(getSize().width - 1) / 2, (getSize().height -1) / 2);
+		g2d.drawLine(getSize().width / 2, getSize().height / 2,
+					getSize().width / 2, getSize().height / 2);
 	}
 
 	public boolean contains(int x, int y) {

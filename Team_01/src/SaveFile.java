@@ -11,7 +11,7 @@ import javax.swing.JMenuItem;
 /**
  * Adding Save file functionality to save the shapes and connections in a file
  * 
- * @author Chandan Kiragadalu Javaregowda
+ * @author Rishika Bera
  * @version 1.0
  */
 

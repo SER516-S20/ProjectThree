@@ -7,6 +7,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 /**
  * this class is to show the app
@@ -20,7 +21,8 @@ public class Frame extends JFrame{
 	private static final Color rBackground = new Color(240, 255, 255);
 	private RightPanel dragArea;
 	private LeftPanel btnContainer;
-	private MyFileManager fileManager;
+	private FileBrowser fileBrowser;
+	private FileManager fileManager;
 	
 	public Frame() {
 		this.setTitle(title);
@@ -31,7 +33,8 @@ public class Frame extends JFrame{
 		btnContainer = new LeftPanel();
 		dragArea = new RightPanel();
 		dragArea.setFrame(this);
-		fileManager = new MyFileManager(dragArea);
+		fileBrowser = new FileBrowser();
+		fileManager = new FileManager();
 		this.getContentPane().add(createLeftPanel());
 		this.getContentPane().add(createRightPanel());
 		this.pack();
@@ -44,7 +47,10 @@ public class Frame extends JFrame{
 		JMenuItem itemSave = new JMenuItem("Save File");
 		itemSave.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				fileManager.save();
+				if(fileBrowser.browser("Save file"))
+				{
+					fileManager.save(fileBrowser.getCurrentFile(), dragArea.getShapes());
+				}
 			  }
 		});
 		
@@ -53,7 +59,11 @@ public class Frame extends JFrame{
 		JMenuItem itemOpen = new JMenuItem("Open File");
 		itemOpen.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				fileManager.open();
+				if(fileBrowser.browser("Open file"))
+				{
+					ShapeInfo[] shapeList = fileManager.open(fileBrowser.getCurrentFile());
+					dragArea.load(shapeList);
+				}
 			  }
 		});
 		fileMenu.add(itemOpen);
