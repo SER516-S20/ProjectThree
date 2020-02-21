@@ -23,6 +23,7 @@ public class TriangleButton extends JButton{
 	private Color foreground = new Color(178, 255, 102);
 	private Color background = new Color(0, 255, 255);
 	private Dimension size;
+	private Point []points = new Point[3];
 	
 	public TriangleButton(String label) {
 		super(label);
@@ -56,9 +57,15 @@ public class TriangleButton extends JButton{
 		g2d.draw(triangle);
 		Stroke stroke = new BasicStroke(4f);
 		g2d.setStroke(stroke);
-		g2d.drawLine(15, size.height - 1 - 10, 15, size.height - 1 - 10);
-		g2d.drawLine((size.width - 1) / 2, 15, (size.width - 1) / 2, 15);
-		g2d.drawLine(size.width - 1 - 15, size.height - 1 - 10, size.width - 1 - 15, size.height - 1 - 10);
+		Point top = new Point(size.width / 2, size.height / 4);
+		Point left = new Point(size.width / 4, size.height - size.height / 5); 
+		Point right = new Point(size.width - size.width / 4, size.height - size.height / 5);
+		g2d.drawLine(left.x, left.y, left.x, left.y);
+		g2d.drawLine(top.x, top.y, top.x, top.y);
+		g2d.drawLine(right.x, right.y, right.x, right.y);
+		points[0] = left;
+		points[1] = top;
+		points[2] = right;
 	}
 
 	public boolean contains(int x, int y) {
@@ -67,20 +74,20 @@ public class TriangleButton extends JButton{
 	
 	private Shape createTriangle() {
         Polygon p = new Polygon();
-        p.addPoint((size.width - 1) / 2, 0);
-        p.addPoint(0, size.height - 1);
-        p.addPoint(size.width - 1, size.height - 1);
+        p.addPoint(size.width / 2, 0);
+        p.addPoint(0, size.height);
+        /* use size.height - 1 to make sure the bottom line can be drew */
+        p.addPoint(size.width, size.height - 1);
         return p;
 	}
 	
-	public Point[] getPointsCoordinate() {
-		Point top = new Point((size.width - 1) / 2, 15);
-		Point left = new Point(15, size.height - 1 - 10);
-		Point right = new Point(size.width - 1 - 15, size.height - 1 - 10);
-		Point []points = new Point[3];
-		points[0] = top;
-		points[1] = left;
-		points[2] = right;
+	/**
+	 * points[0] - left dot
+	 * points[1] - top dot
+	 * points[2] - right dot
+	 * @return positions of points
+	 */
+	public Point[] getPointsPosition() {
 		return points;
 	}
 }
