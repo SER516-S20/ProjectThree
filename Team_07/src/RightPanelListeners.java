@@ -20,9 +20,12 @@ public class RightPanelListeners {
                     if (s.isInside(mouseEvent.getX(), mouseEvent.getY())) {
                         isShapeClicked = true;
                         if (s instanceof Circle) {
-                            System.out.println(((Circle) s).isDotClicked(mouseEvent));
+                            if (((Circle) s).isDotClicked(mouseEvent))
+                                System.out.println(s);
+
                         } else if (s instanceof Triangle) {
-                            System.out.println(((Triangle) s).isDotClicked(mouseEvent));
+                            if (((Triangle) s).isDotClicked(mouseEvent))
+                                System.out.println(s);
                         } else if (s instanceof Square) {
                             System.out.println(((Square) s).isBarClicked(mouseEvent));
                         }
@@ -83,11 +86,7 @@ public class RightPanelListeners {
 
             @Override
             public void mouseDragged(MouseEvent mouseEvent) {
-                for (Shapes s : RightPanel.shapesList
-                ) {
-                    if (s.isInside(mouseEvent.getX(), mouseEvent.getY()))
-                        RightPanel.selectedShape = s;
-                }
+
                 int mouseLocationX = mouseEvent.getX() - 50;
                 int mouseLocationY = mouseEvent.getY() - 50;
                 if (mouseLocationX > 700) {
