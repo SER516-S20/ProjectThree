@@ -17,6 +17,7 @@ import java.util.List;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 public class MenuBar{
 	
@@ -52,7 +53,8 @@ public class MenuBar{
 	}
 	
 	public void save()
-	{
+	{	
+		
 		FileDialog dialog = new FileDialog(MainWindow.mainWindow,"Select file to open");
 	    dialog.setMode(FileDialog.SAVE);
 	    dialog.setVisible(true);
@@ -68,6 +70,7 @@ public class MenuBar{
 	        oos.writeObject(rightPanel);
 	        oos.close();
 	        fos.close();
+	        JOptionPane.showMessageDialog(MainWindow.mainWindow, "Saved as " + file);
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found");
 		} catch (IOException e) {
