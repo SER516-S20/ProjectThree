@@ -6,6 +6,7 @@ import java.awt.event.MouseMotionListener;
 
 /**
  * @author Karandeep Singh Grewal
+ * @author Aravind Thillai Villalan
  * @since 01-29-2020
  */
 
@@ -23,6 +24,11 @@ public class RightPanelListeners {
                 if (LeftPanel.selectedShape instanceof Circle) {
                     RightPanel.shapesList.add(new Circle(mouseEvent.getX() - 50, mouseEvent.getY() - 50));
                 }
+                Lines testLine=new Lines(mouseEvent.getX(), mouseEvent.getY());
+                testLine.setDestPointX(mouseEvent.getX()+50);
+                testLine.setDestPointY(mouseEvent.getY()+50);
+                RightPanel.shapesList.add(testLine);
+                RightPanel.selectedLine=testLine;
                 panel.repaint();
                 for (Shapes s : RightPanel.shapesList
                 ) {
@@ -78,6 +84,7 @@ public class RightPanelListeners {
                 }
                 RightPanel.selectedShape.changeLocation(mouseLocationX,
                         mouseLocationY);
+                RightPanel.selectedLine.changeLocation(mouseLocationX, mouseLocationY);
                 panel.repaint();
             }
 
