@@ -14,8 +14,7 @@ public class Line extends JButton{
 	public Line(String label) {
 		super(label);
 		Dimension size = getPreferredSize();
-		size.width = 10000;
-		size.height = 10000;
+		size.width = size.height = Math.max(size.width,size.height);
 		setPreferredSize(size);
 		setContentAreaFilled(false);
 		setOpaque(false);
@@ -28,10 +27,10 @@ public class Line extends JButton{
 
 	protected void paintComponent(Graphics g) {
 		RightPanel rightpanel = new RightPanel();
-		int x = 0; 
-		int y = 0;
-		int dy = 0;
-		int dx = 0;
+		int startx = 0; 
+		int starty = 0;
+		int endy = 0;
+		int endx = 0;
 		if(getModel().isArmed()) {
 			g.setColor(background);
 		}else {
@@ -39,7 +38,7 @@ public class Line extends JButton{
 		}
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(5));
-        g2.draw(new Line2D.Float(x, y, dx, dy));
+        g2.draw(new Line2D.Float(startx, starty, endx, endy));
 		super.paintComponent(g);
 	}
 }

@@ -1,12 +1,11 @@
+/**
+ * @author ShihYu Chang
+ */
 import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-
-/**
- * @author ShihYu Chang
- */
 public class RightPanelMouse implements MouseListener, MouseMotionListener {
 	private int currentX;
 	private int currentY;
@@ -23,20 +22,21 @@ public class RightPanelMouse implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Line line = new Line("");
 		Component btn = e.getComponent();
 		String className = e.getSource().getClass().getName();
+		Point points[] = null;
 		if(className.equals("TriangleButton")) {
 			TriangleButton triangle = (TriangleButton) btn;
-			Point []points = triangle.getPointsPosition();
+			points = triangle.getPointsPosition();
 		}
 		else if(className.equals("RoundButton")) {
 			RoundButton round = (RoundButton) btn;	
 		}
 		else if(className.equals("RectangleButton")) {
 			RectangleButton rect = (RectangleButton) btn;
-			Point []points = rect.getPointsPosition();
+			points = rect.getPointsPosition();
 		}
+		addLine(points);
 	}
 
 	@Override
@@ -64,24 +64,6 @@ public class RightPanelMouse implements MouseListener, MouseMotionListener {
 		
 	}
 	public void mousePressed(MouseEvent e) {
-		Component btn = e.getComponent();
-		String className = e.getSource().getClass().getName();
-		if(className.equals("TriangleButton")) {
-			TriangleButton triangle = (TriangleButton) btn;
-			Point []points = triangle.getPointsPosition();
-			for(int i = 0; i < points.length; i++) {
-				System.out.println("triangle: " + points[i]);
-			}
-		}else if(className.equals("RoundButton")) {
-			RoundButton round = (RoundButton) btn;
-			System.out.println("round: " + round.getCenterPoint());
-		}else if(className.equals("RectangleButton")) {
-			RectangleButton rect = (RectangleButton) btn;
-			Point []points = rect.getPointsPosition();
-			for(int i = 0; i < points.length; i++) {
-				System.out.println("rect: " + points[i]);
-			}
-		}
 		currentX = e.getX();
 		currentY = e.getY();
 		if(e.getButton() == MouseEvent.BUTTON3) {
@@ -90,7 +72,7 @@ public class RightPanelMouse implements MouseListener, MouseMotionListener {
 	}
 	
 	//not finished yet
-	public void addLine() {
-		
+	public void addLine(Point[] points) {
+		Line line = new Line("");
 	}
 }
