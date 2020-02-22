@@ -112,7 +112,8 @@ public class DrawTriangle extends DrawShape implements MouseListener, MouseMotio
 	public void mouseClicked(MouseEvent e) {
 		if (this.contain(e.getX(), e.getY())) {
 			System.out.print("clicked triangle");
-			Click c1 = new Click(e.getX() + currentX, e.getY() + currentY, this);
+			StoreClickPoints c1 = new StoreClickPoints(e.getX() + currentX, 
+												e.getY() + currentY, this);
 		}
 	}
 

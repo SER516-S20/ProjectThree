@@ -7,8 +7,8 @@ import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
 /** 
- * @author Rahul, Sheran
- * @since 01-29-2019
+ * @author Rahul
+ * @since 01-29-2020
  * @Description: The class creates a button component with circle.
  */ 
 public class Circle extends JButton {
@@ -18,17 +18,18 @@ public class Circle extends JButton {
 	 * @param y - y coordinate for circle.
 	 * @param flag - 
 	 */
-	public Circle(String label, int x, int y, boolean flag){   
+	public Circle(String label, int x, int y, boolean rightPanel){   
 		
 		super(label);
         Dimension size = getPreferredSize();
         size.width = size.height = Math.max(size.width,size.height);
         setPreferredSize(size);
         setBounds(x, y, size.width, size.height);
-        setBorder(new EmptyBorder(x, y, 5, 5));       
-        setContentAreaFilled(false);
-        
-        if (flag){
+        setBorder(new EmptyBorder(x, y, 5, 5));  
+
+        if (rightPanel){
+        	Dot dot = new Dot(33,33);
+            this.add(dot);
         	new Drag(this);
         }
 	}
@@ -50,5 +51,6 @@ public class Circle extends JButton {
     {
         g.setColor(getForeground());
         g.drawOval(0, 0, getSize().width, getSize().height);
+        g.drawOval(33, 33, 7, 7);
     }
 }
