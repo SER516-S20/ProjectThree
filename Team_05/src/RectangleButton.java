@@ -57,7 +57,6 @@ public class RectangleButton extends JButton {
 		g2d.drawRect(0, 0, getSize().width - 1, getSize().height - 1);
 		Stroke stroke = new BasicStroke(2f);
 		g2d.setStroke(stroke);
-		
 		Point topLeft = new Point(getSize().width / 5, getSize().height / 5);
 		Point botLeft = new Point(getSize().width / 5, getSize().height - getSize().height / 5);
 		Point topRight = new Point(getSize().width - getSize().width / 5, getSize().height / 5);
