@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Triangle.java - a class for creating triangle shape at a particular position
  * 
- * @author Nachiappan Lakshmanan
+ * @author Srinivasan Sundar
  * @version 1.0
  * @since 01/29/2020
  */

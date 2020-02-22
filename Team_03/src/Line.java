@@ -4,6 +4,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.Serializable;
 
+/**
+ * @author Srinivasan Sundar
+ * @version 1.0
+ * @since 02/17/2020
+ */
 public class Line implements Shape, Serializable {
 	private Color color;
 	public int startCoordinateX;
