@@ -23,6 +23,7 @@ public class Frame extends JFrame
     private static final String[] panelNames = {"drag.LeftPanel", "drag.RightPanel"};
     private JPanel[] panels = new JPanel[15];
     private JTextField dir = new JTextField();
+
     Frame(String name) 
     { 
         mb = new JMenuBar();  
@@ -36,9 +37,10 @@ public class Frame extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				ArrayList<Point> circlepoints = RightPanel.getInstance().circlePoints;
-				ArrayList<Point> trianglepoints = RightPanel.getInstance().trianglePoints;
-				ArrayList<Point> squarepoints = RightPanel.getInstance().squarePoints;
+				ArrayList shapeList = RightPanel.getInstance().shapesList;
+//				ArrayList<Point> circlepoints = RightPanel.getInstance().circlePoints;
+//				ArrayList<Point> trianglepoints = RightPanel.getInstance().trianglePoints;
+//				ArrayList<Point> squarepoints = RightPanel.getInstance().squarePoints;
 				JFileChooser j = new JFileChooser(); 
 
 				// invoke the showsSaveDialog function to show the save dialog 
@@ -50,18 +52,20 @@ public class Frame extends JFrame
 	                // set the label to the path of the selected file  
 	                try(FileWriter fw = new FileWriter(j.getSelectedFile()+".txt")) 
 	                {
-	                	for(Point point: circlepoints) 
-	                	{
-		      			    fw.write("Circle " + point.x +" " + point.y + System.lineSeparator());
-	                    }
-	                	for(Point point: trianglepoints) 
-	                	{
-		      			    fw.write("Triangle " + point.x +" " + point.y + System.lineSeparator());
-	                    }
-	                	for(Point point: squarepoints) 
-	                	{
-		      			    fw.write("Square " + point.x +" " + point.y + System.lineSeparator());
-	                    }
+	                	fw.write(String.valueOf(shapeList));
+//	                	for(Point point: circlepoints)
+//	                	{
+//		      			    fw.write("Circle " + point.x +" " + point.y + System.lineSeparator());
+//	                    }
+//	                	for(Point point: trianglepoints)
+//	                	{
+//		      			    fw.write("Triangle " + point.x +" " + point.y + System.lineSeparator());
+//	                    }
+//	                	for(Point point: squarepoints)
+//	                	{
+//		      			    fw.write("Square " + point.x +" " + point.y + System.lineSeparator());
+//	                    }
+
 	                	fw.close();
 	                }
 	                catch (IOException e1) {
