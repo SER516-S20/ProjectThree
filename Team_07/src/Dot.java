@@ -3,6 +3,7 @@ import java.awt.event.MouseEvent;
 
 /**
  * @author Aditya Bajaj
+ * @author Aravind Thillai Villalan
  * @since 02-18-2020
  */
 
@@ -12,12 +13,17 @@ public class Dot extends Shapes {
     boolean isConnected = true;
 
     //isDrawn
-    //isclecked
+    //ischecked
 
     public Dot(int x, int y, Graphics graphics) {
         this.xCoordinate = x;
         this.yCoordinate = y;
         this.createShape(graphics);
+    }
+    
+    public Dot(int x,int y) {
+    	this.xCoordinate=x;
+    	this.yCoordinate=y;
     }
 
     @Override
@@ -45,4 +51,5 @@ public class Dot extends Shapes {
     public boolean isDotOrBarClicked(MouseEvent mouseEvent) {
         return false;
     }
+      
 }
