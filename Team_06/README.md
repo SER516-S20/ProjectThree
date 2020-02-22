@@ -1,5 +1,4 @@
 # ProjectThree
 ## Team 6 works here
 
-![Burn Down Chart](Burn Down Chart .png)
-Team_06/Burn Down Chart .png
+https://github.com/SER516-S20/ProjectThree/blob/master/Team_06/Burn%20Down%20Chart%20.png
