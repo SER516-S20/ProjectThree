@@ -3,4 +3,4 @@
 
 #### Sprint BurnDown Chart
 
-![BurnDown Chart](Sprint Burndown chart.png)
+![BurnDown Chart](Sprint_Burndown_chart.png)
