@@ -5,7 +5,7 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * 
- * @author somesh
+ * @author Sheran
  * @since 02-28-2020
  */
 
@@ -15,7 +15,7 @@ public class Bar extends JButton{
 		setBounds(x, y, 10, 60);
 	    setBorder(new EmptyBorder(10, 60, 0, 0));
 	    
-	    //new DrawLine(this);
+	    new DrawLine(this);
 	}
 	
 	@Override

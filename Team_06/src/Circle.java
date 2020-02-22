@@ -7,8 +7,8 @@ import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
 /** 
- * @author Rahul, Sheran
- * @since 01-29-2019
+ * @author Rahul
+ * @since 01-29-2020
  * @Description: The class creates a button component with circle.
  */ 
 public class Circle extends JButton {

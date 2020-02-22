@@ -3,7 +3,7 @@ import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
 /** 
- * @author Rahul Sheran
+ * @author Rahul
  * @since 01-29-2019
  * @Description: The class creates a button component with triangle.
  */
