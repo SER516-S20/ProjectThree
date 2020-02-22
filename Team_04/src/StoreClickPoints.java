@@ -6,12 +6,12 @@ import java.awt.Point;
  * @since 02-16-2020
  *
  */
-public class Click {
+public class StoreClickPoints {
 	private static int numPoints = 0;
 	private static Point point1;
 	private static Point point2;
 
-	public Click(int x, int y, DrawShape shape) {
+	public StoreClickPoints(int x, int y, DrawShape shape) {
 		if (numPoints == 0) {
 			numPoints += 1;
 			point1 = new Point(x, y);
