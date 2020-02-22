@@ -21,7 +21,6 @@ import java.util.Date;
  */
 public class SaveUserCanvas {
 
-
     public void saveCanvasSnapshot(Canvas canvas) {
         WritableImage wim = new WritableImage(800, 800);
         File file = new File("Team_08/src/SavedCanvases/CanvasImage_" + new Date().getTime() + ".png");

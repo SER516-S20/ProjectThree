@@ -9,6 +9,5 @@ public class SquareShapeWithBars extends Shape {
         g.setStroke(Color.BLACK);
         g.strokeRect(left, top, width, height);
         g.strokeRect(left - 5, top, width, height);
-
     }
 }
