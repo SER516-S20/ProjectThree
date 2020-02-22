@@ -16,25 +16,25 @@ public class RightPanelListeners {
 
 	boolean srcDotClicked = false;
 	boolean destDotClicked = false;
-	String srcShapeId,destShapeId;
-	List<Dot> connectedDots=new ArrayList<Dot>();
+	String srcShapeId, destShapeId;
+	List<Dot> connectedDots = new ArrayList<Dot>();
 	Dot srcDot;
 	Dot destDot;
 
 	public void addRightPanelListeners(JPanel panel) {
 		panel.addMouseListener(new MouseListener() {
-			
-			public boolean checkIfDotPresent(List<Dot> list,Dot d) {
-				for(Dot dot:list) {
-					if(dot.xCoordinate==d.xCoordinate) {
-						if(dot.yCoordinate==d.yCoordinate) {
+
+			public boolean checkIfDotPresent(List<Dot> list, Dot d) {
+				for (Dot dot : list) {
+					if (dot.xCoordinate == d.xCoordinate) {
+						if (dot.yCoordinate == d.yCoordinate) {
 							return true;
 						}
 					}
 				}
 				return false;
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent mouseEvent) {
 				boolean isShapeClicked = false;
@@ -47,34 +47,34 @@ public class RightPanelListeners {
 								if (srcDotClicked) {
 									srcDotClicked = false;
 									destDotClicked = true;
-									destShapeId=s.toString();
-									destDot=((Circle) s).getClickedDot(mouseEvent);
+									destShapeId = s.toString();
+									destDot = ((Circle) s).getClickedDot(mouseEvent);
 								} else {
 									srcDotClicked = true;
-									srcShapeId=s.toString();
+									srcShapeId = s.toString();
 									destDotClicked = false;
-									srcDot=((Circle) s).getClickedDot(mouseEvent);
+									srcDot = ((Circle) s).getClickedDot(mouseEvent);
 								}
 
 							}
 						} else if (s instanceof Triangle) {
-							
+
 							if (((Triangle) s).isDotClicked(mouseEvent)) {
 
 								if (srcDotClicked) {
 									srcDotClicked = false;
 									destDotClicked = true;
-									destShapeId=s.toString();
-									destDot=((Triangle) s).getClickedDot(mouseEvent);
+									destShapeId = s.toString();
+									destDot = ((Triangle) s).getClickedDot(mouseEvent);
 								} else {
 									srcDotClicked = true;
-									srcShapeId=s.toString();
+									srcShapeId = s.toString();
 									destDotClicked = false;
-									srcDot=((Triangle) s).getClickedDot(mouseEvent);
+									srcDot = ((Triangle) s).getClickedDot(mouseEvent);
 								}
 
 							}
-							
+
 						} else if (s instanceof Square) {
 							System.out.println(((Square) s).isBarClicked(mouseEvent));
 						}
@@ -93,29 +93,29 @@ public class RightPanelListeners {
 				}
 
 				if (destDotClicked) {
-					System.out.println("destShapeId"+destShapeId);
-					System.out.println("srcShapeId"+srcShapeId);
-					if(!(destShapeId.contentEquals(srcShapeId))) {	
-						System.out.println("Src Dot"+checkIfDotPresent(connectedDots, srcDot));
-						System.out.println("Dest dot"+checkIfDotPresent(connectedDots, destDot));
-						System.out.println("Actual Src Dot"+srcDot.isConnected);
-						System.out.println("Dest src dot"+destDot.isConnected);
-						if(!checkIfDotPresent(connectedDots, srcDot) && !checkIfDotPresent(connectedDots, destDot)) {
-						//if(!srcDot.isConnected && !destDot.isConnected) {
-							Lines testLine = new Lines(srcDot.xCoordinate,srcDot.yCoordinate);
+					System.out.println("destShapeId" + destShapeId);
+					System.out.println("srcShapeId" + srcShapeId);
+					if (!(destShapeId.contentEquals(srcShapeId))) {
+						System.out.println("Src Dot" + checkIfDotPresent(connectedDots, srcDot));
+						System.out.println("Dest dot" + checkIfDotPresent(connectedDots, destDot));
+						System.out.println("Actual Src Dot" + srcDot.isConnected);
+						System.out.println("Dest src dot" + destDot.isConnected);
+						if (!checkIfDotPresent(connectedDots, srcDot) && !checkIfDotPresent(connectedDots, destDot)) {
+							// if(!srcDot.isConnected && !destDot.isConnected) {
+							Lines testLine = new Lines(srcDot.xCoordinate, srcDot.yCoordinate);
 							testLine.setDestPointX(destDot.xCoordinate);
 							testLine.setDestPointY(destDot.yCoordinate);
 							RightPanel.shapesList.add(testLine);
 							RightPanel.selectedLine = testLine;
-							destDotClicked=false;
-							srcShapeId=destShapeId="";
-							srcDot.isConnected=true;
-							destDot.isConnected=true;
+							destDotClicked = false;
+							srcShapeId = destShapeId = "";
+							srcDot.isConnected = true;
+							destDot.isConnected = true;
 							connectedDots.add(srcDot);
 							connectedDots.add(destDot);
 						}
-						System.out.println("Printing Array List"+Arrays.toString(connectedDots.toArray()));
-					}					
+						System.out.println("Printing Array List" + Arrays.toString(connectedDots.toArray()));
+					}
 				}
 				panel.repaint();
 				for (Shapes s : RightPanel.shapesList) {
