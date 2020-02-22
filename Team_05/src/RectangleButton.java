@@ -8,14 +8,14 @@ import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.Stroke;
 import java.awt.geom.Ellipse2D;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 /**
  * This class can draw and create rectangle button.
- * @author KaiRui Hsu
+ * @author KaiRui Hsu, Hongqi Zhang
  * @since 01/26/2020 version 1.0
+ * @modified 2/20/2020 by Hongqi Zhang
  */
 public class RectangleButton extends JButton {
 	private static final long serialVersionUID = 1L;
@@ -25,7 +25,6 @@ public class RectangleButton extends JButton {
 	private Dimension size;
 	private Point []points = new Point[4];
 	
-
 	public RectangleButton(String label) {
 		super(label);
 		size = getPreferredSize();
@@ -58,7 +57,6 @@ public class RectangleButton extends JButton {
 		g2d.drawRect(0, 0, getSize().width - 1, getSize().height - 1);
 		Stroke stroke = new BasicStroke(2f);
 		g2d.setStroke(stroke);
-		
 		Point topLeft = new Point(getSize().width / 5, getSize().height / 5);
 		Point botLeft = new Point(getSize().width / 5, getSize().height - getSize().height / 5);
 		Point topRight = new Point(getSize().width - getSize().width / 5, getSize().height / 5);
@@ -78,6 +76,7 @@ public class RectangleButton extends JButton {
 		}
 		return rectangle.contains(x, y);
 	}
+	
 	/**
 	 * points[0] = topLeft dot
 	 * points[1] = botLeft dot

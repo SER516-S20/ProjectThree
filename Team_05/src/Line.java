@@ -7,15 +7,14 @@ import javax.swing.JButton;
 
 
 public class Line extends JButton{
-
 	private static final long serialVersionUID = 1L;
 	private Color foreground = new Color(0, 0, 0);
 	private Color background = new Color(0, 0, 0);
 	public Line(String label) {
 		super(label);
 		Dimension size = getPreferredSize();
-		size.width = 10000;
-		size.height = 10000;
+		size.width = 1000;
+		size.height = 1000;
 		setPreferredSize(size);
 		setContentAreaFilled(false);
 		setOpaque(false);
@@ -35,8 +34,4 @@ public class Line extends JButton{
 		g2.setStroke(new BasicStroke(5));
 		super.paintComponent(g);
 	}
-
-	
-
-	
 }

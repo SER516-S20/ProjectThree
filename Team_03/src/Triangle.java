@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Triangle.java - a class for creating triangle shape at a particular position
  * 
- * @author Nachiappan Lakshmanan
+ * @author Srinivasan Sundar
  * @version 1.0
  * @since 01/29/2020
  */
@@ -40,15 +40,10 @@ public class Triangle implements Shape,Serializable {
 		this.dot1.setPosition(coordinateX + DOT_TRIANGLE_X_CORD_DEVIATION, coordinateY + DOT_TRIANGLE_Y_CORD_DEVIATION);
 		this.dot1.setColor(Color.RED);
 		this.dot1.draw(graphics, false, Circle.DOT_HEIGHT, Circle.DOT_WIDTH);
-		
-		
-		
 		this.dot2 = new Circle();
 		this.dot2.setPosition(coordinateX - DOT_TRIANGLE_X_CORD_DEVIATION, coordinateY + DOT_TRIANGLE_Y_CORD_DEVIATION);
 		this.dot2.setColor(Color.RED);
 		this.dot2.draw(graphics, false, Circle.DOT_HEIGHT, Circle.DOT_WIDTH);
-		
-		
 		this.dot3 = new Circle();
 		this.dot3.setPosition(coordinateX-5, coordinateY+5);
 		this.dot3.setColor(Color.RED);
@@ -70,7 +65,6 @@ public class Triangle implements Shape,Serializable {
 	@Override
 	public void setColor(Color color) {
 		this.color = color;
-
 	}
 
 	@Override
