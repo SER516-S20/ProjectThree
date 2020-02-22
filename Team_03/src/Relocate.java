@@ -57,7 +57,6 @@ public class Relocate {
 			}
 		}
 		return mapLines;
-
 	}
 
 	/*

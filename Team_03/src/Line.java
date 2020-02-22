@@ -16,26 +16,21 @@ public class Line implements Shape, Serializable {
 	public void setLinePosition(int startCoordinateX, int startCoordinateY, int endCoordinateX, int endCoordinateY) {
 		this.startCoordinateX = startCoordinateX;
 		this.startCoordinateY = startCoordinateY;
-
 		this.endCoordinateX = endCoordinateX;
 		this.endCoordinateY = endCoordinateY;
-
 	}
 
 	@Override
 	public void setColor(Color color) {
 		this.color = color;
-
 	}
 
 	@Override
 	public void draw(Graphics graphics, boolean status, int width, int height) {
-
 		graphics.setColor(color);
 		Graphics2D g2 = (Graphics2D) graphics;
 		g2.setStroke(new BasicStroke(5));
 		g2.drawLine(startCoordinateX, startCoordinateY, endCoordinateX, endCoordinateY);
-
 	}
 
 	@Override

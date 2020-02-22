@@ -76,7 +76,6 @@ public class DrawingArea extends JPanel {
 	
     public void save()
     {
-    	
     	try
         {
             FileOutputStream fos = new FileOutputStream("listData");
@@ -89,21 +88,16 @@ public class DrawingArea extends JPanel {
         {
             ioe.printStackTrace();
         }
-    	
     	JOptionPane.showMessageDialog(null, "File Saved");
-    	
     }
     
     public void load()
     {
-    	
     	try
         {
             FileInputStream fis = new FileInputStream("listData");
             ObjectInputStream ois = new ObjectInputStream(fis);
- 
             listOfShapes = (ArrayList) ois.readObject();
- 
             ois.close();
             fis.close();
         } 
@@ -118,37 +112,25 @@ public class DrawingArea extends JPanel {
             c.printStackTrace();
             return;
         }
-         
         //Verify list data
         for (Shape employee : listOfShapes) {
         	if (employee instanceof Circle)
         	{
         		((Circle) employee).getCoordinateX();
         		((Circle) employee).getCoordinateY();
-        		
         	}
-        	
         	if (employee instanceof Square)
         	{
         		((Square) employee).getCoordinateX();
         		((Square) employee).getCoordinateY();
-        	
         	}
-        	
-        	
         	if (employee instanceof Triangle)
         	{
         		((Triangle) employee).getCoordinateX();
         		((Triangle) employee).getCoordinateY();
-        	
         	}
-        	
-        	
         }
-        
-        Frame.drawingArea.repaintOnDrag(); 
-    	
-        
+        Frame.drawingArea.repaintOnDrag();
     }
 
 	void addSquare(Square square) {
