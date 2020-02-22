@@ -1,7 +1,6 @@
 import java.awt.Point;
 import java.io.File;
 import java.util.Hashtable;
-
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -16,6 +15,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+/**
+ * @author Yijian Hu
+ */
 public class FileManager {
 	
 	public void save(File file, Hashtable<Integer, JButton> shapes) {
