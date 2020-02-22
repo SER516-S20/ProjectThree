@@ -3,7 +3,11 @@ import java.awt.Color;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
+/**
+ * 
+ * @author Somesh
+ *@since 01-29-2020
+ */
 public class LeftPanel extends JPanel{
 	LeftPanel(){
 		

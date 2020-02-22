@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- * @author somesh
+ * @author Dananjay
  * @since 02-18-2020
  */
 public class SelectShape {
