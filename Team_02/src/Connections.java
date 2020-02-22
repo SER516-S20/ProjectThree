@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.*;
 import java.util.ArrayList;
 
 /**
@@ -70,8 +69,7 @@ class Connections extends JFrame {
 				}
 			}
 
-		} 
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			System.out.println("Exception in dot to dot");
 		}
 	}
@@ -101,8 +99,7 @@ class Connections extends JFrame {
 				}
 			}
 
-		} 
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			System.out.println("Exception in dot to bar");
 		}
 	}
@@ -112,8 +109,7 @@ class Connections extends JFrame {
 			Lineconnection objLineConnect = new Lineconnection(new Point(x1, y1), new Point(x2, y2));
 			ShapeLocation.LinePoint.add(objLineConnect);
 
-		} 
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			System.out.println("Exception in bar to bar");
 		}
 	}
@@ -121,8 +117,7 @@ class Connections extends JFrame {
 	void drawLines(Graphics g, int x1, int y1, int x2, int y2) {
 		try {
 			g.drawLine(x1, y1, x2, y2);
-		} 
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
 	}

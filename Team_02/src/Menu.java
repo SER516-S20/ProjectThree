@@ -4,35 +4,22 @@
  * and open the template in the editor.
  */
 
-import java.awt.BorderLayout;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Panel;
 import java.awt.Point;
-import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.geom.Rectangle2D;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author Kunal sharme
+ * @author Kunal sharma
  * @created on 02-18-2020
  * @version 1.0
  */
@@ -40,7 +27,6 @@ public class Menu extends JPanel implements ActionListener {
 
 	private String pathName = "";
 	private JButton clearBtn = new JButton("Clear");
-	private Point initial = new Point(0, 0);
 	private JButton saveBtn = new JButton("Save");
 	private JButton restoreBtn = new JButton("Restore");
 	private JButton quitBtn = new JButton("Quit");

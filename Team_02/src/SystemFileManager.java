@@ -23,11 +23,10 @@ public class SystemFileManager {
 
 	public void restoreShape(String pathName) {
 		try {
-			
+
 			FileInputStream fis = new FileInputStream(pathName);
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			ArrayList<List<Point>> list;
-			list = (ArrayList<List<Point>>) ois.readObject();
+			ArrayList<List<Point>> list = (ArrayList<List<Point>>) ois.readObject();
 
 			ShapeLocation.circlePoint = list.get(0);
 			ShapeLocation.trianglePoint = list.get(1);
