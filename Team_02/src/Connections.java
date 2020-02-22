@@ -15,7 +15,6 @@ import java.util.ArrayList;
  * @created on 01-17-2020
  * @version 1.0
  */
-
 class Connections extends JFrame {
 	static ArrayList<Point> moves = new ArrayList<Point>();
 	ShapeLocation objShape = new ShapeLocation();
