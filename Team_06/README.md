@@ -1,4 +1,5 @@
 # ProjectThree
 ## Team 6 works here
 
-![Add files via upload](Burn Down Chart .png)
+![Burn Down Chart](Burn Down Chart .png)
+Team_06/Burn Down Chart .png
