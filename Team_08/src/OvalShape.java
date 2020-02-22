@@ -13,7 +13,6 @@ public class OvalShape extends Shape {
     static Map<Integer, Integer> relCoordinates = new HashMap<>();
 
     public void draw(GraphicsContext g) {
-
         g.setFill(color);
         g.fillOval(left, top, width, height);
         g.setStroke(Color.BLACK);

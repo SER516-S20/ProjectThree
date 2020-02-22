@@ -184,11 +184,7 @@ public class SourcePanel extends Application {
         }
     }
 
-
-
     private void mouseReleased(MouseEvent evt) {
         shapeBeingDragged = null;
     }
-
-
 }
