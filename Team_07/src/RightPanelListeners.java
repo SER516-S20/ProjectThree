@@ -13,33 +13,37 @@ import java.util.List;
  */
 
 public class RightPanelListeners {
-    MouseEvent one, two;
-    List<Integer> offsetX = new ArrayList<Integer>();
-    List<Integer> offsetY = new ArrayList<Integer>();
+    final int RIGHT_PANEL_WIDTH = 700;
+    final int RIGHT_PANEL_HEIGHT = 670;
+    MouseEvent firstClick, secondClick;
+    List<Integer> clickOffSetX = new ArrayList<Integer>();
+    List<Integer> clickOffSetY = new ArrayList<Integer>();
     List<Lines> linesList = new ArrayList<Lines>();
-    List<Boolean> srcOrDest = new ArrayList<Boolean>();
+
+    //checks if the user is moving the source end or destination end of the line
+    List<Boolean> isSrcOrDest = new ArrayList<Boolean>();
 
     public void addRightPanelListeners(JPanel panel) {
         panel.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 boolean isShapeClicked = false;
-                for (Shapes s : RightPanel.shapesList
-                )
+                for (Shapes s : RightPanel.shapesList)
                     if (s.isInside(mouseEvent.getX(), mouseEvent.getY())) {
                         isShapeClicked = true;
                         if (s.isDotOrBarClicked(mouseEvent))
-                            if (one == null)
-                                one = mouseEvent;
-                            else if (one != null)
-                                two = mouseEvent;
+                            if (firstClick == null)
+                                firstClick = mouseEvent;
+                            else if (firstClick != null)
+                                secondClick = mouseEvent;
                     }
 
                 //Adds lines when user selects two dots or bars
-                if (two != null) {
-                    Lines line = new Lines(one.getX(), one.getY(), two.getX(), two.getY());
+                if (secondClick != null) {
+                    Lines line = new Lines(firstClick.getX(), firstClick.getY(),
+                            secondClick.getX(), secondClick.getY());
                     RightPanel.shapesList.add(line);
-                    one = two = null;
+                    firstClick = secondClick = null;
                 }
 
                 //Adds the selected shape to right panel
@@ -47,8 +51,7 @@ public class RightPanelListeners {
                     createShape(mouseEvent);
                 }
 
-                for (Shapes s : RightPanel.shapesList
-                ) {
+                for (Shapes s : RightPanel.shapesList) {
                     if (s.isInside(mouseEvent.getX(), mouseEvent.getY()))
                         RightPanel.selectedShape = s;
                     else
@@ -59,27 +62,25 @@ public class RightPanelListeners {
 
             @Override
             public void mousePressed(MouseEvent mouseEvent) {
-                for (Shapes s : RightPanel.shapesList
-                ) {
+                for (Shapes s : RightPanel.shapesList) {
                     if (s.isInside(mouseEvent.getX(), mouseEvent.getY()))
                         RightPanel.selectedShape = s;
                 }
-                for (Shapes s : RightPanel.shapesList
-                ) {
+                for (Shapes s : RightPanel.shapesList) {
                     if (s instanceof Lines) {
                         Point lineStart = ((Lines) s).getCoordinatesOne();
                         if (RightPanel.selectedShape.isInside(lineStart.x, lineStart.y)) {
                             linesList.add((Lines) s);
-                            offsetX.add(lineStart.x - RightPanel.selectedShape.xCoordinate);
-                            offsetY.add(lineStart.y - RightPanel.selectedShape.yCoordinate);
-                            srcOrDest.add(true);
+                            clickOffSetX.add(lineStart.x - RightPanel.selectedShape.xCoordinate);
+                            clickOffSetY.add(lineStart.y - RightPanel.selectedShape.yCoordinate);
+                            isSrcOrDest.add(true);
                         }
                         Point lineEnd = ((Lines) s).getCoordinatesTwo();
                         if (RightPanel.selectedShape.isInside(lineEnd.x, lineEnd.y)) {
                             linesList.add((Lines) s);
-                            offsetX.add(lineEnd.x - RightPanel.selectedShape.xCoordinate);
-                            offsetY.add(lineEnd.y - RightPanel.selectedShape.yCoordinate);
-                            srcOrDest.add(false);
+                            clickOffSetX.add(lineEnd.x - RightPanel.selectedShape.xCoordinate);
+                            clickOffSetY.add(lineEnd.y - RightPanel.selectedShape.yCoordinate);
+                            isSrcOrDest.add(false);
                         }
                     }
                 }
@@ -89,9 +90,9 @@ public class RightPanelListeners {
             public void mouseReleased(MouseEvent mouseEvent) {
                 RightPanel.selectedShape = null;
                 linesList.clear();
-                offsetY.clear();
-                offsetX.clear();
-                srcOrDest.clear();
+                clickOffSetY.clear();
+                clickOffSetX.clear();
+                isSrcOrDest.clear();
             }
 
             @Override
@@ -108,30 +109,28 @@ public class RightPanelListeners {
 
             @Override
             public void mouseDragged(MouseEvent mouseEvent) {
-
                 int mouseLocationX = mouseEvent.getX() - 50;
                 int mouseLocationY = mouseEvent.getY() - 50;
-                if (mouseLocationX > 700) {
-                    mouseLocationX = 700;
+                if (mouseLocationX > RIGHT_PANEL_HEIGHT) {
+                    mouseLocationX = RIGHT_PANEL_HEIGHT;
                 } else if (mouseLocationX < 0) {
                     mouseLocationX = 0;
                 }
-                if (mouseLocationY > 670) {
-                    mouseLocationY = 670;
+                if (mouseLocationY > RIGHT_PANEL_WIDTH) {
+                    mouseLocationY = RIGHT_PANEL_WIDTH;
                 } else if (mouseLocationY < 0) {
                     mouseLocationY = 0;
                 }
                 RightPanel.selectedShape.changeLocation(mouseLocationX,
                         mouseLocationY);
                 for (int i = 0; i < linesList.size(); i++) {
-                    if (srcOrDest.get(i))
-                        linesList.get(i).changeSourceLocation(mouseLocationX + offsetX.get(i),
-                                mouseLocationY + offsetY.get(i));
+                    if (isSrcOrDest.get(i))
+                        linesList.get(i).changeSourceLocation(mouseLocationX + clickOffSetX.get(i),
+                                mouseLocationY + clickOffSetY.get(i));
                     else
-                        linesList.get(i).changeDestinationLocation(mouseLocationX + offsetX.get(i),
-                                mouseLocationY + offsetY.get(i));
+                        linesList.get(i).changeDestinationLocation(mouseLocationX + clickOffSetX.get(i),
+                                mouseLocationY + clickOffSetY.get(i));
                 }
-
                 panel.repaint();
             }
 

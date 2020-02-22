@@ -1,22 +1,23 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
 /**
  * @author Aravind Thillai Villalan
  * @since 02-20-2020
  */
 
-public class Lines extends Shapes {
+public class Lines extends Shapes implements Serializable {
 
     private int srcPointX, srcPointY;
     private int destPointX, destPointY;
 
-    public Lines(int x1, int y1, int x2, int y2) {
+    public Lines(int srcPointX, int srcPointY, int destPointX, int destPointY) {
         super();
-        this.srcPointX = x1;
-        this.srcPointY = y1;
-        this.destPointX = x2;
-        this.destPointY = y2;
+        this.srcPointX = srcPointX;
+        this.srcPointY = srcPointY;
+        this.destPointX = destPointX;
+        this.destPointY = destPointY;
     }
 
     @Override
@@ -33,11 +34,6 @@ public class Lines extends Shapes {
     public void changeLocation(int x, int y) {
         this.srcPointX = x;
         this.srcPointY = y;
-    }
-
-    @Override
-    public Shapes getClickedDotOrBar(MouseEvent mouseEvent) {
-        return null;
     }
 
     @Override
