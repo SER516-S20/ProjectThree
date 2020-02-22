@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 /**
  * @author Aravind Thillai Villalan
@@ -30,5 +31,15 @@ public class Bar extends Shapes {
     @Override
     public void changeLocation(int xCoordinateNew, int yCoordinateNew) {
 
+    }
+
+    @Override
+    public Shapes getClickedDotOrBar(MouseEvent mouseEvent) {
+        return null;
+    }
+
+    @Override
+    public boolean isDotOrBarClicked(MouseEvent mouseEvent) {
+        return false;
     }
 }

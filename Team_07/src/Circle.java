@@ -26,13 +26,20 @@ public class Circle extends Shapes {
     }
 
     public boolean isInside(int x, int y) {
-        return ( (x - (this.xCoordinate + RADIUS)) * (x - (this.xCoordinate + RADIUS)) +
-                 (y - (this.yCoordinate + RADIUS)) * (y - (this.yCoordinate + RADIUS))
+        return ((x - (this.xCoordinate + RADIUS)) * (x - (this.xCoordinate + RADIUS)) +
+                (y - (this.yCoordinate + RADIUS)) * (y - (this.yCoordinate + RADIUS))
                 <= this.RADIUS * this.RADIUS);
     }
 
-    public boolean isDotClicked(MouseEvent mouseEvent){
-        return dot.isInside(mouseEvent.getX(),mouseEvent.getY());
+    public Shapes getClickedDotOrBar(MouseEvent mouseEvent) {
+        if (dot.isInside(mouseEvent.getX(), mouseEvent.getY()))
+            return dot;
+        return null;
+    }
+
+    @Override
+    public boolean isDotOrBarClicked(MouseEvent mouseEvent) {
+        return dot.isInside(mouseEvent.getX(), mouseEvent.getY());
     }
     
     public Dot getClickedDot(MouseEvent mouseEvent) {
