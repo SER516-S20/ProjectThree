@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Circle.java - a class for creating circle shape at a particular position
  * 
- * @author Nachiappan Lakshmanan
+ * @author Srinivasan Sundar
  * @version 1.0
  * @since 01/27/2020
  */

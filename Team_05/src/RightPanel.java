@@ -52,11 +52,9 @@ public class RightPanel extends JPanel {
 		frame.contentRepaint();
 	}
 	
-	public void addShape(ShapeInfo shapeInfo)
-	{
+	public void addShape(ShapeInfo shapeInfo){
 		JButton shape;
-		switch(shapeInfo.getType())
-		{
+		switch(shapeInfo.getType()){
 			case "round":
 				shape = new RoundButton("");
 				break;
@@ -103,11 +101,9 @@ public class RightPanel extends JPanel {
 		currentY = 0;
 	}
 	
-	public void load(ShapeInfo[] shapeList)
-	{
+	public void load(ShapeInfo[] shapeList){
 		clear();
-		for(ShapeInfo shape:shapeList)
-		{
+		for(ShapeInfo shape:shapeList){
 			addShape(shape);
 		}
 		updateHashCode();
@@ -130,8 +126,7 @@ public class RightPanel extends JPanel {
 		}
 	}
 	
-	private void updateHashCode()
-	{
+	private void updateHashCode(){
 		Hashtable<Integer, JButton> update = new Hashtable<Integer, JButton>();
 		for(JButton shape:shapes.values()) {
 			update.put(shape.hashCode(), shape);

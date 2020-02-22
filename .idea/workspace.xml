@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="615d45ce-3c82-4d32-a177-64474f86f8c2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="615d45ce-3c82-4d32-a177-64474f86f8c2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,6 +21,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Team_07" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunManager">
@@ -51,6 +50,7 @@
       <updated>1582237081046</updated>
       <workItem from="1582237084124" duration="556000" />
       <workItem from="1582242015817" duration="259000" />
+      <workItem from="1582307601840" duration="30000" />
     </task>
     <servers />
   </component>
@@ -58,6 +58,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="686" y="241" key="FileChooserDialogImpl" timestamp="1582307629539">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="686" y="241" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1582307629539" />
     <state width="1238" height="212" key="GridCell.Tab.0.bottom" timestamp="1582239141809">
       <screen x="0" y="0" width="1280" height="800" />
     </state>

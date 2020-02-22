@@ -106,7 +106,8 @@ public class DrawCircle extends DrawShape implements MouseListener, MouseMotionL
 		int relativeDotY = currentY - e.getY();
 		if (this.contain(e.getX(), e.getY())) {
 			System.out.print("clicked");
-			Click c1 = new Click(e.getX() + currentX, e.getY() + currentY, this);
+			StoreClickPoints c1 = new StoreClickPoints(e.getX() + currentX, 
+												e.getY() + currentY, this);
 		}
 	}
 

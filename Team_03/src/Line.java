@@ -4,6 +4,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.Serializable;
 
+/**
+ * @author Srinivasan Sundar
+ * @version 1.0
+ * @since 02/17/2020
+ */
 public class Line implements Shape, Serializable {
 	private Color color;
 	public int startCoordinateX;
@@ -16,26 +21,21 @@ public class Line implements Shape, Serializable {
 	public void setLinePosition(int startCoordinateX, int startCoordinateY, int endCoordinateX, int endCoordinateY) {
 		this.startCoordinateX = startCoordinateX;
 		this.startCoordinateY = startCoordinateY;
-
 		this.endCoordinateX = endCoordinateX;
 		this.endCoordinateY = endCoordinateY;
-
 	}
 
 	@Override
 	public void setColor(Color color) {
 		this.color = color;
-
 	}
 
 	@Override
 	public void draw(Graphics graphics, boolean status, int width, int height) {
-
 		graphics.setColor(color);
 		Graphics2D g2 = (Graphics2D) graphics;
 		g2.setStroke(new BasicStroke(5));
 		g2.drawLine(startCoordinateX, startCoordinateY, endCoordinateX, endCoordinateY);
-
 	}
 
 	@Override

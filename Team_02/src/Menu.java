@@ -147,7 +147,7 @@ public class Menu extends JPanel implements ActionListener {
 			ShapeLocation.circlePoint.clear();
 			ShapeLocation.trianglePoint.clear();
 			ShapeLocation.squarePoint.clear();
-			ShapeLocation.pointsPoint.clear();
+			ShapeLocation.dotPoint.clear();
 			ShapeLocation.LinePoint.clear();
 			ShapeLocation.squarebarpoints.clear();
 			circlePoint.clear();
@@ -155,8 +155,7 @@ public class Menu extends JPanel implements ActionListener {
 			squarePoint.clear();
 			pointsPoint.clear();
 			LinePoint.clear();
-			// this.repaint();
-			new DrawShapeOnMouseClick().restore();
+			new MouseListener().restore();
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}

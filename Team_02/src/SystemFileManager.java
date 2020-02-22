@@ -32,7 +32,7 @@ public class SystemFileManager {
 			ShapeLocation.circlePoint = list.get(0);
 			ShapeLocation.trianglePoint = list.get(1);
 			ShapeLocation.squarePoint = list.get(2);
-			ShapeLocation.pointsPoint = list.get(3);
+			ShapeLocation.dotPoint = list.get(3);
 			List<Lineconnection> lineConnection = new ArrayList<Lineconnection>();
 			List<Point> lines = list.get(5);
 			for (int i = 0; i <= lines.size() / 2; i = i + 2) {
@@ -44,7 +44,7 @@ public class SystemFileManager {
 			ois.close();
 			fis.close();
 
-			new DrawShapeOnMouseClick().restore();
+			new MouseListener().restore();
 		} catch (Exception ex) {
 			System.out.println("Trouble reading display list vector");
 		}
@@ -60,7 +60,7 @@ public class SystemFileManager {
 			circlePoint = ShapeLocation.circlePoint;
 			trianglePoint = ShapeLocation.trianglePoint;
 			squarePoint = ShapeLocation.squarePoint;
-			pointsPoint = ShapeLocation.pointsPoint;
+			pointsPoint = ShapeLocation.dotPoint;
 			squareBar = ShapeLocation.squarebarpoints;
 			List<Point> lines = new ArrayList<Point>();
 			for (Lineconnection line : ShapeLocation.LinePoint) {

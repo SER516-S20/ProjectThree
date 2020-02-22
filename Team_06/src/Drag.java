@@ -4,6 +4,12 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JButton;
 
+/**
+ * 
+ * @author Dananjay
+ * @since 02-28-2020
+ */
+
 public class Drag{
 	
 	int screenX = 0; 
@@ -46,7 +52,7 @@ public class Drag{
 			public void mouseDragged(MouseEvent e) {
 				int deltaX = e.getXOnScreen() - screenX;
 				int deltaY = e.getYOnScreen() - screenY;
-
+				
 				shape.setLocation(mouseX + deltaX, mouseY + deltaY);
 			}
 

@@ -7,14 +7,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 /**
  * this class is to show the app
  * @author Hongqi Zhang
  */
 public class Frame extends JFrame{
-
 	private static final long serialVersionUID = 1L;
 	private static final String title = "ProjectTwo-Team 5";
 	private static final Color lBackground = new Color(255, 255, 240);
@@ -23,7 +21,7 @@ public class Frame extends JFrame{
 	private LeftPanel btnContainer;
 	private FileBrowser fileBrowser;
 	private FileManager fileManager;
-	
+	 
 	public Frame() {
 		this.setTitle(title);
 		this.setMinimumSize(new Dimension(800, 500));
@@ -40,31 +38,27 @@ public class Frame extends JFrame{
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setLayout(null);
-		
 		JMenu fileMenu =  new JMenu("File");
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		JMenuItem itemSave = new JMenuItem("Save File");
 		itemSave.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				if(fileBrowser.browser("Save file"))
-				{
+				if(fileBrowser.browser("Save file")) {
 					fileManager.save(fileBrowser.getCurrentFile(), dragArea.getShapes());
 				}
-			  }
+			}
 		});
-		
 		fileMenu.add(itemSave);
 		fileMenu.addSeparator();
 		JMenuItem itemOpen = new JMenuItem("Open File");
 		itemOpen.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				if(fileBrowser.browser("Open file"))
-				{
+				if(fileBrowser.browser("Open file")) {
 					ShapeInfo[] shapeList = fileManager.open(fileBrowser.getCurrentFile());
 					dragArea.load(shapeList);
 				}
-			  }
+			}
 		});
 		fileMenu.add(itemOpen);
 		menuBar.add(fileMenu);
@@ -92,5 +86,4 @@ public class Frame extends JFrame{
 		getContentPane().revalidate();
 		getContentPane().repaint();	
 	}
-
 }

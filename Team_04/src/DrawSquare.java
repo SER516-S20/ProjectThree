@@ -87,7 +87,8 @@ public class DrawSquare extends DrawShape implements MouseListener, MouseMotionL
 	public void mouseClicked(MouseEvent e) {
 		if (this.contain(e.getX(), e.getY())) {
 			System.out.print("Square clicked");
-			Click c1 = new Click(e.getX() + currentX, e.getY() + currentY, this);
+			StoreClickPoints c1 = new StoreClickPoints(e.getX() + currentX, 
+												e.getY() + currentY, this);
 
 		}
 	}
