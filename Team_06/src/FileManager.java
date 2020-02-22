@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
-
+/**
+ * 
+ * @author Suyog
+ * @Since 02-16-2020
+ */
 public class FileManager {
 	
 	FileManager(JMenuItem save,JMenuItem open){
@@ -57,8 +61,8 @@ public class FileManager {
 			@Override
 			public void actionPerformed(ActionEvent e){ 
 				JFileChooser j = new JFileChooser();  
-				int r = j.showSaveDialog(null); 
-   
+				int r = j.showOpenDialog(null); 
+				
 				if (r == JFileChooser.APPROVE_OPTION) {  
                 file.setText(j.getSelectedFile().getAbsolutePath()); 
 				}  

@@ -1,25 +1,24 @@
 import java.io.File;
-
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
+/**
+ * @author Yijian Hu
+ */
 public class FileBrowser {
 	private JFrame parentFrame;
 	private JFileChooser fileChooser;
 	private File currentFile;
 	
-	public boolean browser(String title)
-	{
+	public boolean browser(String title){
 		parentFrame = new JFrame();
 		fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle(title);
 		int selection;
-		if(title.equals("Save file"))
-		{
+		if(title.equals("Save file")){
 			selection = fileChooser.showSaveDialog(parentFrame);
 		}
-		else
-		{
+		else{
 			selection = fileChooser.showOpenDialog(parentFrame);
 		}
 		if(selection == JFileChooser.APPROVE_OPTION) {
@@ -29,8 +28,7 @@ public class FileBrowser {
 		return false;
 	}
 	
-	public File getCurrentFile()
-	{
+	public File getCurrentFile(){
 		return currentFile;
 	}
 }

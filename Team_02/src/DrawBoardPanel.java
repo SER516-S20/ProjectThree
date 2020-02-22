@@ -1,6 +1,4 @@
 import java.awt.Color;
-import java.awt.Graphics;
-
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
@@ -17,7 +15,7 @@ public class DrawBoardPanel extends JPanel {
 	public DrawBoardPanel() {
 
 		try {
-			add(new DrawShapeOnMouseClick());
+			add(new MouseListener());
 			setVisible(true);
 			Border blackline = BorderFactory.createLineBorder(Color.black);
 			setBorder(blackline);

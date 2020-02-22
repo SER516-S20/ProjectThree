@@ -1,46 +1,42 @@
-import java.awt.BorderLayout;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 import java.awt.Panel;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.geom.Rectangle2D;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author Kunal sharme
+ * @author Kunal sharma
  * @created on 02-18-2020
  * @version 1.0
  */
-public class Menu extends JFrame implements ActionListener {
-	java.util.List<Point> displayList = new ArrayList<Point>();
-	String pathName = "";
-	JButton clearBtn = new JButton("Clear");
-	Point initial = new Point(0, 0);
-	JButton saveBtn = new JButton("Save");
-	JButton restoreBtn = new JButton("Restore");
-	JButton quitBtn = new JButton("Quit");
-	public List<Point> circlePoint = new ArrayList<Point>();
-	public List<Point> trianglePoint = new ArrayList<Point>();
-	public List<Point> squarePoint = new ArrayList<Point>();
-	public List<Point> pointsPoint = new ArrayList<Point>();
-	public List<Point> squareBar = new ArrayList<Point>();
-	public List<Lineconnection> LinePoint = new ArrayList<Lineconnection>();
+public class Menu extends JPanel implements ActionListener {
+
+	private String pathName = "";
+	private JButton clearBtn = new JButton("Clear");
+	private JButton saveBtn = new JButton("Save");
+	private JButton restoreBtn = new JButton("Restore");
+	private JButton quitBtn = new JButton("Quit");
+	private List<Point> circlePoint = new ArrayList<Point>();
+	private List<Point> trianglePoint = new ArrayList<Point>();
+	private List<Point> squarePoint = new ArrayList<Point>();
+	private List<Point> pointsPoint = new ArrayList<Point>();
+	private List<Point> squareBar = new ArrayList<Point>();
+	private List<Lineconnection> LinePoint = new ArrayList<Lineconnection>();
+	private ArrayList<List<Point>> list;
 
 	public Panel CreateMenu() {
 		Panel pan = new Panel();
@@ -117,12 +113,27 @@ public class Menu extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		ArrayList<List<Point>> list = new ArrayList<List<Point>>();
+		list = new ArrayList<List<Point>>();
+		SystemFileManager objSFM = new SystemFileManager();
 		if (e.getSource() == clearBtn) {
+			clearDrawingBoard();
+		} else if (e.getSource() == saveBtn) {
+			SaveFileChooser();
+			objSFM.saveShape(pathName, circlePoint, trianglePoint, squarePoint, pointsPoint, squareBar, list);
+		} else if (e.getSource() == restoreBtn) {
+			LoadFileChooser();
+			objSFM.restoreShape(pathName);
+		} else if (e.getSource() == quitBtn) {
+			MainWindow.CloseApplication();
+		}
+	}
+
+	public void clearDrawingBoard() {
+		try {
 			ShapeLocation.circlePoint.clear();
 			ShapeLocation.trianglePoint.clear();
 			ShapeLocation.squarePoint.clear();
-			ShapeLocation.pointsPoint.clear();
+			ShapeLocation.dotPoint.clear();
 			ShapeLocation.LinePoint.clear();
 			ShapeLocation.squarebarpoints.clear();
 			circlePoint.clear();
@@ -130,67 +141,10 @@ public class Menu extends JFrame implements ActionListener {
 			squarePoint.clear();
 			pointsPoint.clear();
 			LinePoint.clear();
-			new DrawShapeOnMouseClick().restore();
-		} else if (e.getSource() == saveBtn) {
-			try {
-				SaveFileChooser();
-
-				FileOutputStream fos = new FileOutputStream(new File(pathName));
-				ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-				circlePoint = ShapeLocation.circlePoint;
-				trianglePoint = ShapeLocation.trianglePoint;
-				squarePoint = ShapeLocation.squarePoint;
-				pointsPoint = ShapeLocation.pointsPoint;
-				squareBar = ShapeLocation.squarebarpoints;
-				List<Point> lines = new ArrayList<Point>();
-				for (Lineconnection line : ShapeLocation.LinePoint) {
-					lines.add(line.P1);
-					lines.add(line.P2);
-				}
-				list.add(circlePoint);
-				list.add(trianglePoint);
-				list.add((ArrayList<Point>) squarePoint);
-				list.add(pointsPoint);
-				list.add(squareBar);
-
-				oos.writeObject(list);
-				oos.flush();
-				oos.close();
-				fos.close();
-			} catch (Exception ex) {
-				System.out.println("Trouble writing display list vector");
-			}
-		} else if (e.getSource() == restoreBtn) {
-			try {
-				LoadFileChooser();
-				list.clear();
-				FileInputStream fis = new FileInputStream(pathName);
-				ObjectInputStream ois = new ObjectInputStream(fis);
-				list = (ArrayList<List<Point>>) ois.readObject();
-				ShapeLocation.circlePoint = list.get(0);
-				ShapeLocation.trianglePoint = list.get(1);
-				ShapeLocation.squarePoint = list.get(2);
-				ShapeLocation.pointsPoint = list.get(3);
-				List<Lineconnection> lineConnection = new ArrayList<Lineconnection>();
-				List<Point> lines = list.get(4);
-				for (int i = 0; i < lines.size() / 2; i = i + 2) {
-					Lineconnection objLC = new Lineconnection(lines.get(i), lines.get(i + 1));
-					lineConnection.add(objLC);
-				}
-				ShapeLocation.LinePoint = lineConnection;
-				ShapeLocation.squarebarpoints = list.get(5);
-				ois.close();
-				fis.close();
-
-				new DrawShapeOnMouseClick().restore();
-			} catch (Exception ex) {
-				System.out.println("Trouble reading display list vector");
-			}
-		} else if (e.getSource() == quitBtn) {
-			setVisible(false);
-			dispose();
-			System.exit(0);
+			new MouseListener().restore();
+		} catch (Exception ex) {
+			System.out.println(ex);
 		}
 	}
+
 }

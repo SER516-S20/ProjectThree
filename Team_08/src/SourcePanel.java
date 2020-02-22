@@ -12,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.paint.Color;
 import javafx.scene.input.MouseEvent;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -20,8 +19,8 @@ import java.io.FileNotFoundException;
  * @author Kartik
  * @version 1.0
  */
-public class SourcePanel extends Application {
 
+public class SourcePanel extends Application {
     private int shapeCount = 0;
     private Canvas canvas;
     private Color currentColor = Color.WHITE;
@@ -31,11 +30,9 @@ public class SourcePanel extends Application {
     private Shape shapeBeingDragged = null;
     private int prevDragX;
     private int prevDragY;
-
     public static void main(String[] args) {
         launch(args);
     }
-
     public void start(Stage stage) {
         canvas = makeCanvas();
         LineDraw lineDraw = new LineDraw();
@@ -53,7 +50,6 @@ public class SourcePanel extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         lineDraw.drawLineOnCanvas(scene, gc);
     }
-
     private Canvas makeCanvas() {
         Canvas canvas = new Canvas(800, 600);
         canvas.setOnMousePressed(this::mousePressed);
@@ -62,7 +58,6 @@ public class SourcePanel extends Application {
         canvas.setOnMouseDragged(this::mouseDragged);
         return canvas;
     }
-
     private VBox makeToolPanel(Canvas canvas) {
         SaveUserCanvas saveFile = new SaveUserCanvas();
         FileInputStream circleImage = null, squareImage = null, triangleImage = null;
@@ -129,44 +124,6 @@ public class SourcePanel extends Application {
         paintCanvas();
     }
 
-
-    private void mousePressed(MouseEvent evt) {
-
-        int x = (int) evt.getX();
-        int y = (int) evt.getY();
-        for (int i = shapeCount - 1; i >= 0; i--) {
-            Shape s = shapes[i];
-            currentShape = shapes[shapeCount - 1];
-            if (s.containsPoint(x, y)) {
-                shapeBeingDragged = s;
-                prevDragX = x;
-                prevDragY = y;
-                if (evt.isShiftDown()) {
-                    for (int j = i; j < shapeCount - 1; j++) {
-
-                        shapes[j] = shapes[j + 1];
-                    }
-                    shapes[shapeCount - 1] = s;
-                    paintCanvas();
-                }
-                return;
-            }
-        }
-    }
-
-    private void mouseDragged(MouseEvent evt) {
-        int x = (int) evt.getX();
-        int y = (int) evt.getY();
-        if (shapeBeingDragged != null) {
-            dragging = true;
-            shapeBeingDragged.moveBy(x - prevDragX, y - prevDragY);
-            prevDragX = x;
-            prevDragY = y;
-            paintCanvas();
-
-        }
-    }
-
     private void mouseClicked(MouseEvent evt) {
 
         if (dragging) {
@@ -185,9 +142,42 @@ public class SourcePanel extends Application {
             System.out.println("No user input detected");
     }
 
+    private void mouseDragged(MouseEvent evt) {
+        int x = (int) evt.getX();
+        int y = (int) evt.getY();
+        if (shapeBeingDragged != null) {
+            dragging = true;
+            shapeBeingDragged.moveBy(x - prevDragX, y - prevDragY);
+            prevDragX = x;
+            prevDragY = y;
+            paintCanvas();
+
+        }
+    }
+
+    private void mousePressed(MouseEvent evt) {
+        int x = (int) evt.getX();
+        int y = (int) evt.getY();
+        for (int i = shapeCount - 1; i >= 0; i--) {
+            Shape s = shapes[i];
+            currentShape = shapes[shapeCount - 1];
+            if (s.containsPoint(x, y)) {
+                shapeBeingDragged = s;
+                prevDragX = x;
+                prevDragY = y;
+                if (evt.isShiftDown()) {
+                    for (int j = i; j < shapeCount - 1; j++) {
+                        shapes[j] = shapes[j + 1];
+                    }
+                    shapes[shapeCount - 1] = s;
+                    paintCanvas();
+                }
+                return;
+            }
+        }
+    }
+
     private void mouseReleased(MouseEvent evt) {
         shapeBeingDragged = null;
     }
-
-
 }

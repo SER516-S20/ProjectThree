@@ -8,7 +8,6 @@ import java.awt.Polygon;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.Stroke;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
