@@ -21,7 +21,7 @@ public class RightPanel extends PanelInterface
 	public int finalFlag = 0;
 	private static RightPanel single_instance = null;
 
-	public static RightPanel getInstance() 
+	public static RightPanel getInstance()
 	{
 		if (single_instance == null)
 			single_instance = new RightPanel();
@@ -62,7 +62,7 @@ public class RightPanel extends PanelInterface
 					values.add(String.valueOf(circle.getX()));
 					values.add(String.valueOf(circle.getY()));
 					values.add(String.valueOf(finalFlag));
-					shapesList.add(values);
+					RightPanel.getInstance().shapesList.add(values);
 					repaint();
 				}
 				else if (finalFlag == 2) 
@@ -76,7 +76,7 @@ public class RightPanel extends PanelInterface
 					values.add(String.valueOf(square.getX()));
 					values.add(String.valueOf(square.getY()));
 					values.add(String.valueOf(finalFlag));
-					shapesList.add(values);
+					RightPanel.getInstance().shapesList.add(values);
 					repaint();
 				}
 				else if(finalFlag == 3) 
@@ -90,7 +90,7 @@ public class RightPanel extends PanelInterface
 					values.add(String.valueOf(triangle.getX()));
 					values.add(String.valueOf(triangle.getY()));
 					values.add(String.valueOf(finalFlag));
-					shapesList.add(values);
+					RightPanel.getInstance().shapesList.add(values);
 					repaint();
 	     	    }
 			}
