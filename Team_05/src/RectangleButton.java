@@ -8,7 +8,6 @@ import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.Stroke;
 import java.awt.geom.Ellipse2D;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
