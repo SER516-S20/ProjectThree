@@ -234,7 +234,7 @@ public class MouseListener extends JPanel {
 					repaint();
 				}
 			} catch (Exception e1) {
-				JOptionPane.showMessageDialog(null, e1);
+				
 			}
 		}
 	}
