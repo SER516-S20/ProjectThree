@@ -21,7 +21,7 @@ public class Frame extends JFrame{
 	private LeftPanel btnContainer;
 	private FileBrowser fileBrowser;
 	private FileManager fileManager;
-	
+	 
 	public Frame() {
 		this.setTitle(title);
 		this.setMinimumSize(new Dimension(800, 500));
