@@ -10,10 +10,10 @@ import javax.swing.border.EmptyBorder;
 public class Square extends JButton{
 
 	/**
-	 * @param x - x coordinate for circle.
-	 * @param y - y coordinate for circle.
+	 * @param x - x coordinate for square.
+	 * @param y - y coordinate for square.
 	 */
-	public Square(String label, int x, int y, boolean flag) 
+	public Square(String label, int x, int y, boolean rightPanel) 
 	{
 		super(label);
         Dimension size = getPreferredSize();
@@ -23,7 +23,13 @@ public class Square extends JButton{
         setBorder(new EmptyBorder(x, y, 5, 5));       
         setContentAreaFilled(false);
         
-        if (flag){
+        if (rightPanel){
+        	Bar bar1 = new Bar(10,7);
+        	this.add(bar1);
+        	
+        	Bar bar2 = new Bar(55,7);
+        	this.add(bar2);
+        	
         	new Drag(this);
         }
         	
@@ -39,6 +45,8 @@ public class Square extends JButton{
             g.setColor(getBackground());
         }
         g.fillRect(0, 0, getSize().width, getSize().height);
+        g.fillRect(10, 7, 10, 60);
+        g.fillRect(55, 7, 10, 60);
         super.paintComponent(g);
     }
 
@@ -46,5 +54,7 @@ public class Square extends JButton{
     {
         g.setColor(getForeground());
         g.drawRect(0, 0, getSize().width, getSize().height);
+        g.drawRect(10, 7, 10, 60);
+        g.drawRect(55, 7, 10, 60);
     }
 }

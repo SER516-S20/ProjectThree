@@ -9,15 +9,15 @@ public class LeftPanel extends JPanel{
 		
 		this.setBackground(Color.decode("#ffffff"));
 		
-		JButton triangle = new Triangle("", 50, 50, false);     
+		Triangle triangle = new Triangle("", 0, 0, false);     
 		this.add(triangle);
-		this.add(Box.createVerticalStrut(130)); 
+		this.add(Box.createVerticalStrut(140)); 
 		
-		JButton circle = new Circle("", 50, 50, false);
+		Circle circle = new Circle("", 0, 0, false);
 		this.add(circle);               
-		this.add(Box.createVerticalStrut(200));
+		this.add(Box.createVerticalStrut(250));
 		
-		JButton square = new Square("", 50, 50, false);          
+		Square square = new Square("", 0, 0, false);          
 		this.add(square);     
 		
 		SelectShape ss = new SelectShape();
