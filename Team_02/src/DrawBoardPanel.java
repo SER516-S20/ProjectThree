@@ -17,7 +17,7 @@ public class DrawBoardPanel extends JPanel {
 	public DrawBoardPanel() {
 
 		try {
-			add(new DrawShapeOnMouseClick());
+			add(new MouseListener());
 			setVisible(true);
 			Border blackline = BorderFactory.createLineBorder(Color.black);
 			setBorder(blackline);
