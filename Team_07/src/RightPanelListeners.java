@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -52,7 +53,6 @@ public class RightPanelListeners {
                     else
                         RightPanel.selectedShape = null;
                 }
-                System.out.println(RightPanel.shapesList);
                 panel.repaint();
             }
 
