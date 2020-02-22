@@ -10,7 +10,9 @@ public class Circle extends Shapes {
     int RADIUS = 50;
     int DIAMETER = RADIUS * 2;
     Dot dot;
-
+    
+    boolean srcDotClicked=false;
+    
     public Circle(int xCoordinate, int yCoordinate) {
         this.xCoordinate = xCoordinate - RADIUS;
         this.yCoordinate = yCoordinate - RADIUS;
@@ -31,6 +33,12 @@ public class Circle extends Shapes {
 
     public boolean isDotClicked(MouseEvent mouseEvent){
         return dot.isInside(mouseEvent.getX(),mouseEvent.getY());
+    }
+    
+    public Dot getClickedDot(MouseEvent mouseEvent) {
+    	if(dot.isInside(mouseEvent.getX(),mouseEvent.getY()))
+    		return dot;
+		return null;
     }
 
     @Override

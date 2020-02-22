@@ -67,6 +67,16 @@ public class Triangle extends Shapes {
         return tempFlag;
     }
 
+    public Dot getClickedDot(MouseEvent mouseEvent) {
+        
+        for (Dot dot: dots) {
+            if(dot.isInside(mouseEvent.getX(),mouseEvent.getY())){
+                return dot;
+            }
+        }
+        return null;
+    }
+    
     private float area(int x1, int y1, int x2, int y2, int x3, int y3) {
         return (float) abs((x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0);
     }
