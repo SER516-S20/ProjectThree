@@ -24,7 +24,6 @@ public class Line extends JButton{
 		setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 		
 	}
-
 	protected void paintComponent(Graphics g) {
 		RightPanel rightpanel = new RightPanel();
 		int startx = 0; 

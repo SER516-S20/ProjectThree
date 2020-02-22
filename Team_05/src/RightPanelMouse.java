@@ -13,13 +13,11 @@ public class RightPanelMouse implements MouseListener, MouseMotionListener {
 	public RightPanelMouse(RightPanel rightPanel) {
 		this.rightPanel = rightPanel;
 	}
-
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Component btn = e.getComponent();
@@ -38,25 +36,21 @@ public class RightPanelMouse implements MouseListener, MouseMotionListener {
 		}
 		addLine(points);
 	}
-
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		e.getComponent().setLocation(e.getX() + e.getComponent().getX() - currentX, 
@@ -70,7 +64,6 @@ public class RightPanelMouse implements MouseListener, MouseMotionListener {
 			rightPanel.deleteShape(e.getComponent().hashCode());
 		}
 	}
-	
 	//not finished yet
 	public void addLine(Point[] points) {
 		Line line = new Line("");
