@@ -30,7 +30,7 @@ $ java MainWindow
 - Sprint 1 pending tasks are completed
 
 #### What should we have done better?
-- Could switch from using JPanels (for shape) to paintComponent earlier
+- Could have switched from using JPanels (for shape) to paintComponent sooner
 - Lack of planning lead to some rework during the sprint
 - Knowledge acquisition's estimation
 
