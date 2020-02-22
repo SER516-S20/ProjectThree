@@ -11,9 +11,7 @@ public class RightPanelMouse implements MouseListener, MouseMotionListener {
 	private int currentX;
 	private int currentY;
 	private RightPanel rightPanel;
-	
 	public RightPanelMouse(RightPanel rightPanel) {
-	
 		this.rightPanel = rightPanel;
 	}
 
@@ -25,7 +23,20 @@ public class RightPanelMouse implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		Line line = new Line("");
+		Component btn = e.getComponent();
+		String className = e.getSource().getClass().getName();
+		if(className.equals("TriangleButton")) {
+			TriangleButton triangle = (TriangleButton) btn;
+			Point []points = triangle.getPointsPosition();
+		}
+		else if(className.equals("RoundButton")) {
+			RoundButton round = (RoundButton) btn;	
+		}
+		else if(className.equals("RectangleButton")) {
+			RectangleButton rect = (RectangleButton) btn;
+			Point []points = rect.getPointsPosition();
+		}
 	}
 
 	@Override
@@ -52,8 +63,6 @@ public class RightPanelMouse implements MouseListener, MouseMotionListener {
 				 					 e.getY() + e.getComponent().getY() - currentY);
 		
 	}
-
-	@Override
 	public void mousePressed(MouseEvent e) {
 		Component btn = e.getComponent();
 		String className = e.getSource().getClass().getName();
@@ -79,5 +88,9 @@ public class RightPanelMouse implements MouseListener, MouseMotionListener {
 			rightPanel.deleteShape(e.getComponent().hashCode());
 		}
 	}
-			
+	
+	//not finished yet
+	public void addLine() {
+		
+	}
 }
