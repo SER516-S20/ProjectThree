@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.geom.*;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
@@ -9,7 +8,6 @@ import javax.swing.JButton;
  * @author Hongqi Zhang
  */ 
 public class RoundButton extends JButton{
-
 	private static final long serialVersionUID = 1L;
 	private Shape shape;
 	private Color foreground = new Color(178, 255, 102);

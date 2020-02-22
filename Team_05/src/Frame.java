@@ -14,7 +14,6 @@ import java.io.File;
  * @author Hongqi Zhang
  */
 public class Frame extends JFrame{
-
 	private static final long serialVersionUID = 1L;
 	private static final String title = "ProjectTwo-Team 5";
 	private static final Color lBackground = new Color(255, 255, 240);
@@ -47,24 +46,21 @@ public class Frame extends JFrame{
 		JMenuItem itemSave = new JMenuItem("Save File");
 		itemSave.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				if(fileBrowser.browser("Save file"))
-				{
+				if(fileBrowser.browser("Save file")) {
 					fileManager.save(fileBrowser.getCurrentFile(), dragArea.getShapes());
 				}
-			  }
+			}
 		});
-		
 		fileMenu.add(itemSave);
 		fileMenu.addSeparator();
 		JMenuItem itemOpen = new JMenuItem("Open File");
 		itemOpen.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				if(fileBrowser.browser("Open file"))
-				{
+				if(fileBrowser.browser("Open file")) {
 					ShapeInfo[] shapeList = fileManager.open(fileBrowser.getCurrentFile());
 					dragArea.load(shapeList);
 				}
-			  }
+			}
 		});
 		fileMenu.add(itemOpen);
 		menuBar.add(fileMenu);
