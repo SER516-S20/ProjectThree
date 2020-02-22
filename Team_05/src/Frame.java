@@ -86,5 +86,4 @@ public class Frame extends JFrame{
 		getContentPane().revalidate();
 		getContentPane().repaint();	
 	}
-
 }
