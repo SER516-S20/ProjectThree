@@ -55,7 +55,7 @@ public class MenuBar{
 	public void save()
 	{	
 
-		FileDialog dialog = new FileDialog(MainWindow.mainWindow,"Select file to open");
+		FileDialog dialog = new FileDialog(MainWindow.mainWindow,"Enter file name to Save");
 		dialog.setMode(FileDialog.SAVE);
 		dialog.setVisible(true);
 		String file= dialog.getFile();
@@ -102,8 +102,6 @@ public class MenuBar{
 			fi.close();
 
 			for (Shapes s : oldshapesList) {
-				System.out.print(s.getClass().getName() + " ");
-				System.out.println(s.xCoordinate + " " + s.yCoordinate);
 				RightPanel.shapesList.add(s);
 			}
 
