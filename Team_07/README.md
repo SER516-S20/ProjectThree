@@ -11,7 +11,16 @@ $ java MainWindow
 
 
 ## Sprint Review
-#### Done functionalities
+#### What did we do?
+- Fixed existing bugs from Sprint 1
+- Cleared the Product Backlog
+
+#### What could be better?
+- Time management, along with effective planning & estimation.
+
+#### What we will do?
+- Create next Sprint Backlog
+- Fix existing bugs
 
 ## Sprint Retrospective
 
@@ -21,7 +30,7 @@ $ java MainWindow
 - Sprint 1 pending tasks are completed
 
 #### What should we have done better?
-- Could switch from using JPanels (for shape) to paintComponent earlier
+- Could have switched from using JPanels (for shape) to paintComponent sooner
 - Lack of planning lead to some rework during the sprint
 - Knowledge acquisition's estimation
 
