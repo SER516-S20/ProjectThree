@@ -129,6 +129,36 @@ public class SourcePanel extends Application {
         paintCanvas();
     }
 
+    private void mouseClicked(MouseEvent evt) {
+
+        if (dragging) {
+            dragging = false;
+            //return;
+        }
+        if (currentShape.toString().contains("Circle"))
+            addShape(new CircleShapeWithDot(), (int) evt.getX(), (int) evt.getY(), 75, 75);
+        else if (currentShape.toString().contains("Square"))
+            addShape(new SquareShapeWithBars(), (int) evt.getX(), (int) evt.getY(), 75, 75);
+        else if (currentShape.toString().contains("Ellipse"))
+            addShape(new EllipseShape(), (int) evt.getX(), (int) evt.getY(), 100, 50);
+        else if (currentShape.toString().contains("Triangle")) {
+            addShape(new TriangleShape(), (int) evt.getX(), (int) evt.getY(), 100, 50);
+        } else
+            System.out.println("No user input detected");
+    }
+
+    private void mouseDragged(MouseEvent evt) {
+        int x = (int) evt.getX();
+        int y = (int) evt.getY();
+        if (shapeBeingDragged != null) {
+            dragging = true;
+            shapeBeingDragged.moveBy(x - prevDragX, y - prevDragY);
+            prevDragX = x;
+            prevDragY = y;
+            paintCanvas();
+
+        }
+    }
 
     private void mousePressed(MouseEvent evt) {
 
@@ -154,36 +184,7 @@ public class SourcePanel extends Application {
         }
     }
 
-    private void mouseDragged(MouseEvent evt) {
-        int x = (int) evt.getX();
-        int y = (int) evt.getY();
-        if (shapeBeingDragged != null) {
-            dragging = true;
-            shapeBeingDragged.moveBy(x - prevDragX, y - prevDragY);
-            prevDragX = x;
-            prevDragY = y;
-            paintCanvas();
 
-        }
-    }
-
-    private void mouseClicked(MouseEvent evt) {
-
-        if (dragging) {
-            dragging = false;
-            //return;
-        }
-        if (currentShape.toString().contains("Circle"))
-            addShape(new CircleShapeWithDot(), (int) evt.getX(), (int) evt.getY(), 75, 75);
-        else if (currentShape.toString().contains("Square"))
-            addShape(new SquareShapeWithBars(), (int) evt.getX(), (int) evt.getY(), 75, 75);
-        else if (currentShape.toString().contains("Ellipse"))
-            addShape(new EllipseShape(), (int) evt.getX(), (int) evt.getY(), 100, 50);
-        else if (currentShape.toString().contains("Triangle")) {
-            addShape(new TriangleShape(), (int) evt.getX(), (int) evt.getY(), 100, 50);
-        } else
-            System.out.println("No user input detected");
-    }
 
     private void mouseReleased(MouseEvent evt) {
         shapeBeingDragged = null;
