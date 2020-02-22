@@ -122,7 +122,7 @@ public class Menu extends JFrame implements ActionListener {
 			ShapeLocation.circlePoint.clear();
 			ShapeLocation.trianglePoint.clear();
 			ShapeLocation.squarePoint.clear();
-			ShapeLocation.pointsPoint.clear();
+			ShapeLocation.dotPoint.clear();
 			ShapeLocation.LinePoint.clear();
 			ShapeLocation.squarebarpoints.clear();
 			circlePoint.clear();
@@ -130,7 +130,7 @@ public class Menu extends JFrame implements ActionListener {
 			squarePoint.clear();
 			pointsPoint.clear();
 			LinePoint.clear();
-			new DrawShapeOnMouseClick().restore();
+			new MouseListener().restore();
 		} else if (e.getSource() == saveBtn) {
 			try {
 				SaveFileChooser();
@@ -141,7 +141,7 @@ public class Menu extends JFrame implements ActionListener {
 				circlePoint = ShapeLocation.circlePoint;
 				trianglePoint = ShapeLocation.trianglePoint;
 				squarePoint = ShapeLocation.squarePoint;
-				pointsPoint = ShapeLocation.pointsPoint;
+				pointsPoint = ShapeLocation.dotPoint;
 				squareBar = ShapeLocation.squarebarpoints;
 				List<Point> lines = new ArrayList<Point>();
 				for (Lineconnection line : ShapeLocation.LinePoint) {
@@ -171,7 +171,7 @@ public class Menu extends JFrame implements ActionListener {
 				ShapeLocation.circlePoint = list.get(0);
 				ShapeLocation.trianglePoint = list.get(1);
 				ShapeLocation.squarePoint = list.get(2);
-				ShapeLocation.pointsPoint = list.get(3);
+				ShapeLocation.dotPoint = list.get(3);
 				List<Lineconnection> lineConnection = new ArrayList<Lineconnection>();
 				List<Point> lines = list.get(4);
 				for (int i = 0; i < lines.size() / 2; i = i + 2) {
@@ -183,7 +183,7 @@ public class Menu extends JFrame implements ActionListener {
 				ois.close();
 				fis.close();
 
-				new DrawShapeOnMouseClick().restore();
+				new MouseListener().restore();
 			} catch (Exception ex) {
 				System.out.println("Trouble reading display list vector");
 			}
