@@ -14,6 +14,7 @@ public class RoundButton extends JButton{
 	private Shape shape;
 	private Color foreground = new Color(178, 255, 102);
 	private Color background = new Color(0, 255, 255);
+	private Point center;
 	
 	public RoundButton(String label) {
 		super(label);
@@ -54,5 +55,9 @@ public class RoundButton extends JButton{
 			shape = new Ellipse2D.Float(0, 0, getWidth(), getHeight());
 		}
 		return shape.contains(x, y);
+	}
+	public Point getCenterPoint() {
+		center = new Point(getSize().width / 2, getSize().height / 2);
+		return center;
 	}
 }
