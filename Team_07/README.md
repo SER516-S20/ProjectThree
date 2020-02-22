@@ -7,9 +7,6 @@ $ javac MainWindow.java
 $ java MainWindow
 ```
 
-## Product Backlog
-
-
 ## Sprint Review
 #### What did we do?
 - Fixed existing bugs from Sprint 1
