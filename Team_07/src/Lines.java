@@ -55,5 +55,12 @@ public class Lines extends Shapes {
         this.destPointY = y;
     }
 
+    public Point getCoordinatesOne() {
+        return new Point(srcPointX, srcPointY);
+    }
+
+    public Point getCoordinatesTwo() {
+        return new Point(destPointX, destPointY);
+    }
 
 }

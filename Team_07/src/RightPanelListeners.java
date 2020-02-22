@@ -1,7 +1,10 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Karandeep Singh Grewal
@@ -11,7 +14,10 @@ import java.awt.event.MouseMotionListener;
 
 public class RightPanelListeners {
     MouseEvent one, two;
-
+    List<Integer> offsetX = new ArrayList<Integer>();
+    List<Integer> offsetY = new ArrayList<Integer>();
+    List<Lines> linesList = new ArrayList<Lines>();
+    List<Boolean> srcOrDest = new ArrayList<Boolean>();
 
     public void addRightPanelListeners(JPanel panel) {
         panel.addMouseListener(new MouseListener() {
@@ -58,11 +64,34 @@ public class RightPanelListeners {
                     if (s.isInside(mouseEvent.getX(), mouseEvent.getY()))
                         RightPanel.selectedShape = s;
                 }
+                for (Shapes s : RightPanel.shapesList
+                ) {
+                    if (s instanceof Lines) {
+                        Point lineStart = ((Lines) s).getCoordinatesOne();
+                        if (RightPanel.selectedShape.isInside(lineStart.x, lineStart.y)) {
+                            linesList.add((Lines) s);
+                            offsetX.add(lineStart.x - RightPanel.selectedShape.xCoordinate);
+                            offsetY.add(lineStart.y - RightPanel.selectedShape.yCoordinate);
+                            srcOrDest.add(true);
+                        }
+                        Point lineEnd = ((Lines) s).getCoordinatesTwo();
+                        if (RightPanel.selectedShape.isInside(lineEnd.x, lineEnd.y)) {
+                            linesList.add((Lines) s);
+                            offsetX.add(lineEnd.x - RightPanel.selectedShape.xCoordinate);
+                            offsetY.add(lineEnd.y - RightPanel.selectedShape.yCoordinate);
+                            srcOrDest.add(false);
+                        }
+                    }
+                }
             }
 
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
                 RightPanel.selectedShape = null;
+                linesList.clear();
+                offsetY.clear();
+                offsetX.clear();
+                srcOrDest.clear();
             }
 
             @Override
@@ -94,6 +123,15 @@ public class RightPanelListeners {
                 }
                 RightPanel.selectedShape.changeLocation(mouseLocationX,
                         mouseLocationY);
+                for (int i = 0; i < linesList.size(); i++) {
+                    if (srcOrDest.get(i))
+                        linesList.get(i).changeSourceLocation(mouseLocationX + offsetX.get(i),
+                                mouseLocationY + offsetY.get(i));
+                    else
+                        linesList.get(i).changeDestinationLocation(mouseLocationX + offsetX.get(i),
+                                mouseLocationY + offsetY.get(i));
+                }
+
                 panel.repaint();
             }
 
