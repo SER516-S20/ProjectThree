@@ -23,7 +23,7 @@ $ java MainWindow
 #### What should we have done better?
 - Could switch from using JPanels (for shape) to paintComponent earlier
 - Lack of planning lead to some rework during the sprint
-- Knowledge acquision's estimation
+- Knowledge acquisition's estimation
 
 #### What should we start doing?
 - Assigning related user stories to same person
