@@ -1,5 +1,3 @@
-package Shapes;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -12,15 +10,16 @@ import java.util.Map;
  * @version 1.0
  */
 public class OvalShape extends Shape {
-    static Map<Integer,Integer> relCoordinates = new HashMap<>(); //capture rel position of circles.
+    static Map<Integer, Integer> relCoordinates = new HashMap<>();
+
     public void draw(GraphicsContext g) {
 
         g.setFill(color);
         g.fillOval(left, top, width, height);
         g.setStroke(Color.BLACK);
         g.strokeOval(left, top, width, height);
-        relCoordinates.put(left+35,top+35);
-        g.strokeOval(left+35, top+35,2.5,2.5);
+        relCoordinates.put(left + 35, top + 35);
+        g.strokeOval(left + 35, top + 35, 2.5, 2.5);
     }
 
     public boolean containsPoint(int x, int y) {

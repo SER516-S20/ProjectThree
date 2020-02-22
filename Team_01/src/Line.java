@@ -5,7 +5,7 @@
  * @author Parikshith Kedilaya Mallar
  * @version 1.0
  */
-public class DrawLine {
+public class Line {
 	private int shapeX, shapeY, lineX, lineY;
 	private Connections line;
 	private boolean isSourceShape = false, isDestShape = false;
@@ -66,9 +66,4 @@ public class DrawLine {
 		this.isDestShape = isDestShape;
 	}
 
-	@Override
-	public String toString() {
-		return "DrawLine [shapeX=" + shapeX + ", shapeY=" + shapeY + ", lineX=" + lineX + ", lineY=" + lineY + ", line="
-				+ line + "]";
-	}
 }

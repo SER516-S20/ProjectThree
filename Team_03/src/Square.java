@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Square.java - a class for creating square shape at a particular position
  * 
- * @author Nachiappan Lakshmanan
+ * @author Srinivasan Sundar
  * @version 1.0
  * @since 01/29/2020
  */
@@ -31,7 +31,6 @@ public class Square implements Shape,Serializable {
 	@Override
 	public void setColor(Color color) {
 		this.color = color;
-
 	}
 
 	@Override
@@ -45,7 +44,6 @@ public class Square implements Shape,Serializable {
 		this.bar1.setColor(Color.black);
 		this.bar1.setPosition(cordinateX + BAR_DEVIATION, cordinateY + BAR_DEVIATION);
 		this.bar1.draw(graphics, false, BAR_HEIGHT, BAR_WIDTH);
-
 		this.bar2 = new Square();
 		this.bar2.setColor(Color.black);
 		this.bar2.setPosition(cordinateX + (BAR_DEVIATION * 7), cordinateY + BAR_DEVIATION);
@@ -57,7 +55,6 @@ public class Square implements Shape,Serializable {
 		graphics.setColor(color);
 		graphics.drawRect(coordinateX, coordinateY, width, height);
 		graphics.fillRect(coordinateX, coordinateY, width, height);
-
 		if (isShape) {
 			addBar(graphics, coordinateX, coordinateY);
 		}

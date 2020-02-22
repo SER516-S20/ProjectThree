@@ -12,11 +12,10 @@ import java.util.ListIterator;
  * @author Parikshit
  * @version 1.0
  */
-public class RightPanelMouseListener extends RightPanel implements MouseListener, MouseMotionListener {
-	private static final long serialVersionUID = 1L;
+public class RightPanelMouseListener implements MouseListener, MouseMotionListener {
 
-	static Shapes selectedShape;
-	List<DrawLine> linesList = new ArrayList<DrawLine>();
+	private Shapes selectedShape;
+	private List<Line> linesList = new ArrayList<Line>();
 
 	/**
 	 * Change the coordinates of the connection line when a shape on the right panel
@@ -30,9 +29,9 @@ public class RightPanelMouseListener extends RightPanel implements MouseListener
 			selectedShape.setX(e.getX());
 			selectedShape.setY(e.getY());
 		}
-		ListIterator<DrawLine> linesListIter = linesList.listIterator();
+		ListIterator<Line> linesListIter = linesList.listIterator();
 		while (linesListIter.hasNext()) {
-			DrawLine nextLine = linesListIter.next();
+			Line nextLine = linesListIter.next();
 			if (nextLine.isSourceShape()) {
 				nextLine.getLine().setSourceX(nextLine.getLineX() - (nextLine.getShapeX() - selectedShape.getX()));
 				nextLine.getLine().setSourceY(nextLine.getLineY() - (nextLine.getShapeY() - selectedShape.getY()));
@@ -41,7 +40,7 @@ public class RightPanelMouseListener extends RightPanel implements MouseListener
 				nextLine.getLine().setDestY(nextLine.getLineY() - (nextLine.getShapeY() - selectedShape.getY()));
 			}
 		}
-		RightPanel.isSelected = false;
+		RightPanel.setSelected(false);
 		Frame.rightPanel.repaint();
 	}
 
@@ -56,17 +55,17 @@ public class RightPanelMouseListener extends RightPanel implements MouseListener
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (!Dot.isDotClicked && !RightPanel.isMoved && !Dot.isBarClicked) {
+		if (!Dot.isDotClicked && !RightPanel.isMoved() && !Dot.isBarClicked) {
 			int x = e.getX();
 			int y = e.getY();
 			ShapesEnum selectedShape = LeftPanelMouseListener.getSelectedShape();
 			if (selectedShape == ShapesEnum.SQUARE) {
-				RightPanel.rightPanelShapes.add(new Square(x, y));
+				RightPanel.getRightPanelShapes().add(new Square(x, y));
 			} else if (selectedShape == ShapesEnum.TRIANGLE) {
-				RightPanel.rightPanelShapes.add(new Triangle(x, y));
+				RightPanel.getRightPanelShapes().add(new Triangle(x, y));
 			} else if (selectedShape == ShapesEnum.CIRCLE) {
 				Circle c = new Circle(x, y);
-				RightPanel.rightPanelShapes.add(c);
+				RightPanel.getRightPanelShapes().add(c);
 			}
 			Frame.rightPanel.repaint();
 		}
@@ -80,7 +79,7 @@ public class RightPanelMouseListener extends RightPanel implements MouseListener
 	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
-		ListIterator<Shapes> shapes = RightPanel.rightPanelShapes.listIterator();
+		ListIterator<Shapes> shapes = RightPanel.getRightPanelShapes().listIterator();
 		while (shapes.hasNext()) {
 			Shapes sh = shapes.next();
 			if (sh.containsPoint(e.getX(), e.getY())) {
@@ -88,11 +87,11 @@ public class RightPanelMouseListener extends RightPanel implements MouseListener
 			}
 
 		}
-		ListIterator<Connections> lines = RightPanel.lines.listIterator();
+		ListIterator<Connections> lines = RightPanel.getLines().listIterator();
 		while (lines.hasNext()) {
 			Connections line = lines.next();
 			if (line.getOriginShape().equals(selectedShape)) {
-				DrawLine drawline = new DrawLine();
+				Line drawline = new Line();
 				drawline.setLineX(line.getSourceX());
 				drawline.setLineY(line.getSourceY());
 				drawline.setShapeX(selectedShape.getX());
@@ -101,7 +100,7 @@ public class RightPanelMouseListener extends RightPanel implements MouseListener
 				drawline.setSourceShape(true);
 				linesList.add(drawline);
 			} else if (line.getDestShape().equals(selectedShape)) {
-				DrawLine drawline = new DrawLine();
+				Line drawline = new Line();
 				drawline.setLineX(line.getDestX());
 				drawline.setLineY(line.getDestY());
 				drawline.setShapeX(selectedShape.getX());

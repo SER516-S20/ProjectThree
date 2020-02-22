@@ -1,18 +1,21 @@
-package Shapes;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-/**
- * @author Sayali
- * @version 1.0
- */
-public class EllipseShape extends Shape {
+import java.util.HashMap;
+import java.util.Map;
+
+public class CircleShapeWithDot extends Shape {
+    //capture relative coordinates
+    static Map<Integer, Integer> relCoordinates = new HashMap<>();
+
     public void draw(GraphicsContext g) {
+
         g.setFill(color);
         g.fillOval(left, top, width, height);
         g.setStroke(Color.BLACK);
         g.strokeOval(left, top, width, height);
+        relCoordinates.put(left + 35, top + 35);
+        g.strokeOval(left + 35, top + 35, 2.5, 2.5);
     }
 
     public boolean containsPoint(int x, int y) {

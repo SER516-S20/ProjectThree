@@ -24,63 +24,79 @@ class MouseListener extends MouseInputAdapter {
 			activateDrag = true;
 		} else {
 			activateDrag = false;
-			if (JButtonActionListener.isSquarePanelClicked) {
-				Square square = new Square();
-				square.setPosition(coordinateX, coordinateY);
-				Frame.drawingArea.addSquare(square);
-			} else if (JButtonActionListener.isCirclePanelClicked) {
-				Circle circle = new Circle();
-				circle.setPosition(coordinateX, coordinateY);
-				Frame.drawingArea.addCircle(circle);
-			} else if (JButtonActionListener.isTrianglePanelClicked) {
-				Triangle triangle = new Triangle();
-				triangle.setPosition(coordinateX, coordinateY);
-				Frame.drawingArea.addTriangle(triangle);
-			} else {
-				JOptionPane.showMessageDialog(null, "Please select a shape");
-			}
+			panelClicked(coordinateX, coordinateY);
+		}
+	}
+
+	private void panelClicked(int coordinateX, int coordinateY) {
+		if (JButtonActionListener.isSquarePanelClicked) {
+			Square square = new Square();
+			square.setPosition(coordinateX, coordinateY);
+			Frame.drawingArea.addSquare(square);
+		} else if (JButtonActionListener.isCirclePanelClicked) {
+			Circle circle = new Circle();
+			circle.setPosition(coordinateX, coordinateY);
+			Frame.drawingArea.addCircle(circle);
+		} else if (JButtonActionListener.isTrianglePanelClicked) {
+			Triangle triangle = new Triangle();
+			triangle.setPosition(coordinateX, coordinateY);
+			Frame.drawingArea.addTriangle(triangle);
+		} else {
+			JOptionPane.showMessageDialog(null, "Please select a shape");
 		}
 	}
 
 	public void mouseDragged(MouseEvent event) {
 		int coordinateX = event.getX();
 		int coordinateY = event.getY();
-
 		Dots dots = new Dots();
 		Connections connections = new Connections();
 		Relocate relocate = new Relocate();
-
 		if (activateDrag && !Dots.lineDrag) {
-
 			Object object = Boundary.selectedObject;
 			if (object instanceof Square) {
-				Square square = (Square) object;
-				if (!dots.isBarInSquare(square, coordinateX, coordinateY)) {
-					square.setPosition(coordinateX, coordinateY);
-					relocate.updateLinesDrawnToSquare(square);
-					Frame.drawingArea.repaintOnDrag();
-				}
+				squareDragged(object, dots, coordinateX, coordinateY, relocate);
 			} else if (object instanceof Circle) {
-				Circle circle = (Circle) object;
-				if (!dots.isDotInCircle(circle, coordinateX, coordinateY)) {
-					circle.setPosition(coordinateX, coordinateY);
-					relocate.updateLinesDrawnToCircle(circle, circle.dot.getCoordinateX(), circle.dot.getCoordinateY());
-					Frame.drawingArea.repaintOnDrag();
-				}
+				circleDragged(object, dots, coordinateX, coordinateY, relocate);
 			} else if (object instanceof Triangle) {
-				Triangle triangle = (Triangle) object;
-				if (!dots.isDotInTriangle(triangle, coordinateX, coordinateY)) {
-					triangle.setPosition(coordinateX, coordinateY);
-					relocate.updateLinesDrawnToTriangle(triangle);
-					Frame.drawingArea.repaintOnDrag();
-				}
+				triangleDragged(object, dots, coordinateX, coordinateY, relocate);
 			}
 		}
+		lineDragged(connections, coordinateX, coordinateY);
+	}
 
+	private void lineDragged(Connections connections, int coordinateX, int coordinateY) {
 		if (Dots.lineDrag && !connections.isConnected(coordinateX, coordinateY)) {
 			Dots.currentLineObject.setLinePosition(Dots.currentLineObject.startCoordinateX,
 					Dots.currentLineObject.startCoordinateY, coordinateX, coordinateY);
 			Frame.drawingArea.addLine(Dots.currentLineObject);
+		}
+	}
+
+	private void triangleDragged(Object object, Dots dots, int coordinateX, int coordinateY, Relocate relocate) {
+		Triangle triangle = (Triangle) object;
+		if (!dots.isDotInTriangle(triangle, coordinateX, coordinateY)) {
+			triangle.setPosition(coordinateX, coordinateY);
+			relocate.updateLinesDrawnToTriangle(triangle);
+			Frame.drawingArea.repaintOnDrag();
+		}
+	}
+
+	private void circleDragged(Object object, Dots dots, int coordinateX, int coordinateY, Relocate relocate) {
+		Circle circle = (Circle) object;
+		if (!dots.isDotInCircle(circle, coordinateX, coordinateY)) {
+			circle.setPosition(coordinateX, coordinateY);
+			relocate.updateLinesDrawnToCircle(circle, circle.dot.getCoordinateX(), circle.dot.getCoordinateY());
+			Frame.drawingArea.repaintOnDrag();
+		}
+	}
+
+	private void squareDragged(Object object, Dots dots, int coordinateX, int coordinateY, Relocate relocate) {
+		Square square = (Square) object;
+		if (!dots.isBarInSquare(square, coordinateX, coordinateY)) {
+			square.setPosition(coordinateX, coordinateY);
+			relocate.updateLinesDrawnToSquare(square);
+			Frame.drawingArea.repaintOnDrag();
 		}
 	}
 
