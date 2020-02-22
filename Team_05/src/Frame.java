@@ -38,7 +38,6 @@ public class Frame extends JFrame{
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setLayout(null);
-		
 		JMenu fileMenu =  new JMenu("File");
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
