@@ -14,14 +14,14 @@ public class Lines extends Shapes {
     public Lines(int x1, int y1, int x2, int y2) {
         super();
         this.srcPointX = x1;
-        this.srcPointY = y2;
+        this.srcPointY = y1;
         this.destPointX = x2;
         this.destPointY = y2;
     }
 
     @Override
     public void createShape(Graphics graphics) {
-        graphics.drawLine(this.xCoordinate, this.yCoordinate, destPointX, destPointY);
+        graphics.drawLine(this.srcPointX, this.srcPointY, destPointX, destPointY);
     }
 
     @Override

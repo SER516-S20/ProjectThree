@@ -25,7 +25,8 @@ public class Square extends Shapes {
 
     @Override
     public boolean isInside(int x, int y) {
-        return (x > this.xCoordinate && this.xCoordinate < this.xCoordinate + WIDTH) && (y > this.yCoordinate && this.yCoordinate < this.yCoordinate + HEIGHT);
+        return (x > this.xCoordinate && x < this.xCoordinate + WIDTH) &&
+                (y > this.yCoordinate && y < this.yCoordinate + HEIGHT);
     }
 
     @Override

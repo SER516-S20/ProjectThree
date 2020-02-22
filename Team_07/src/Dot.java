@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 public class Dot extends Shapes {
     final int RADIUS = 5;
     final int DIAMETER = 2 * RADIUS;
-    boolean isConnected = false;
+    boolean isConnected = true;
 
     //isDrawn
     //isclecked
@@ -34,7 +34,6 @@ public class Dot extends Shapes {
 
     @Override
     public void changeLocation(int x, int y) {
-
     }
 
     @Override

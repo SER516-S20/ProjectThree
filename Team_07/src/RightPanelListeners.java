@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -11,7 +10,7 @@ import java.awt.event.MouseMotionListener;
  */
 
 public class RightPanelListeners {
-    Shape selectedOne, selectedTwo;
+    MouseEvent one, two;
 
     public void addRightPanelListeners(JPanel panel) {
         panel.addMouseListener(new MouseListener() {
@@ -19,24 +18,20 @@ public class RightPanelListeners {
             public void mouseClicked(MouseEvent mouseEvent) {
                 boolean isShapeClicked = false;
                 for (Shapes s : RightPanel.shapesList
-                ) {
+                )
                     if (s.isInside(mouseEvent.getX(), mouseEvent.getY())) {
                         isShapeClicked = true;
-                        if (s.isDotOrBarClicked(mouseEvent)) {
-                            System.out.println(s.getClickedDotOrBar(mouseEvent));
-                        }
-
-
-//                        if (s instanceof Circle) {
-//                            if (((Circle) s).isDotClicked(mouseEvent))
-//                                System.out.println(s);
-//                        } else if (s instanceof Triangle) {
-//                            if (((Triangle) s).isDotClicked(mouseEvent))
-//                                System.out.println(s);
-//                        } else if (s instanceof Square) {
-//                            System.out.println(((Square) s).isBarClicked(mouseEvent));
-//                        }
+                        if (s.isDotOrBarClicked(mouseEvent))
+                            if (one == null)
+                                one = mouseEvent;
+                            else if (one != null)
+                                two = mouseEvent;
                     }
+
+                if (two != null) {
+                    Lines line = new Lines(one.getX(), one.getY(), two.getX(), two.getY());
+                    RightPanel.shapesList.add(line);
+                    one = two = null;
                 }
                 if (!isShapeClicked) {
                     if (LeftPanel.selectedShape instanceof Triangle) {
@@ -57,6 +52,7 @@ public class RightPanelListeners {
                     else
                         RightPanel.selectedShape = null;
                 }
+                System.out.println(RightPanel.shapesList);
                 panel.repaint();
             }
 
