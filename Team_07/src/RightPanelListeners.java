@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -12,6 +11,7 @@ import java.awt.event.MouseMotionListener;
 
 public class RightPanelListeners {
     MouseEvent one, two;
+
 
     public void addRightPanelListeners(JPanel panel) {
         panel.addMouseListener(new MouseListener() {
@@ -29,21 +29,16 @@ public class RightPanelListeners {
                                 two = mouseEvent;
                     }
 
+                //Adds lines when user selects two dots or bars
                 if (two != null) {
                     Lines line = new Lines(one.getX(), one.getY(), two.getX(), two.getY());
                     RightPanel.shapesList.add(line);
                     one = two = null;
                 }
+
+                //Adds the selected shape to right panel
                 if (!isShapeClicked) {
-                    if (LeftPanel.selectedShape instanceof Triangle) {
-                        RightPanel.shapesList.add(new Triangle(mouseEvent.getX(), mouseEvent.getY()));
-                    }
-                    if (LeftPanel.selectedShape instanceof Square) {
-                        RightPanel.shapesList.add(new Square(mouseEvent.getX(), mouseEvent.getY()));
-                    }
-                    if (LeftPanel.selectedShape instanceof Circle) {
-                        RightPanel.shapesList.add(new Circle(mouseEvent.getX(), mouseEvent.getY()));
-                    }
+                    createShape(mouseEvent);
                 }
 
                 for (Shapes s : RightPanel.shapesList
@@ -108,4 +103,17 @@ public class RightPanelListeners {
             }
         });
     }
+
+    public void createShape(MouseEvent mouseEvent) {
+        if (LeftPanel.selectedShape instanceof Triangle) {
+            RightPanel.shapesList.add(new Triangle(mouseEvent.getX(), mouseEvent.getY()));
+        }
+        if (LeftPanel.selectedShape instanceof Square) {
+            RightPanel.shapesList.add(new Square(mouseEvent.getX(), mouseEvent.getY()));
+        }
+        if (LeftPanel.selectedShape instanceof Circle) {
+            RightPanel.shapesList.add(new Circle(mouseEvent.getX(), mouseEvent.getY()));
+        }
+    }
+
 }
