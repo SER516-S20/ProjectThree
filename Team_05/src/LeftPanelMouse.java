@@ -1,9 +1,8 @@
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 /**
  * @author ShihYuChang
  */
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 public class LeftPanelMouse extends MouseAdapter{
 	private RightPanel rightPanel;
 	public LeftPanelMouse(RightPanel rightPanel) {
