@@ -15,7 +15,7 @@ import java.util.List;
 public class RightPanel extends JPanel {
     public static List<Shapes> shapesList = new ArrayList<>();
     public static Shapes selectedShape;
-    public static Lines selectedLine;
+    public List<Shapes> bufferShapesList = new ArrayList<>();
 
     RightPanel() {
         this.setBounds(200, 0, 800, 800);

@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
 /**
  * @author Aditya Bajaj
@@ -7,7 +8,7 @@ import java.awt.event.MouseEvent;
  * @since 02-18-2020
  */
 
-public class Dot extends Shapes {
+public class Dot extends Shapes implements Serializable {
     final int RADIUS = 5;
     final int DIAMETER = 2 * RADIUS;
     boolean isConnected = true;

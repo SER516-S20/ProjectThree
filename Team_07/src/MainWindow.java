@@ -13,6 +13,8 @@ public class MainWindow extends JFrame {
         LeftPanel leftPanel = new LeftPanel();
         RightPanel rightPanel = new RightPanel();
 
+        MenuBar menubar = new MenuBar();
+        menubar.rightPanel = rightPanel;
         mainWindow = new JFrame("SER516-Project-Team07");
         mainWindow.setSize(1000, 800);
         mainWindow.add(leftPanel);
@@ -22,5 +24,6 @@ public class MainWindow extends JFrame {
         mainWindow.setResizable(false);
         mainWindow.setLocationRelativeTo(null);
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainWindow.setJMenuBar(menubar.appMenuBar);
     }
 }

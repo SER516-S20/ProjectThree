@@ -1,18 +1,19 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
 /**
  * @author Aravind Thillai Villalan
  * @since 02-20-2020
  */
 
-public class Circle extends Shapes {
+public class Circle extends Shapes implements Serializable {
     int RADIUS = 50;
     int DIAMETER = RADIUS * 2;
     Dot dot;
-    
-    boolean srcDotClicked=false;
-    
+
+    boolean srcDotClicked = false;
+
     public Circle(int xCoordinate, int yCoordinate) {
         this.xCoordinate = xCoordinate - RADIUS;
         this.yCoordinate = yCoordinate - RADIUS;

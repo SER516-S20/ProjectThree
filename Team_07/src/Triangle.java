@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
 import static java.lang.Math.abs;
 
@@ -8,7 +9,7 @@ import static java.lang.Math.abs;
  * @since 02-20-2020
  */
 
-public class Triangle extends Shapes {
+public class Triangle extends Shapes implements Serializable {
     int[] verticesX = {0, 100, 50};
     int[] verticesY = {86, 86, 0};
     int HEIGHT = 86;

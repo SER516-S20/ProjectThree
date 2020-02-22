@@ -153,5 +153,4 @@ public class RightPanelListeners {
             RightPanel.shapesList.add(new Circle(mouseEvent.getX(), mouseEvent.getY()));
         }
     }
-
 }

@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
 /**
  * @author Aravind Thillai Villalan
@@ -7,7 +8,7 @@ import java.awt.event.MouseEvent;
  * @since 02-18-2020
  */
 
-public class Bar extends Shapes {
+public class Bar extends Shapes implements Serializable {
     int WIDTH = 10;
     int HEIGHT = 80;
 

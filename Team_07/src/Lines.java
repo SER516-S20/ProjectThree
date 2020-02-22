@@ -1,12 +1,13 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
 /**
  * @author Aravind Thillai Villalan
  * @since 02-20-2020
  */
 
-public class Lines extends Shapes {
+public class Lines extends Shapes implements Serializable {
 
     private int srcPointX, srcPointY;
     private int destPointX, destPointY;
