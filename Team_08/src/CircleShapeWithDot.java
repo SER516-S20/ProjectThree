@@ -1,15 +1,18 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Sandya
+ * @version 1.0
+ */
+
 public class CircleShapeWithDot extends Shape {
-    //capture relative coordinates
+    //This class is used to capture relative coordinates
     static Map<Integer, Integer> relCoordinates = new HashMap<>();
 
     public void draw(GraphicsContext g) {
-
         g.setFill(color);
         g.fillOval(left, top, width, height);
         g.setStroke(Color.BLACK);

@@ -5,7 +5,9 @@ import javafx.scene.paint.Color;
  * @author Amudhan
  * @version 1.0
  */
+
 public class RectangleShape extends Shape {
+//This class is used to draw rectangle shape in canvas.
     public void draw(GraphicsContext g) {
         g.setFill(color);
         g.fillRect(left, top, width, height);

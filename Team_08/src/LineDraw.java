@@ -2,10 +2,13 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+/**
+ * @author Kartik
+ * @version 1.0
+ */
+
 public class LineDraw {
-    /*
-    * Draws a line on canvas
-    * */
+//This class is used to draw a line on canvas
     public void drawLineOnCanvas(Scene scene, GraphicsContext gc) {
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(1);

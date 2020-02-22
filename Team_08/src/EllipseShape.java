@@ -5,7 +5,9 @@ import javafx.scene.paint.Color;
  * @author Sayali
  * @version 1.0
  */
+
 public class EllipseShape extends Shape {
+//This class is used to draw ellipse shape
     public void draw(GraphicsContext g) {
         g.setFill(color);
         g.fillOval(left, top, width, height);
