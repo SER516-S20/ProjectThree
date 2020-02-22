@@ -1,4 +1,3 @@
-import Shapes.*;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.paint.Color;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Pair;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -34,20 +32,13 @@ public class SourcePanel extends Application {
     private int prevDragX;
     private int prevDragY;
 
-    //private final GraphicsContext gc;
-
-    private Pair<Double, Double> initialTouch;
-    private Canvas layer = new Canvas();
-
     public static void main(String[] args) {
         launch(args);
     }
 
     public void start(Stage stage) {
-
         canvas = makeCanvas();
-
-
+        LineDraw lineDraw = new LineDraw();
         paintCanvas();
         StackPane canvasHolder = new StackPane(canvas);
         canvasHolder.setStyle("-fx-border-width: 2px; -fx-border-color: #444");
@@ -55,24 +46,12 @@ public class SourcePanel extends Application {
         root.setStyle("-fx-border-width: 1px; -fx-border-color: black");
         root.setLeft(makeToolPanel(canvas));
         Scene scene = new Scene(root);
-
         stage.setScene(scene);
-        stage.setTitle("Project02 Team 08");
+        stage.setTitle("Project03 Team 08");
         stage.setResizable(false);
         stage.show();
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setStroke(Color.BLACK);
-        gc.setLineWidth(1);
-        scene.setOnMouseReleased(e->{
-            gc.beginPath();
-            gc.lineTo(e.getX(),e.getY());
-            gc.stroke();
-        });
-        scene.setOnMouseDragged(e->{
-            gc.lineTo(e.getSceneX(),e.getSceneY());
-            gc.stroke();
-        });
-
+        lineDraw.drawLineOnCanvas(scene, gc);
     }
 
     private Canvas makeCanvas() {
@@ -85,8 +64,8 @@ public class SourcePanel extends Application {
     }
 
     private VBox makeToolPanel(Canvas canvas) {
-        FileInputStream circleImage = null, rectangleImage = null,
-                squareImage = null, triangleImage = null;
+        SaveUserCanvas saveFile = new SaveUserCanvas();
+        FileInputStream circleImage = null, squareImage = null, triangleImage = null;
         try {
             circleImage = new FileInputStream("Team_08/src/Image/circle.png");
             squareImage = new FileInputStream("Team_08/src/Image/square.png");
@@ -97,17 +76,20 @@ public class SourcePanel extends Application {
         Image image = new Image(circleImage);
         ImageView imageView = new ImageView(image);
         Button ovalButton = new Button("", imageView);
-        ovalButton.setOnAction((e) -> addShape(new OvalShape(), 10, 50, 75, 75));
+        ovalButton.setOnAction((e) -> addShape(new CircleShapeWithDot(), 10, 50, 75, 75));
 
         image = new Image(squareImage);
         imageView = new ImageView(image);
         Button squareButton = new Button("", imageView);
-        squareButton.setOnAction((e) -> addShape(new SquareShape(), 10, 250, 75, 75));
+        squareButton.setOnAction((e) -> addShape(new SquareShapeWithBars(), 10, 250, 75, 75));
 
         image = new Image(triangleImage);
         imageView = new ImageView(image);
         Button triangleButton = new Button("", imageView);
         triangleButton.setOnAction((e) -> addShape(new TriangleShape(), 90, 450, 100, 50));
+
+        Button saveButton = new Button("Save Canvas File", null);
+        saveButton.setOnAction((e) -> saveFile.saveCanvasSnapshot(canvas));
 
         ComboBox<String> combobox = new ComboBox<>();
         combobox.setEditable(false);
@@ -116,14 +98,15 @@ public class SourcePanel extends Application {
         String[] colorNames = {"Red", "Green", "Blue", "Cyan",
                 "Magenta", "Yellow", "Black", "White"};
         combobox.getItems().addAll(colorNames);
-        combobox.setValue("Red");
+        combobox.setValue("White");
         combobox.setOnAction(e -> currentColor = colors[combobox.getSelectionModel().getSelectedIndex()]);
         VBox tools = new VBox(20);
+        tools.getChildren().add(combobox);
         tools.getChildren().add(ovalButton);
-        //tools.getChildren().add(rectButton);
         tools.getChildren().add(squareButton);
         tools.getChildren().add(triangleButton);
-        tools.getChildren().add(combobox);
+        tools.getChildren().add(saveButton);
+
         tools.setStyle("-fx-border-width: 3px; -fx-border-color: transparent; -fx-background-color: white");
         return tools;
     }
@@ -185,19 +168,21 @@ public class SourcePanel extends Application {
     }
 
     private void mouseClicked(MouseEvent evt) {
+
         if (dragging) {
             dragging = false;
-            return;
+            //return;
         }
-        if (currentShape.toString().contains("Oval"))
-            addShape(new OvalShape(), (int) evt.getX(), (int) evt.getY(), 75, 75);
+        if (currentShape.toString().contains("Circle"))
+            addShape(new CircleShapeWithDot(), (int) evt.getX(), (int) evt.getY(), 75, 75);
         else if (currentShape.toString().contains("Square"))
-            addShape(new SquareShape(), (int) evt.getX(), (int) evt.getY(), 75, 75);
+            addShape(new SquareShapeWithBars(), (int) evt.getX(), (int) evt.getY(), 75, 75);
         else if (currentShape.toString().contains("Ellipse"))
             addShape(new EllipseShape(), (int) evt.getX(), (int) evt.getY(), 100, 50);
         else if (currentShape.toString().contains("Triangle")) {
             addShape(new TriangleShape(), (int) evt.getX(), (int) evt.getY(), 100, 50);
-        }
+        } else
+            System.out.println("No user input detected");
     }
 
     private void mouseReleased(MouseEvent evt) {
