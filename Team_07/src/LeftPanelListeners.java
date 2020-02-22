@@ -12,8 +12,7 @@ public class LeftPanelListeners {
         panel.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                for (Shapes s : LeftPanel.shapesList
-                ) {
+                for (Shapes s : LeftPanel.shapesList) {
                     if (s.isInside(mouseEvent.getX(), mouseEvent.getY())) {
                         LeftPanel.selectedShape = s;
                     }
@@ -22,22 +21,18 @@ public class LeftPanelListeners {
 
             @Override
             public void mousePressed(MouseEvent mouseEvent) {
-
             }
 
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
-
             }
 
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
-
             }
 
             @Override
             public void mouseExited(MouseEvent mouseEvent) {
-
             }
         });
     }

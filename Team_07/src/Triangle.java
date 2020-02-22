@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
 import static java.lang.Math.abs;
 
@@ -8,7 +9,7 @@ import static java.lang.Math.abs;
  * @since 02-20-2020
  */
 
-public class Triangle extends Shapes {
+public class Triangle extends Shapes implements Serializable {
     int[] verticesX = {0, 100, 50};
     int[] verticesY = {86, 86, 0};
     int HEIGHT = 86;
@@ -54,16 +55,6 @@ public class Triangle extends Shapes {
         this.yCoordinate = y;
         verticesX = new int[]{this.xCoordinate, 100 + this.xCoordinate, 50 + this.xCoordinate};
         verticesY = new int[]{86 + this.yCoordinate, 86 + this.yCoordinate, this.yCoordinate};
-    }
-
-    @Override
-    public Shapes getClickedDotOrBar(MouseEvent mouseEvent) {
-        for (Dot dot : dots) {
-            if (dot.isInside(mouseEvent.getX(), mouseEvent.getY())) {
-                return dot;
-            }
-        }
-        return null;
     }
 
     @Override
