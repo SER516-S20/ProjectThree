@@ -1,7 +1,6 @@
 import java.awt.Point;
 import java.io.File;
 import java.util.Hashtable;
-
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
