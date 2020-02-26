@@ -91,7 +91,7 @@ public class Menu extends JPanel implements ActionListener {
 			if (result == JFileChooser.APPROVE_OPTION) {
 				File f = selectFile.getSelectedFile();
 				if (!getFileExtension(f).equals("dat")) {
-					JOptionPane.showMessageDialog(null, "Invalid File format");
+					JOptionPane.showMessageDialog(null, "Invalid File format. Please add file extension-.dat");
 				} else if (getFileExtension(f).equals("dat")) {
 					pathName = f.getAbsolutePath();
 					JOptionPane.showMessageDialog(null, "File Saved Successfully");
