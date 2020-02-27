@@ -1,3 +1,3 @@
 # ProjectThree
 ## Team 5 works here
-![Image of Burn-down Chart](https://imgur.com/a/GfYyJHe)
+![Image of Burn-down Chart](https://imgur.com/a/GfYyJHe.png)
