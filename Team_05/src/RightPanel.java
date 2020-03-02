@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -8,7 +9,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Line2D;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -19,15 +24,20 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 	private static final long serialVersionUID = 1L;
 	private Hashtable<Integer, JButton> shapes;
 	private Frame frame;
-	private int currentX, currentY;
 	//private int step;
 	//private Box btnInstance;
-	
+	RoundButton tempround = null;
+	TriangleButton temptri = null;
+	RectangleButton temrect = null;
+	private Connection tempconnection = null;
+	private static List<Connection> connections = new ArrayList<Connection>();
+	private static int originX, originY, destinationX, destinationY;
+	private static boolean isMoved = false;
 	public RightPanel() {
 		this.setBackground(Color.red);
 		shapes = new Hashtable<Integer, JButton>();
-		currentX = 0;
-		currentY = 0;
+		
+		
 		//this.setLayout(null);
 		//step = 50;
 		addMouseListener(this);
@@ -43,18 +53,18 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 			//triangle.addMouseMotionListener(this);
 			//points = triangle.getPointsPosition();
 			this.add(triangle);
-			this.autoLocation(triangle,x,y);
+			this.autoLocation(triangle,x-triangle.getPreferredSize().width/2,y-triangle.getPreferredSize().height/2);
 			
 		}else if(className.equals("RoundButton")) {
 			RoundButton round = new RoundButton("");
 			addActionAndMouseMotionListener(round);
 			this.add(round);
-			this.autoLocation(round,x-round.getWidth()/2,y-round.getHeight()/2);
+			this.autoLocation(round,x-round.getPreferredSize().width/2,y-round.getPreferredSize().height/2);
 		}else if(className.equals("RectangleButton")) {
 			RectangleButton rect = new RectangleButton("");
 			addActionAndMouseMotionListener(rect);
 			this.add(rect);
-			this.autoLocation(rect,x,y);
+			this.autoLocation(rect,x-rect.getPreferredSize().width/2,y-rect.getPreferredSize().height/2);
 			//points = rect.getPointsPosition();
 		}
 		this.repaint();
@@ -65,56 +75,8 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 		//JButton btn =  (JButton) button;
 		button.addActionListener(this);
 		button.addMouseMotionListener(this);
+		button.addMouseListener(this);
 	}
-	/*
-	public void addRound() {
-		RoundButton round = new RoundButton("");
-		shapes.put(round.hashCode(),round);
-		this.add(round);
-		autoLocation(round);
-		frame.contentRepaint();
-	}
-	
-	public void addTriangle() {
-		TriangleButton triangle = new TriangleButton("");
-		shapes.put(triangle.hashCode(),triangle);
-		this.add(triangle);
-		autoLocation(triangle);
-		frame.contentRepaint();
-	}
-	
-	public void addRectangle() {
-		RectangleButton rectangle = new RectangleButton("");
-		shapes.put(rectangle.hashCode(),rectangle);
-		this.add(rectangle);
-		autoLocation(rectangle);
-		frame.contentRepaint();
-	}*/
-	/*
-	public void addShape(ShapeInfo shapeInfo){
-		JButton shape;
-		switch(shapeInfo.getType()){
-			case "round":
-				shape = new RoundButton("");
-				break;
-			case "triangle":
-				shape = new TriangleButton("");
-				break;
-			default:
-				shape = new RectangleButton("");
-		}
-		shape.setLocation(shapeInfo.getPosition());
-		shape.setSize(shape.getPreferredSize());
-		shapes.put(shapeInfo.getId(),shape);
-		this.add(shape);
-		frame.contentRepaint();
-	}
-	
-	public void deleteShape(int hashCode) {
-		this.remove(shapes.get(hashCode));
-		shapes.remove(hashCode);
-		frame.contentRepaint();
-	}*/
 	
 	public void setFrame(Frame frame) {
 		this.frame = frame;
@@ -134,18 +96,8 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 			this.remove(shape);
 		}
 		shapes.clear();
-		currentX = 0;
-		currentY = 0;
+		
 	}
-	
-	/*
-	public void load(ShapeInfo[] shapeList){
-		clear();
-		for(ShapeInfo shape:shapeList){
-			addShape(shape);
-		}
-		updateHashCode();
-	}*/
 	
 	private void autoLocation(JButton button,int x, int y) {
 		Rectangle dimension = this.getBounds();
@@ -164,13 +116,9 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		Object obj = e.getSource();
-		if(obj instanceof RoundButton) {
-			RoundButton btn = (RoundButton)obj;
-			System.out.println("....." + btn.getCenterPoint() );
-		}
-		//System.out.println("....." + );
+//		// TODO Auto-generated method stub
+//		//
+//		System.out.println("....."+e.getSource());
 	}
 
 	@Override
@@ -179,7 +127,10 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 		// TODO Auto-generated method stub
 		e.getComponent().setLocation(e.getX() + e.getComponent().getX(), 
 				 e.getY() + e.getComponent().getY());
-		System.out.println("mouse drag: " + e.getX() + ", " + e.getY());
+		isMoved = true;
+		destinationX = e.getX() + e.getComponent().getX();
+		destinationY = e.getY() + e.getComponent().getY();
+		this.repaint();
 	}
 
 	@Override
@@ -190,30 +141,127 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
 		//System.out.println("=====" + e.getSource().getClass().getName() + ", " + e.getX() + ", " + e.getY());
-		Box instance = Box.getInstance();
-		if(instance.instanceOfClass == null)
-			return;
-		addButton(instance.instanceOfClass,e.getX(),e.getY());
-		currentX = e.getX();
-		currentY = e.getY();
-		System.out.println("====" + this.getComponentCount());
-		//Graphics g = this.getGraphics();
-		
-		
+		if(e.getSource().equals(this)) {
+			Box instance = Box.getInstance();
+			if(instance.instanceOfClass == null)
+				return;
+			addButton(instance.instanceOfClass,e.getX(),e.getY());
+			System.out.println("====" + this.getComponentCount());
+		}
+		else {
+			Object obj = e.getSource();
+			Box instance = Box.getInstance();
+			int jX = e.getX();
+			int jY = e.getY();
+			boolean selected = false;
+			if(obj instanceof RoundButton) {
+				RoundButton btn = (RoundButton)obj;
+				if(jX>=btn.getCenterPoint().x-3 && jX <= btn.getCenterPoint().x+3 && jY >= btn.getCenterPoint().y-3 && jY <= btn.getCenterPoint().y+3) {
+					for(int i=0; i < connections.size(); i++) {
+						Connection c = connections.get(i);
+						if(btn.getBounds().getCenterX() == c.getSourceX() && btn.getBounds().getCenterY() == c.getSourceY()) {
+							selected = true;
+							tempconnection = null;
+						}
+						else if(btn.getBounds().getCenterX() == c.getDestX() && btn.getBounds().getCenterY() == c.getDestY()) {
+							selected = true;
+							tempconnection = null;
+						}
+					}
+					if(!selected) {
+						if(tempconnection == null) {
+							tempconnection = new Connection();
+							tempconnection.setSourceX((int)btn.getBounds().getCenterX());
+							tempconnection.setSourceY((int)btn.getBounds().getCenterY());
+						}
+						else if (tempconnection != null) {
+							tempconnection.setDestX((int)btn.getBounds().getCenterX());
+							tempconnection.setDestY((int)btn.getBounds().getCenterY());
+							connections.add(tempconnection);
+							tempconnection = null;
+							this.repaint();
+						}
+						else {
+							tempconnection = null;
+						}
+					}
+				}
+			}
+			else if(obj instanceof TriangleButton) {
+				TriangleButton btn = (TriangleButton)obj;
+				Point []points = btn.getPointsPosition();
+				for(int i = 0; i < 3; i++) {
+					if(jX>=points[i].x-3 && jX <= points[i].x+3 && jY >= points[i].y-3 && jY <= points[i].y+3) {
+						for(int j=0; j < connections.size(); j++) {
+							Connection c = connections.get(j);
+							if(btn.getBounds().x+points[i].x == c.getSourceX() && btn.getBounds().y+points[i].y == c.getSourceY()) {
+								selected = true;
+								tempconnection = null;
+							}
+							else if(btn.getBounds().x+points[i].x == c.getDestX() && btn.getBounds().y+points[i].y == c.getDestY()) {
+								selected = true;
+								tempconnection = null;
+							}
+						}
+						if(!selected) {
+							if(tempconnection == null) {
+								tempconnection = new Connection();
+								tempconnection.setSourceX(btn.getBounds().x+points[i].x);
+								tempconnection.setSourceY(btn.getBounds().y+points[i].y);
+							}
+							else if (tempconnection != null) {
+								tempconnection.setDestX(btn.getBounds().x+points[i].x);
+								tempconnection.setDestY(btn.getBounds().y+points[i].y);
+								connections.add(tempconnection);
+								tempconnection = null;
+								this.repaint();
+							}
+							else {
+								tempconnection = null;
+							}
+						}
+					}
+				}
+			}
+			else {
+				RectangleButton btn = (RectangleButton)obj;
+				Point []points = btn.getPointsPosition();
+				System.out.println(points[0]);
+				System.out.println(points[1]);
+				System.out.println(jX);
+				if(jX == points[0].x || jX == points[2].x) {
+					if(jY >= points[0].y && jY <= points[1].y) {
+						if(tempconnection == null) {
+							tempconnection = new Connection();
+							tempconnection.setSourceX(btn.getBounds().x+jX);
+							tempconnection.setSourceY(btn.getBounds().y+jY);
+						}
+						else if (tempconnection != null) {
+							tempconnection.setDestX(btn.getBounds().x+jX);
+							tempconnection.setDestY(btn.getBounds().y+jY);
+							connections.add(tempconnection);
+							tempconnection = null;
+							this.repaint();
+						}
+						else {
+							tempconnection = null;
+						}
+					}
+				}
+			}
+		}
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		isMoved = false;
 	}
 
 	@Override
@@ -227,20 +275,23 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 		// TODO Auto-generated method stub
 		
 	}
-	/*
-    @Override
-    protected void paintComponent(Graphics g) {
-    	super.paintComponent(g);
-        for(int i = 0; i < this.getComponentCount(); i++) {
-        	g.drawLine(currentX + 37, currentY + 37 ,150,20*i+150);
-        }
-    }*/
-    
+	
     public void paint(Graphics g) {
-        //super.paint(g);
         super.paint(g);
-        for(int i = 0; i < this.getComponentCount(); i++) {
-        	g.drawLine(currentX + 37, currentY + 37 ,150,20*i+150);
+        for(int i = 0; i < this.connections.size(); i++) {
+        		Connection finishedconnection = connections.get(i);
+            	Line2D shape = new Line2D.Double();
+            	originX = finishedconnection.getSourceX();
+            	originY = finishedconnection.getSourceY();
+    			shape.setLine(finishedconnection.getSourceX(), finishedconnection.getSourceY(), finishedconnection.getDestX(), finishedconnection.getDestY());
+    			Graphics2D g2 = (Graphics2D) g;
+    			g2.draw(shape);
+        }
+        if(isMoved) {
+        	Line2D shape = new Line2D.Double();
+			shape.setLine(originX, originY, destinationX, destinationY);
+			Graphics2D g2 = (Graphics2D) g;
+			g2.draw(shape);
         }
     }
 }
