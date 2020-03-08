@@ -38,10 +38,10 @@ public class Frame extends JFrame{
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setLayout(null);
-		JMenu fileMenu =  new JMenu("File");
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		JMenuItem itemSave = new JMenuItem("Save File");
+//		JMenu fileMenu =  new JMenu("File");
+//		JMenuBar menuBar = new JMenuBar();
+//		setJMenuBar(menuBar);
+//		JMenuItem itemSave = new JMenuItem("Save File");
 		//itemSave.addActionListener(new ActionListener(){
 		/*	public void actionPerformed(ActionEvent e) {
 				if(fileBrowser.browser("Save file")) {
@@ -49,20 +49,20 @@ public class Frame extends JFrame{
 				}
 			}
 		});*/
-		fileMenu.add(itemSave);
-		fileMenu.addSeparator();
-		JMenuItem itemOpen = new JMenuItem("Open File");
-		itemOpen.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
+//		fileMenu.add(itemSave);
+//		fileMenu.addSeparator();
+//		JMenuItem itemOpen = new JMenuItem("Open File");
+//		itemOpen.addActionListener(new ActionListener(){
+//			public void actionPerformed(ActionEvent e) {
 				//if(fileBrowser.browser("Open file")) {
 				//	ShapeInfo[] shapeList = fileManager.open(fileBrowser.getCurrentFile());
 				//	dragArea.load(shapeList);
-				}
+//				}
 			//}
-		});
-		fileMenu.add(itemOpen);
-		menuBar.add(fileMenu);
-		this.setVisible(true);
+//		});
+//		fileMenu.add(itemOpen);
+//		menuBar.add(fileMenu);
+//		this.setVisible(true);
 	}
 	
 	private JPanel createLeftPanel() {

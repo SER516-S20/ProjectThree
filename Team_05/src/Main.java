@@ -1,10 +1,14 @@
+import javax.swing.JFrame;
 
-public class Main {
+//import javax.swing.JMenuBar;
+
+public class Main{
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new Frame();
-
+		Frame frame = new Frame();
+		MenuBar menuBar = new MenuBar();
+		frame.setJMenuBar(menuBar.createMenuBar());
+		frame.setVisible(true);
 	}
-
 }
