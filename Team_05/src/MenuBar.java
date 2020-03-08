@@ -18,7 +18,6 @@ public class MenuBar extends JMenuBar {
 		fileManager = new FileManager();
 		JMenu fileMenu =  new JMenu("File");
 		JMenuBar menuBar = new JMenuBar();
-		//setJMenuBar(menuBar);
 		JMenuItem itemSave = new JMenuItem("Save File");
 		itemSave.addActionListener(new ActionListener(){
 		
@@ -41,7 +40,10 @@ public class MenuBar extends JMenuBar {
 		});
 		fileMenu.add(itemOpen);
 		menuBar.add(fileMenu);
-		//this.setVisible(true);
+		JMenu NewSpace = new JMenu("New Space");
+		menuBar.add(NewSpace);
+		JMenu Compiler = new JMenu("Compiler");
+		menuBar.add(Compiler);
 		return menuBar;
 	}
 }
