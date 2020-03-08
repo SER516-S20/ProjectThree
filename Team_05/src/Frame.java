@@ -19,8 +19,6 @@ public class Frame extends JFrame{
 	private static final Color rBackground = new Color(240, 255, 255);
 	private RightPanel dragArea;
 	private LeftPanel btnContainer;
-	//private FileBrowser fileBrowser;
-	//private FileManager fileManager;
 	 
 	public Frame() {
 		this.setTitle(title);
@@ -31,38 +29,14 @@ public class Frame extends JFrame{
 		dragArea = new RightPanel();
 		btnContainer = new LeftPanel();
 		dragArea.setFrame(this);
-		//fileBrowser = new FileBrowser();
-		//fileManager = new FileManager();
 		this.getContentPane().add(createLeftPanel());
 		this.getContentPane().add(createRightPanel());
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setLayout(null);
-//		JMenu fileMenu =  new JMenu("File");
-//		JMenuBar menuBar = new JMenuBar();
-//		setJMenuBar(menuBar);
-//		JMenuItem itemSave = new JMenuItem("Save File");
-		//itemSave.addActionListener(new ActionListener(){
-		/*	public void actionPerformed(ActionEvent e) {
-				if(fileBrowser.browser("Save file")) {
-					fileManager.save(fileBrowser.getCurrentFile(), dragArea.getShapes());
-				}
-			}
-		});*/
-//		fileMenu.add(itemSave);
-//		fileMenu.addSeparator();
-//		JMenuItem itemOpen = new JMenuItem("Open File");
-//		itemOpen.addActionListener(new ActionListener(){
-//			public void actionPerformed(ActionEvent e) {
-				//if(fileBrowser.browser("Open file")) {
-				//	ShapeInfo[] shapeList = fileManager.open(fileBrowser.getCurrentFile());
-				//	dragArea.load(shapeList);
-//				}
-			//}
-//		});
-//		fileMenu.add(itemOpen);
-//		menuBar.add(fileMenu);
-//		this.setVisible(true);
+		MenuBar menuBar = new MenuBar();
+		this.setJMenuBar(menuBar.createMenuBar());
+		this.setVisible(true);
 	}
 	
 	private JPanel createLeftPanel() {
