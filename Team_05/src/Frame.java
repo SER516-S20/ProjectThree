@@ -1,12 +1,17 @@
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+
 
 /**
  * this class is to show the app
@@ -19,6 +24,8 @@ public class Frame extends JFrame{
 	private static final Color rBackground = new Color(240, 255, 255);
 	private RightPanel dragArea;
 	private LeftPanel btnContainer;
+//testing...
+//	private TitledBorder titled;
 	 
 	public Frame() {
 		this.setTitle(title);
@@ -53,6 +60,14 @@ public class Frame extends JFrame{
 		dragArea.setLocation(200, 0);
 		dragArea.setSize(600, 500);
 		dragArea.setBackground(rBackground);
+//testing...		
+//        titled = BorderFactory.createTitledBorder("123");
+//        dragArea.setBorder(titled);
+//        dragArea.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
+//        addCompForBorder(titled,
+//                "default titled border"
+//                + " (default just., default pos.)",
+//                dragArea);		
 		return dragArea;
 	}
 	
@@ -60,4 +75,16 @@ public class Frame extends JFrame{
 		getContentPane().revalidate();
 		getContentPane().repaint();	
 	}
+//testing...
+//    void addCompForBorder(Border border,
+//            String description,
+//            Container container) {
+//    		JPanel comp = new JPanel(new GridLayout(1, 1), false);
+//    		JLabel label = new JLabel(description, JLabel.CENTER);
+//    		comp.add(label);
+//    		comp.setBorder(border);
+//
+//    		container.add(Box.createRigidArea(new Dimension(0, 10)));
+//    		container.add(comp);
+//    }
 }

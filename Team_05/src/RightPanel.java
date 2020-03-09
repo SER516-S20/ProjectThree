@@ -14,8 +14,10 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 /**
  * @author Yijian Hu
@@ -33,7 +35,11 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 	private static List<Connection> connections = new ArrayList<Connection>();
 	private static int originX, originY, destinationX, destinationY;
 	private static boolean isMoved = false;
+	private ValuePane valuePane;
+	private TitledBorder titled;
+
 	public RightPanel() {
+		valuePane = new ValuePane();
 		this.setBackground(Color.red);
 		shapes = new Hashtable<Integer, JButton>();
 		
@@ -76,6 +82,7 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 		button.addActionListener(this);
 		button.addMouseMotionListener(this);
 		button.addMouseListener(this);
+		
 	}
 	
 	public void setFrame(Frame frame) {
@@ -138,18 +145,32 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	public String getTitleVal() {
+		return valuePane.getvalue();
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		//System.out.println("=====" + e.getSource().getClass().getName() + ", " + e.getX() + ", " + e.getY());
 		if(e.getSource().equals(this)) {
 			Box instance = Box.getInstance();
-			if(instance.instanceOfClass == null)
+			if(instance.instanceOfClass == null) {
+				if (e.getClickCount() == 2) {
+					valuePane.setValue(valuePane.getvalue());
+					//titled = BorderFactory.createTitledBorder(valuePane.getvalue());
+					//this.setBorder(valuePane.getvalue());
+				}
 				return;
+			}
 			addButton(instance.instanceOfClass,e.getX(),e.getY());
 			System.out.println("====" + this.getComponentCount());
 		}
 		else {
+			if (e.getClickCount() == 2) {
+				valuePane.setValue(valuePane.getvalue());
+				//titled.setTitle(valuePane.getvalue());
+			}
 			Object obj = e.getSource();
 			Box instance = Box.getInstance();
 			int jX = e.getX();
