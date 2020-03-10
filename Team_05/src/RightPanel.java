@@ -50,29 +50,32 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 		//addMouseMotionListener(this);
 	}
 	
-	public void addButton(String className, int x, int y) {
-		System.out.println("get in to the panel...." + className);
-		
-		if(className.equals("TriangleButton")) {
-			TriangleButton triangle = new TriangleButton("");
-			addActionAndMouseMotionListener(triangle);
+	public void addButton(String btnCommand, int x, int y) {
+		System.out.println("get in to the panel...." + btnCommand);
+		ButtonBox btn = ButtonBoxFactory.buildButtonBox(btnCommand);
+		this.add(btn);
+		this.autoLocation(btn,x-btn.getPreferredSize().width/2,y-btn.getPreferredSize().height/2);
+		/*
+		if(btnCommand.equals("<")) {
+			LButtonBox triangle = new LButtonBox();
+			//addActionAndMouseMotionListener(triangle);
 			//triangle.addMouseMotionListener(this);
 			//points = triangle.getPointsPosition();
 			this.add(triangle);
 			this.autoLocation(triangle,x-triangle.getPreferredSize().width/2,y-triangle.getPreferredSize().height/2);
 			
-		}else if(className.equals("RoundButton")) {
-			RoundButton round = new RoundButton("");
-			addActionAndMouseMotionListener(round);
+		}else if(btnCommand.equals(">")) {
+			RButtonBox round = new RButtonBox();
+			//addActionAndMouseMotionListener(round);
 			this.add(round);
 			this.autoLocation(round,x-round.getPreferredSize().width/2,y-round.getPreferredSize().height/2);
-		}else if(className.equals("RectangleButton")) {
+		}else if(btnCommand.equals("RectangleButton")) {
 			RectangleButton rect = new RectangleButton("");
 			addActionAndMouseMotionListener(rect);
 			this.add(rect);
-			this.autoLocation(rect,x-rect.getPreferredSize().width/2,y-rect.getPreferredSize().height/2);
+			//this.autoLocation(rect,x-rect.getPreferredSize().width/2,y-rect.getPreferredSize().height/2);
 			//points = rect.getPointsPosition();
-		}
+		}*/
 		this.repaint();
 		
 	}
@@ -106,7 +109,7 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 		
 	}
 	
-	private void autoLocation(JButton button,int x, int y) {
+	private void autoLocation(ButtonBox button,int x, int y) {
 		Rectangle dimension = this.getBounds();
 		System.out.println("dimension: " + dimension);
 		button.setSize(button.getPreferredSize());
