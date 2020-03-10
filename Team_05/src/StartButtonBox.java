@@ -1,13 +1,13 @@
 import javax.swing.JButton;
 
-public class RButtonBox extends ButtonBox {
+public class StartButtonBox extends ButtonBox {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JButton []dots; 
-	public RButtonBox() {
-		super(">", 3);
+	public StartButtonBox() {
+		super("(", 1);
 		drawContent();
 	}
 
@@ -18,8 +18,6 @@ public class RButtonBox extends ButtonBox {
 		int height = this.getPreferredSize().height / 5;
 		dots = getBtnDots();
 		dots[0].setLocation(width - height - 2, (this.getPreferredSize().height - height) / 2);
-		dots[1].setLocation(1, (this.getPreferredSize().height / 2 - height) / 2);
-		dots[2].setLocation(1, (this.getPreferredSize().height / 2 + height * 4) / 2);
 		for(int i = 0; i < dots.length; i++) {
 			this.add(dots[i]);
 		}

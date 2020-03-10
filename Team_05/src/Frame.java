@@ -22,7 +22,7 @@ public class Frame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private static final String title = "ProjectTwo-Team 5";
 	private static final Color lBackground = new Color(255, 255, 240);
-	private static final Color rBackground = new Color(240, 255, 255);
+	//private static final Color rBackground = new Color(240, 255, 255);
 	private RightPanel dragArea;
 	private LeftPanel btnContainer;
 //testing...
@@ -63,7 +63,7 @@ public class Frame extends JFrame{
 	private JPanel createRightPanel() {
 		dragArea.setLocation(200, 0);
 		dragArea.setSize(600, 500);
-		dragArea.setBackground(rBackground);
+		dragArea.setBackground(Color.white);
 //testing...		
 //        titled = BorderFactory.createTitledBorder("123");
 //        dragArea.setBorder(titled);

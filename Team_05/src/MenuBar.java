@@ -6,6 +6,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 public class MenuBar extends JMenuBar {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private FileBrowser fileBrowser;
 	private FileManager fileManager;
 	

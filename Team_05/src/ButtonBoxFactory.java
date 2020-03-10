@@ -4,8 +4,10 @@ public class ButtonBoxFactory {
 		ButtonBox button = null;
 		switch(btnCommand) {
 		case "(":
+			button = new StartButtonBox();
 			break;
 		case ")":
+			button = new EndButtonBox();
 			break;
 		case "<":
 			button = new LButtonBox();
@@ -14,10 +16,13 @@ public class ButtonBoxFactory {
 			button = new RButtonBox();
 			break;
 		case "@":
+			button = new LoopButtonBox();
 			break;
 		case "||":
+			button = new BarButtonBox();
 			break;
 		case "-" :
+			button = new DotButtonBox();
 			break;
 		}
 		return button;
