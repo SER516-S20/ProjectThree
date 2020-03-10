@@ -1,6 +1,6 @@
 
 public class ButtonBoxFactory {
-	public static ButtonBox buildButtonBox( String btnCommand) {
+	public static ButtonBox buildButtonBox(String btnCommand) {
 		ButtonBox button = null;
 		switch(btnCommand) {
 		case "(":
