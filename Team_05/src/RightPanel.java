@@ -153,106 +153,6 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 				valuePane.setValue(valuePane.getvalue());
 				//titled.setTitle(valuePane.getvalue());
 			}
-			Object obj = e.getSource();
-			Box instance = Box.getInstance();
-			int jX = e.getX();
-			int jY = e.getY();
-			boolean selected = false;
-			if(obj instanceof RoundButton) {
-				RoundButton btn = (RoundButton)obj;
-				if(jX>=btn.getCenterPoint().x-3 && jX <= btn.getCenterPoint().x+3 && jY >= btn.getCenterPoint().y-3 && jY <= btn.getCenterPoint().y+3) {
-					for(int i=0; i < connections.size(); i++) {
-						Connection c = connections.get(i);
-						if(btn.getBounds().getCenterX() == c.getSourceX() && btn.getBounds().getCenterY() == c.getSourceY()) {
-							selected = true;
-							tempconnection = null;
-						}
-						else if(btn.getBounds().getCenterX() == c.getDestX() && btn.getBounds().getCenterY() == c.getDestY()) {
-							selected = true;
-							tempconnection = null;
-						}
-					}
-					if(!selected) {
-						if(tempconnection == null) {
-							tempconnection = new Connection();
-							tempconnection.setSourceX((int)btn.getBounds().getCenterX());
-							tempconnection.setSourceY((int)btn.getBounds().getCenterY());
-						}
-						else if (tempconnection != null) {
-							tempconnection.setDestX((int)btn.getBounds().getCenterX());
-							tempconnection.setDestY((int)btn.getBounds().getCenterY());
-							connections.add(tempconnection);
-							tempconnection = null;
-							this.repaint();
-						}
-						else {
-							tempconnection = null;
-						}
-					}
-				}
-			}
-			else if(obj instanceof TriangleButton) {
-				TriangleButton btn = (TriangleButton)obj;
-				Point []points = btn.getPointsPosition();
-				for(int i = 0; i < 3; i++) {
-					if(jX>=points[i].x-3 && jX <= points[i].x+3 && jY >= points[i].y-3 && jY <= points[i].y+3) {
-						for(int j=0; j < connections.size(); j++) {
-							Connection c = connections.get(j);
-							if(btn.getBounds().x+points[i].x == c.getSourceX() && btn.getBounds().y+points[i].y == c.getSourceY()) {
-								selected = true;
-								tempconnection = null;
-							}
-							else if(btn.getBounds().x+points[i].x == c.getDestX() && btn.getBounds().y+points[i].y == c.getDestY()) {
-								selected = true;
-								tempconnection = null;
-							}
-						}
-						if(!selected) {
-							if(tempconnection == null) {
-								tempconnection = new Connection();
-								tempconnection.setSourceX(btn.getBounds().x+points[i].x);
-								tempconnection.setSourceY(btn.getBounds().y+points[i].y);
-							}
-							else if (tempconnection != null) {
-								tempconnection.setDestX(btn.getBounds().x+points[i].x);
-								tempconnection.setDestY(btn.getBounds().y+points[i].y);
-								connections.add(tempconnection);
-								tempconnection = null;
-								this.repaint();
-							}
-							else {
-								tempconnection = null;
-							}
-						}
-					}
-				}
-			}
-			else {
-				RectangleButton btn = (RectangleButton)obj;
-				Point []points = btn.getPointsPosition();
-				System.out.println(points[0]);
-				System.out.println(points[1]);
-				System.out.println(jX);
-				if(jX == points[0].x || jX == points[2].x) {
-					if(jY >= points[0].y && jY <= points[1].y) {
-						if(tempconnection == null) {
-							tempconnection = new Connection();
-							tempconnection.setSourceX(btn.getBounds().x+jX);
-							tempconnection.setSourceY(btn.getBounds().y+jY);
-						}
-						else if (tempconnection != null) {
-							tempconnection.setDestX(btn.getBounds().x+jX);
-							tempconnection.setDestY(btn.getBounds().y+jY);
-							connections.add(tempconnection);
-							tempconnection = null;
-							this.repaint();
-						}
-						else {
-							tempconnection = null;
-						}
-					}
-				}
-			}
 		}
 	}
 
@@ -278,23 +178,18 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 		// TODO Auto-generated method stub
 		
 	}
-	
+	public void setConnection(Connection tempconnection) {
+		connections.add(tempconnection);
+		this.repaint();
+	}
     public void paint(Graphics g) {
-        super.paint(g);
+    	super.paint(g);
         for(int i = 0; i < this.connections.size(); i++) {
         		Connection finishedconnection = connections.get(i);
-            	Line2D shape = new Line2D.Double();
-            	originX = finishedconnection.getSourceX();
-            	originY = finishedconnection.getSourceY();
-    			shape.setLine(finishedconnection.getSourceX(), finishedconnection.getSourceY(), finishedconnection.getDestX(), finishedconnection.getDestY());
-    			Graphics2D g2 = (Graphics2D) g;
-    			g2.draw(shape);
-        }
-        if(isMoved) {
-        	Line2D shape = new Line2D.Double();
-			shape.setLine(originX, originY, destinationX, destinationY);
-			Graphics2D g2 = (Graphics2D) g;
-			g2.draw(shape);
+        		Line line = new Line();
+        		line.setSource(finishedconnection.getSourceX(), finishedconnection.getSourceY());
+        		line.setDest(finishedconnection.getDestX(), finishedconnection.getDestY());
+        		line.draw(g);
         }
     }
 }
