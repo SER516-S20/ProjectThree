@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
  */
 public class ValuePane extends JOptionPane{
 	private static final long serialVersionUID = 1L;
-	public static String value = "";
+	private static String value = "";
 	
 	public String getvalue() {
 		return value;
