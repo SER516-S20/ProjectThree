@@ -2,7 +2,7 @@ import java.awt.Point;
 
 public class Box {
 	private static Box instance = null;
-	public String instanceOfClass = null;
+	public String text = null;
 	private static Point position = null;
 	
 	private Box(String instanceOfClass) {

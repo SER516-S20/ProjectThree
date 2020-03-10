@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
@@ -46,14 +47,17 @@ public class Frame extends JFrame{
 		this.setVisible(true);
 	}
 	
-	private JPanel createLeftPanel() {
-		btnContainer.setSize(200, 500);
+	private JScrollPane createLeftPanel() {
+		btnContainer.setPreferredSize(new  Dimension(200, 600));
 		btnContainer.setLocation(0, 0);
 		btnContainer.setBackground(lBackground);
 		//btnContainer.setRoundButtonMouseAdapter(new LeftPanelMouse(dragArea));
 		//btnContainer.setTriangleButtonMouseAdapter(new LeftPanelMouse(dragArea));
 		//btnContainer.setRectangleButtonMouseAdapter(new LeftPanelMouse(dragArea));
-		return btnContainer;
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setViewportView(btnContainer);
+        scrollPane.setBounds(0, 0, 200, 480);
+		return scrollPane;
 	}
 	
 	private JPanel createRightPanel() {

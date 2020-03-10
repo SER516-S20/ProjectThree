@@ -155,7 +155,7 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 		//System.out.println("=====" + e.getSource().getClass().getName() + ", " + e.getX() + ", " + e.getY());
 		if(e.getSource().equals(this)) {
 			Box instance = Box.getInstance();
-			if(instance.instanceOfClass == null) {
+			if(instance.text == null) {
 				if (e.getClickCount() == 2) {
 					valuePane.setValue(valuePane.getvalue());
 					//titled = BorderFactory.createTitledBorder(valuePane.getvalue());
@@ -163,7 +163,7 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 				}
 				return;
 			}
-			addButton(instance.instanceOfClass,e.getX(),e.getY());
+			addButton(instance.text,e.getX(),e.getY());
 			System.out.println("====" + this.getComponentCount());
 		}
 		else {

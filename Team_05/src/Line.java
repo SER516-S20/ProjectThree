@@ -8,7 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 public class Line extends JButton{
 	private static final long serialVersionUID = 1L;
-	private Shape shape;
+	private ButtonBox shape;
 	private Color foreground = new Color(0, 0, 0);
 	private Color background = new Color(0, 0, 0);
 	public Line(String label) {
