@@ -55,27 +55,6 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 		ButtonBox btn = ButtonBoxFactory.buildButtonBox(btnCommand);
 		this.add(btn);
 		this.autoLocation(btn,x-btn.getPreferredSize().width/2,y-btn.getPreferredSize().height/2);
-		/*
-		if(btnCommand.equals("<")) {
-			LButtonBox triangle = new LButtonBox();
-			//addActionAndMouseMotionListener(triangle);
-			//triangle.addMouseMotionListener(this);
-			//points = triangle.getPointsPosition();
-			this.add(triangle);
-			this.autoLocation(triangle,x-triangle.getPreferredSize().width/2,y-triangle.getPreferredSize().height/2);
-			
-		}else if(btnCommand.equals(">")) {
-			RButtonBox round = new RButtonBox();
-			//addActionAndMouseMotionListener(round);
-			this.add(round);
-			this.autoLocation(round,x-round.getPreferredSize().width/2,y-round.getPreferredSize().height/2);
-		}else if(btnCommand.equals("RectangleButton")) {
-			RectangleButton rect = new RectangleButton("");
-			addActionAndMouseMotionListener(rect);
-			this.add(rect);
-			//this.autoLocation(rect,x-rect.getPreferredSize().width/2,y-rect.getPreferredSize().height/2);
-			//points = rect.getPointsPosition();
-		}*/
 		this.repaint();
 		
 	}
