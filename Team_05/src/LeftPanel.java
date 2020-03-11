@@ -1,35 +1,51 @@
 import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  * @author Yijian Hu
+ * @modified by Hongqi Zhang
  */
-public class LeftPanel extends JPanel {
+public class LeftPanel extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
-	private RoundButton roundButton = new RoundButton("Round");
-	private TriangleButton triangleButton = new TriangleButton("Triangle");
-	private RectangleButton rectangleButton = new RectangleButton("Rectangle");
-	private Dimension buttonSize = new Dimension(100,100);
-	
+	private final int N = 7;
+	private JButton []btns;
 	public LeftPanel() {
-		roundButton.setPreferredSize(buttonSize);
-		triangleButton.setPreferredSize(buttonSize);
-		rectangleButton.setPreferredSize(buttonSize);
-		this.add(roundButton);
-		this.add(triangleButton);
-		this.add(rectangleButton);
+		initButton();
 	}
 	
-	public void setRoundButtonMouseAdapter(MouseAdapter adapter) {
-		roundButton.addMouseListener(adapter);
+	public void initButton() {
+		btns = new JButton[N];
+		for(int i = 0; i < btns.length; i++) {
+			btns[i] = new JButton();
+			btns[i].addActionListener(this);
+		}
+		btns[0].setText("(");
+		btns[1].setText(")");
+		btns[2].setText("<");
+		btns[3].setText(">");
+		btns[4].setText("@");
+		btns[5].setText("||");
+		btns[6].setText("-");
+		for(int i = 0; i < btns.length; i++) {
+			this.add(btns[i]);
+		}
+		this.setLayout(new GridLayout(N + 1, 1, 0, 10));
+		
 	}
-	
-	public void setTriangleButtonMouseAdapter(MouseAdapter adapter) {
-		triangleButton.addMouseListener(adapter);
-	}
-	
-	public void setRectangleButtonMouseAdapter(MouseAdapter adapter) {
-		rectangleButton.addMouseListener(adapter);
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String text  = e.getActionCommand();
+		Box instance = Box.getInstance();
+		instance.text = text;
+		//dragArea.addButton(className);
+		System.out.println("the pressed button is: " + text);
+		
 	}
 }
