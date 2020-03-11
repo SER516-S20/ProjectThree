@@ -33,6 +33,7 @@ public class FileManager {
 				shape.setAttribute("id",Integer.toString(key));
 				JButton theShape = shapes.get(key);
 				Element type = doc.createElement("type");
+				/*
 				if(theShape instanceof RoundButton) {
 					type.appendChild(doc.createTextNode("round"));
 				}
@@ -45,7 +46,7 @@ public class FileManager {
 				Element position = doc.createElement("position");
 				position.appendChild(doc.createTextNode(theShape.getLocation().x + ","+theShape.getLocation().y));
 				shape.appendChild(type);
-				shape.appendChild(position);
+				shape.appendChild(position);*/
 			}
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();

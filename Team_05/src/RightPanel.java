@@ -27,9 +27,9 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 	private static final long serialVersionUID = 1L;
 	private Hashtable<Integer, JButton> shapes;
 	private Frame frame;
-	RoundButton tempround = null;
-	TriangleButton temptri = null;
-	RectangleButton temrect = null;
+	//RoundButton tempround = null;
+	//TriangleButton temptri = null;
+	//RectangleButton temrect = null;
 	private Connection tempconnection = null;
 	private static List<Connection> connections = new ArrayList<Connection>();
 	private static int originX, originY, destinationX, destinationY;
