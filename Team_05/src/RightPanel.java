@@ -197,7 +197,7 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 	}
     public void paint(Graphics g) {
     	super.paint(g);
-    	System.out.print("paint");
+    	System.out.println("======get into the right panel paint method=====");
         for(int i = 0; i < this.connections.size(); i++) {
         	Connection finishedconnection = connections.get(i);
         	Line line = new Line();

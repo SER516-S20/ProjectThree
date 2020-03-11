@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 
-public class ConnectionController extends RightPanel implements MouseListener, MouseMotionListener{
+public class ConnectionController extends RightPanel implements MouseListener{
 	private static Connection tempconnection;
 	private static List<Connection> connections = new ArrayList<Connection>();
 	private ButtonBox buttonBox;
@@ -28,11 +28,13 @@ public class ConnectionController extends RightPanel implements MouseListener, M
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println("=====get into the dot button mouse click event=======");
 		Object obj = e.getComponent();
 		int width = e.getComponent().getParent().getWidth()/2;
 		int buttonx = e.getComponent().getLocation().x;
 		int tempx = e.getComponent().getParent().getLocation().x + e.getComponent().getLocation().x+5;
 		int tempy = e.getComponent().getParent().getLocation().y + e.getComponent().getLocation().y+5;
+		System.out.println("=====x: " + tempx + "=====y: " + tempy + "========");
 		if(buttonx > width) {
 			if(tempconnection == null) {
 				tempconnection = new Connection();
@@ -49,6 +51,8 @@ public class ConnectionController extends RightPanel implements MouseListener, M
 				connections.add(tempconnection);
 				super.setConnection(tempconnection);
 				tempconnection = null;
+				//get the right panel component and repaint it.
+				e.getComponent().getParent().getParent().repaint();
 			}
 		}
 		else {
@@ -152,25 +156,5 @@ public class ConnectionController extends RightPanel implements MouseListener, M
 //			}
 //		}
 
-	}
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }
