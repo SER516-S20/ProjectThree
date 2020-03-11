@@ -36,12 +36,12 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 	private static List<Connection> connections = new ArrayList<Connection>();
 	private static int originX, originY, destinationX, destinationY;
 	private static boolean isMoved = false;
-	private ValuePane valuePane;
+	private ValuePane vPane;
 	private TitledBorder titled;
 	boolean isAlreadyOneClick=false;
 
 	public RightPanel() {
-		valuePane = new ValuePane();
+		//valuePane = new ValuePane();
 		this.setBackground(Color.red);
 		shapes = new Hashtable<Integer, JButton>();
 		
@@ -129,10 +129,10 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 		// TODO Auto-generated method stub
 		
 	}
-	
+	/*
 	public String getTitleVal() {
 		return valuePane.getvalue();
-	}
+	}*/
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -148,14 +148,25 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 			if (e.getClickCount() == 2) {
 				Object source = e.getComponent();
 				if(source instanceof JPanel){
-					JPanel panelPressed = (JPanel) source;
-					if(panelPressed.getClientProperty("content") == null) {
-						valuePane.setValue("");
-						panelPressed.putClientProperty("content", valuePane.getvalue());
+					//JPanel panelPressed = (JPanel) source;
+					ButtonBox panelPressed = (ButtonBox) source;
+					if(vPane == null) {
+						vPane = panelPressed.createJOptionPane();
+						panelPressed.setTitle(vPane.getvalue());
 					}else {
-				  		valuePane.setValue((String)panelPressed.getClientProperty("content"));
-				  		System.out.println("====" + panelPressed.getClientProperty("content"));
+						vPane.setValue(panelPressed.getTitle());
+						panelPressed.setTitle(vPane.getvalue());
 					}
+					/*
+					panelPressed.putClientProperty("content", vPane.getValue());
+					if(panelPressed.getClientProperty("content") == null) {
+						panelPressed.putClientProperty("content", vPane.getvalue());
+						panelPressed.setTitle(vPane.getvalue());
+					}else {
+				  		vPane.setValue((String)panelPressed.getClientProperty("content"));
+				  		//valuePane.setValue(panelPressed.getTitle());
+				  		//System.out.println("====" + panelPressed.getClientProperty("content"));
+					}*/
 				}
 			}
 		}
