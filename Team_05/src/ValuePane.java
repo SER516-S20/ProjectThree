@@ -5,18 +5,29 @@ import javax.swing.JOptionPane;
  */
 public class ValuePane extends JOptionPane{
 	private static final long serialVersionUID = 1L;
-	public static String value = "";
+	private static String value = "";
 	
 	public String getvalue() {
 		return value;
 	}
 	
 	public void setValue(String val) {
+		/*
 		if(val == "") {
-			String m = JOptionPane.showInputDialog("Input:");
+			String m = JOptionPane.showInputDialog("Input a value:");
+			if(m.isEmpty()) {
+				m = " ";
+			}
 			value = m;
 		}else {
-			JOptionPane.showMessageDialog(null,"Input: " + val);
+			JOptionPane.showMessageDialog(null,"Value = " + val);
+			//JOptionPane.showInputDialog("input value", val);
+		}*/
+		String m = JOptionPane.showInputDialog("Input a value", val);
+		if(m.isEmpty()) {
+			m = " ";
 		}
+		value = m;
+		
 	}
 }

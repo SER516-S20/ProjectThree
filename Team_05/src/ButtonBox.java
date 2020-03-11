@@ -13,7 +13,9 @@ public abstract class ButtonBox extends JPanel{
 	private final Color LIGHTBLUE = new Color(117, 218, 255);
 	private final int labelWidth = 20;
 	private final int labelHeight =20;
-	private String text;
+	private String title;
+	private ValuePane vDialog;
+	//private JLabel title;
 	private JButton []btnDots;
 	public JButton[] getBtnDots() {
 		return btnDots;
@@ -24,17 +26,17 @@ public abstract class ButtonBox extends JPanel{
 	public ButtonBox(String symbol, int num) {
 		this.setPreferredSize(new Dimension(120, 60));
 		this.setBackground(LIGHTBLUE);
-		this.setText("");
+		//addTitle("11");
 		addDescription(symbol);
 		generateBtnDot(num);
+		this.setTitle(" ");
 	}
-	public void setText(String title) {
-		this.text = title;
-		this.setBorder(BorderFactory.createTitledBorder(text));
+	public void setTitle(String text) {
+		this.title = text;
+		this.setBorder(BorderFactory.createTitledBorder(title));
 	}
-	
-	public JOptionPane showOptionPane() {
-		return new JOptionPane();
+	public String getTitle() {
+		return this.title;
 	}
 	private void addDescription(String symbol) {
 		Dimension size = this.getPreferredSize();
@@ -43,6 +45,13 @@ public abstract class ButtonBox extends JPanel{
 		description.setLocation((size.width - labelWidth) / 2, (size.height - labelHeight) / 2);
 		this.add(description);
 	}
+	/*
+	private void addTitle(String text) {
+		title = new JLabel(text);
+		title.setSize(new Dimension(labelWidth, labelHeight));
+		title.setLocation(1, 1);
+		this.add(title);
+	}*/
 	private void generateBtnDot(int num) {
 		int height = this.getPreferredSize().height / 5;
 		btnDots = new JButton[num];
@@ -51,6 +60,11 @@ public abstract class ButtonBox extends JPanel{
 			btnDots[i].setSize(height, height);
 			btnDots[i].addMouseListener(new ConnectionController(this));
 		}
+	}
+	public ValuePane createJOptionPane() {
+		vDialog =  new ValuePane();
+		vDialog.setValue("");
+		return vDialog;
 	}
 	abstract public void drawContent();
 }
