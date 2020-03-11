@@ -37,12 +37,11 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 	private static boolean isMoved = false;
 	private ValuePane valuePane;
 	private TitledBorder titled;
-
+	private ConnectionController controller;
 	public RightPanel() {
 		valuePane = new ValuePane();
 		this.setBackground(Color.red);
 		shapes = new Hashtable<Integer, JButton>();
-		
 		
 		//this.setLayout(null);
 		//step = 50;
@@ -134,6 +133,7 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
 		//System.out.println("=====" + e.getSource().getClass().getName() + ", " + e.getX() + ", " + e.getY());
 		if(e.getSource().equals(this)) {
 			Box instance = Box.getInstance();
@@ -184,12 +184,13 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 	}
     public void paint(Graphics g) {
     	super.paint(g);
+    	System.out.print("paint");
         for(int i = 0; i < this.connections.size(); i++) {
-        		Connection finishedconnection = connections.get(i);
-        		Line line = new Line();
-        		line.setSource(finishedconnection.getSourceX(), finishedconnection.getSourceY());
-        		line.setDest(finishedconnection.getDestX(), finishedconnection.getDestY());
-        		line.draw(g);
+        	Connection finishedconnection = connections.get(i);
+        	Line line = new Line();
+        	line.setSource(finishedconnection.getSourceX(), finishedconnection.getSourceY());
+        	line.setDest(finishedconnection.getDestX(), finishedconnection.getDestY());
+        	line.draw(g);
         }
     }
 }

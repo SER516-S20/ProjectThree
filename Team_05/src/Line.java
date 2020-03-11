@@ -22,7 +22,6 @@ public class Line extends JPanel{
 	}
 	public void draw(Graphics g) {
 		Graphics2D g2 = (Graphics2D)g;
-		g2.setStroke(new BasicStroke(1));
 		g2.drawLine(sourceX,sourceY,destX,destY);
 	}
 }

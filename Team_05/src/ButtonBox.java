@@ -49,6 +49,7 @@ public abstract class ButtonBox extends JPanel{
 		for( int i = 0; i < btnDots.length; i++) {
 			btnDots[i] = new JButton();
 			btnDots[i].setSize(height, height);
+			btnDots[i].addMouseListener(new ConnectionController(this));
 		}
 	}
 	abstract public void drawContent();

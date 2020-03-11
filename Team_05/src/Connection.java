@@ -1,7 +1,22 @@
+import javax.swing.JButton;
+
 public class Connection {
-	private RoundButton sourceButton;
-	private RoundButton destButton;
 	private int sourceX, sourceY, destX, destY;
+	private String buttonBox;
+	private Object sourceButton;
+	private Object destButton;
+	public void setSourceButton(Object obj) {
+		
+	}
+	public Object getSourceButton() {
+		return sourceButton;
+	}
+	public void setDestButton(Object sourceButton) {
+		
+	}
+	public Object getDestButton() {
+		return destButton;
+	}
 	public int getSourceX() {
 		return sourceX;
 	}
