@@ -1,8 +1,5 @@
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,15 +10,12 @@ import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
-import javax.swing.SwingUtilities;
 
 /**
  * @author Yijian Hu
+ * @modified by Hongqi Zhang 
  */
 public class RightPanel extends JPanel implements ActionListener, MouseListener, MouseMotionListener{
 	private static final long serialVersionUID = 1L;
@@ -38,14 +32,9 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 	//private TitledBorder titled;
 	boolean isAlreadyOneClick=false;
 	public RightPanel() {
-		//valuePane = new ValuePane();
 		this.setBackground(Color.red);
 		shapes = new Hashtable<Integer, JButton>();
-		
-		//this.setLayout(null);
-		//step = 50;
 		addMouseListener(this);
-		//addMouseMotionListener(this);
 	}
 	
 	public void addButton(String btnCommand, int x, int y) {
@@ -58,8 +47,6 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 		
 	}
 	private void addActionAndMouseMotionListener(ButtonBox button) {
-		//JButton btn =  (JButton) button;
-		//button.addActionListener(this);
 		button.addMouseMotionListener(this);
 		button.addMouseListener(this);
 		
@@ -103,15 +90,11 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-//		// TODO Auto-generated method stub
-//		//
 		System.out.println("....."+e.getSource());
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		//e.getComponent()
-		// TODO Auto-generated method stub
 		e.getComponent().setLocation(e.getX() + e.getComponent().getX(), 
 				 e.getY() + e.getComponent().getY());
 		isMoved = true;
@@ -125,10 +108,6 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 		// TODO Auto-generated method stub
 		
 	}
-	/*
-	public String getTitleVal() {
-		return valuePane.getvalue();
-	}*/
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -145,7 +124,6 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 			if (e.getClickCount() == 2) {
 				Object source = e.getComponent();
 				if(source instanceof JPanel){
-					//JPanel panelPressed = (JPanel) source;
 					ButtonBox panelPressed = (ButtonBox) source;
 					if(vPane == null) {
 						vPane = panelPressed.createJOptionPane();
@@ -154,16 +132,6 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 						vPane.setValue(panelPressed.getTitle());
 						panelPressed.setTitle(vPane.getvalue());
 					}
-					/*
-					panelPressed.putClientProperty("content", vPane.getValue());
-					if(panelPressed.getClientProperty("content") == null) {
-						panelPressed.putClientProperty("content", vPane.getvalue());
-						panelPressed.setTitle(vPane.getvalue());
-					}else {
-				  		vPane.setValue((String)panelPressed.getClientProperty("content"));
-				  		//valuePane.setValue(panelPressed.getTitle());
-				  		//System.out.println("====" + panelPressed.getClientProperty("content"));
-					}*/
 				}
 			}
 		}
