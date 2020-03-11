@@ -27,8 +27,6 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 	private static final long serialVersionUID = 1L;
 	private Hashtable<Integer, JButton> shapes;
 	private Frame frame;
-	//private int step;
-	//private Box btnInstance;
 	RoundButton tempround = null;
 	TriangleButton temptri = null;
 	RectangleButton temrect = null;
@@ -37,7 +35,7 @@ public class RightPanel extends JPanel implements ActionListener, MouseListener,
 	private static int originX, originY, destinationX, destinationY;
 	private static boolean isMoved = false;
 	private ValuePane vPane;
-	private TitledBorder titled;
+	//private TitledBorder titled;
 	boolean isAlreadyOneClick=false;
 	public RightPanel() {
 		//valuePane = new ValuePane();
